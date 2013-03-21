@@ -16,8 +16,6 @@ BLUEPRINTS = (
 )
 
 
-
-
 def create_app(instance_path=None, config={}):
     app = flask.Flask(__name__, instance_path=instance_path,
                       instance_relative_config=True)
