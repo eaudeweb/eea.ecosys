@@ -115,6 +115,16 @@ COUNTRIES = (
     ('TR', 'Turkey'),
 )
 
+CONTENT = (
+    ('theoretical_material', 'Theoretical material for ecosystem assessment (methods, concepts, guidance)'),
+    ('analytical_material', 'Analytical material (Ecosystem assessment case-studies)'),
+    ('communication_material', 'Communication material on ecosystem assessment (maps)'),
+    ('policy_document', 'Policy document (Strategies, Directives)'),
+    ('produce_data', 'Produce/Evaluate data (measured, observed, modelled)'),
+    ('produce_maps', 'Produce maps'),
+    ('mandatory_reporting', 'Mandatory reporting to EU or international body'),
+)
+
 KEY_ELEMENTS = (
     ('assessment_process', 'Setting the assessment process (incl. governance, stakeholder engagement, funding, communication, ...)'),
     ('conceptual_framework', 'Conceptual framework'),

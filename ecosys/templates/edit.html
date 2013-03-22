@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+
+{% block scripts %}
+
+<script>
+
+  $(function () {
+    $('#spatial').on('change', function () {
+
+      if($(this).val() == 'yes') {
+        $('#spatial_scale').parents('.row').show();
+        $('#countries').parents('.row').show();
+      } else {
+        $('#spatial_scale').parents('.row').hide();
+        $('#countries').parents('.row').hide();
+      }
+
+    }).change();
+  });
+
+</script>
+
+{% endblock %}
+
+
+{% macro render_field(field) %}
+
+  <label for="{{ field.id }}">{{ field.label }}</label>
+  {{ field(**kwargs) }}
+  {% if field.errors %}<div class="error">{{ field.errors[0] }}</div>{% endif %}
+
+{% endmacro %}
+
+
+{% block content %}
+
+<form method="POST">
+
+  <fieldset>
+    <legend>Resource identification</legend>
+
+    <div class="row">
+      {{ render_field(resource_form.title) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(resource_form.language) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(resource_form.english_title) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(resource_form.authors) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(resource_form.organisations) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(resource_form.year_of_publication) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(review_form.origin) }}
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Document availability and status</legend>
+
+    <div class="row">
+      {{ render_field(review_form.status) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(review_form.availability) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(review_form.languages) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(review_form.url) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(review_form.filename) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(review_form.spatial) }}
+    </div>
+
+    <div class="row hide">
+      {{ render_field(review_form.spatial_scale) }}
+    </div>
+
+    <div class="row hide">
+      {{ render_field(review_form.countries) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(review_form.content) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(review_form.key_elements) }}
+    </div>
+
+  </fieldset>
+
+  <div class="row">
+    <button type="submit">Submit</button>
+  </div>
+
+</form>
+
+{% endblock %}
