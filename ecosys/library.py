@@ -21,7 +21,9 @@ def edit(resource_type):
     review_form = ReviewForm()
 
     if request.method == 'POST':
-        if resource_form.validate() and review_form.validate():
+        resource_form_validate = resource_form.validate()
+        review_form_validate = review_form.validate()
+        if resource_form_validate and review_form_validate:
             resource = resource_form.save()
             review_form.save(resource)
 

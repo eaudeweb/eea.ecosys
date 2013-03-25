@@ -39,7 +39,6 @@ RESOURCE_TYPES = (
     ('maps', 'Maps'),
 )
 
-
 ORIGIN = (
     ('science_academic_organisation', 'Science/academic organisation'),
     ('policy_governmental_organisation', 'Policy/governmental organisation'),
@@ -54,7 +53,6 @@ STATUS = (
     ('unknown', 'I don\'t know'),
 )
 
-
 AVAILABILITY = (
     ('free', 'Free of charge'),
     ('costs', 'With costs'),
@@ -62,8 +60,8 @@ AVAILABILITY = (
 )
 
 YES_NO = (
-    ('yes', 'Yes'),
-    ('no', 'No'),
+    ('0', 'No'),
+    ('1', 'Yes'),
 )
 
 SPATIAL_SCALE = (

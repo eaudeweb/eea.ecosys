@@ -16,11 +16,16 @@ class Organisations(db.Document):
 
     name = db.StringField(max_length=128, required=True)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Organizers(db.Document):
 
     name = db.StringField(max_length=128, required=True)
 
+    def __unicode__(self):
+        return self.name
 
 
 class Resource(db.Document):
@@ -49,34 +54,36 @@ class Resource(db.Document):
 
 class LiteratureReview(db.EmbeddedDocument):
 
-    origin = db.ListField(db.StringField(), default=None,
+    origin = db.ListField(db.StringField(), required=True,
         verbose_name='Origin of document')
 
-    status = db.StringField(choices=STATUS, default=None,
+    status = db.StringField(choices=STATUS, required=True,
         verbose_name='What is the status of the document?')
 
     availability = db.StringField(max_length=20, choices=AVAILABILITY,
-        default=None, verbose_name='Is the document freely available?')
+        required=True, verbose_name='Is the document freely available?')
 
     languages = db.ListField(db.StringField(choices=LANGUAGES), default=None,
         verbose_name='In which languages is the document available?')
 
-    url = db.URLField(default=None, verbose_name='URL')
+    url = db.StringField(default=None, verbose_name='URL')
 
     filename = db.StringField(max_length=128, default=None)
 
-    spatial = db.StringField(max_length=3, choices=YES_NO, default='no',
-        verbose_name='Spatial specificity')
+    spatial = db.BooleanField(default=False)
 
-    spatial_scale = db.StringField(max_length=128, choices=SPATIAL_SCALE,
-        default=None, verbose_name='Spatial scale')
+    spatial_scale = db.ListField(
+        db.StringField(max_length=128, choices=SPATIAL_SCALE), default=None,
+        verbose_name='Spatial scale')
 
-    countries = db.StringField(max_length=128, choices=COUNTRIES, default=None)
+    countries = db.ListField(
+        db.StringField(max_length=128, choices=COUNTRIES),
+        default=None)
 
-    content = db.ListField(db.StringField(), default=None)
+    content = db.ListField(db.StringField(), required=True)
 
     key_elements = db.ListField(db.StringField(choices=KEY_ELEMENTS),
-        default=None, verbose_name='Which key elements of ecosystem assessment are documented? ')
+        required=True, verbose_name='Which key elements of ecosystem assessment are documented? ')
 
     # ecosystems = db.StringField(max_length=3, choices=YES_NO, default='no')
 

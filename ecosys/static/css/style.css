@@ -1,4 +1,14 @@
 
+body {
+    font-family: Arial;
+}
+
 .hide {
     display: none;
 }
+
+.error {
+    font-size: 12px;
+    color: red;
+}
+
