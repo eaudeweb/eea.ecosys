@@ -8,10 +8,7 @@ from ecosys.model_data import *
 class CustomBoolean(wtf.SelectField):
 
     def process_data(self, value):
-        if value == '1':
-            self.data = True
-        else:
-            self.data = False
+        self.data = (value == '1')
 
 
 class CustomFileField(wtf.FileField):
@@ -74,22 +71,21 @@ class LiteratureResourceForm(_LiteratureResourceForm):
 class LiteratureForm(_LiteratureForm):
 
     origin = wtf.SelectMultipleField('Origin of the document',
+                                     choices=ORIGIN,
                                      validators=[wtf.validators.Required()])
 
     filename = CustomFileField('File upload representing the document, if freely available')
 
-    spatial = CustomBoolean('Spatial specificity', choices=YES_NO, default='0')
+    spatial = CustomBoolean('Spatial specificity', choices=YES_NO, default='0',
+        validators=[RequiredIfChecked(fields=['spatial_scale', 'countries'],
+                                      message='Spatial scale and Countries are required')])
 
     content = wtf.SelectMultipleField('Main content or purpose: mutliple select',
+                                      choices=CONTENT,
                                       validators=[wtf.validators.Required()])
 
     def __init__(self, *args, **kwargs):
         super(LiteratureForm, self).__init__(*args, **kwargs)
-        self.origin.choices = ORIGIN
-        self.content.choices = CONTENT
-        self.spatial.validators = [
-            RequiredIfChecked(fields=['spatial_scale', 'countries'],
-                              message='Spatial scale and Countries are required')]
 
     def save(self, resource):
         review = models.LiteratureReview()

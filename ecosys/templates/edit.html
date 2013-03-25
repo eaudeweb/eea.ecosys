@@ -6,6 +6,11 @@
 <script>
 
   $(function () {
+
+    $('select[multiple]').select2({
+      width: '600px',
+    });
+
     $('#spatial').on('change', function () {
 
       if($(this).val() == '1') {

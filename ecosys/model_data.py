@@ -1,62 +1,60 @@
 # -*- coding: utf-8
 
 LANGUAGES = (
-    ('bg', 'Bulgarian'),
-    ('cs', 'Czech'),
-    ('da', 'Danish'),
-    ('de', 'German'),
-    ('el', 'Greek'),
-    ('en', 'English'),
-    ('es', 'Spanish'),
-    ('et', 'Estonian'),
-    ('fi', 'Finnish'),
-    ('fr', 'French'),
-    ('ga', 'Irish'),
-    ('h', 'Hungarian'),
-    ('is', 'Icelandic'),
-    ('it', 'Italian'),
-    ('lb', 'Luxembourgish'),
-    ('lt', 'Lithuanian'),
-    ('lv', 'Latvian'),
-    ('mt', 'Maltese'),
-    ('nl', 'Dutch'),
-    ('no', 'Norwegian'),
-    ('pl', 'Polish'),
-    ('pt', 'Portuguese'),
-    ('rm', 'Rhaeto-Romance'),
-    ('ro', 'Romanian'),
-    ('sk', 'Slovak'),
-    ('sl', 'Slovenian'),
-    ('sv', 'Swedish'),
-    ('tr', 'Turkish'),
+    ('BG', 'Bulgarian'),
+    ('CS', 'Czech'),
+    ('DA', 'Danish'),
+    ('DE', 'German'),
+    ('EL', 'Greek'),
+    ('EN', 'English'),
+    ('ES', 'Spanish'),
+    ('ET', 'Estonian'),
+    ('FI', 'Finnish'),
+    ('FR', 'French'),
+    ('GA', 'Irish'),
+    ('H', 'Hungarian'),
+    ('IS', 'Icelandic'),
+    ('IT', 'Italian'),
+    ('LB', 'Luxembourgish'),
+    ('LT', 'Lithuanian'),
+    ('LV', 'Latvian'),
+    ('MT', 'Maltese'),
+    ('NL', 'Dutch'),
+    ('NO', 'Norwegian'),
+    ('PL', 'Polish'),
+    ('PT', 'Portuguese'),
+    ('RM', 'Rhaeto-Romance'),
+    ('RO', 'Romanian'),
+    ('SK', 'Slovak'),
+    ('SL', 'Slovenian'),
+    ('SV', 'Swedish'),
+    ('TR', 'Turkish'),
 )
 
 RESOURCE_TYPES = (
-    ('literature', 'Literature'),
-    ('tool', 'Tool'),
-    ('event', 'Event'),
-    ('website', 'Website'),
-    ('maps', 'Maps'),
+    ('Literature', 'Literature'),
+    ('Tool', 'Tool'),
+    ('Event', 'Event'),
+    ('Website', 'Website'),
+    ('Maps', 'Maps'),
 )
 
-ORIGIN = (
-    ('science_academic_organisation', 'Science/academic organisation'),
-    ('policy_governmental_organisation', 'Policy/governmental organisation'),
-    ('science_policy_interface', 'Science-policy interface'),
-    ('field_practitioner_manager', 'Field practitioner/Manager'),
-    ('field_practitioner_manager', 'Field practitioner/Manager'),
-)
+ORIGIN_DATA = ('Science/academic organisation',
+               'Policy/governmental organisation',
+               'Science-policy interface',
+               'Field practitioner/Manager',)
+ORIGIN = [(i, i) for i in ORIGIN_DATA]
 
 STATUS = (
-    ('draft', 'Draft'),
-    ('final', 'Final'),
-    ('unknown', 'I don\'t know'),
+    ('Draft', 'Draft'),
+    ('Final', 'Final'),
+    ('I don\'t know', 'I don\'t know'),
 )
 
 AVAILABILITY = (
-    ('free', 'Free of charge'),
-    ('costs', 'With costs'),
-    ('unknown', 'I don\'t know'),
+    ('Free of charge', 'Free of charge'),
+    ('With costs', 'With costs'),
+    ('I don\'t know', 'I don\'t know'),
 )
 
 YES_NO = (
@@ -65,11 +63,11 @@ YES_NO = (
 )
 
 SPATIAL_SCALE = (
-    ('international', 'International'),
-    ('national', 'National'),
-    ('regional', 'Regional'),
-    ('local', 'Local'),
-    ('required', 'Required'),
+    ('International', 'International'),
+    ('National', 'National'),
+    ('Regional', 'Regional'),
+    ('Local', 'Local'),
+    ('Required', 'Required'),
 )
 
 COUNTRIES = (
@@ -113,22 +111,21 @@ COUNTRIES = (
     ('TR', 'Turkey'),
 )
 
-CONTENT = (
-    ('theoretical_material', 'Theoretical material for ecosystem assessment (methods, concepts, guidance)'),
-    ('analytical_material', 'Analytical material (Ecosystem assessment case-studies)'),
-    ('communication_material', 'Communication material on ecosystem assessment (maps)'),
-    ('policy_document', 'Policy document (Strategies, Directives)'),
-    ('produce_data', 'Produce/Evaluate data (measured, observed, modelled)'),
-    ('produce_maps', 'Produce maps'),
-    ('mandatory_reporting', 'Mandatory reporting to EU or international body'),
-)
+CONTENT_DATA = (
+    'Theoretical material for ecosystem assessment (methods, concepts, guidance)',
+    'Analytical material (Ecosystem assessment case-studies)',
+    'Communication material on ecosystem assessment (maps)',
+    'Policy document (Strategies, Directives)',
+    'Produce/Evaluate data (measured, observed, modelled)',
+    'Produce maps',
+    'Mandatory reporting to EU or international body',)
+CONTENT = [(i, i) for i in CONTENT_DATA]
 
-KEY_ELEMENTS = (
-    ('assessment_process', 'Setting the assessment process (incl. governance, stakeholder engagement, funding, communication, ...)'),
-    ('conceptual_framework', 'Conceptual framework'),
-    ('biophysical', 'Biophysical baseline of ecosystems and their services (mapping and assessment of state & trends)'),
-    ('valuation', 'Valuation of ecosystem services (links between ecosystem services and human well-being)'),
-    ('scenario', 'Scenario development and analyses'),
-    ('policy', 'Policy analyses or response options'),
-
-)
+KEY_ELEMENTS_DATA = (
+    'Setting the assessment process (incl. governance, stakeholder engagement, funding, communication, ...)',
+    'Conceptual framework',
+    'Biophysical baseline of ecosystems and their services (mapping and assessment of state & trends)',
+    'Valuation of ecosystem services (links between ecosystem services and human well-being)',
+    'Scenario development and analyses',
+    'Policy analyses or response options',)
+KEY_ELEMENTS = [(i, i) for i in KEY_ELEMENTS_DATA]
