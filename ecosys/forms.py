@@ -92,6 +92,8 @@ class LiteratureForm(_LiteratureForm):
         validators=[RequiredIfChecked(fields=['spatial_scale', 'countries'],
                                       message='Spatial scale and Countries are required')])
 
+    ecosystems = CustomBoolean('Are ecosystems studied?', choices=YES_NO, default='0')
+
     content = wtf.SelectMultipleField('Main content or purpose: mutliple select',
                                       choices=CONTENT,
                                       validators=[wtf.validators.Required()])

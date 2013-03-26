@@ -86,7 +86,7 @@ class LiteratureReview(db.EmbeddedDocument):
     key_elements = db.ListField(db.StringField(choices=KEY_ELEMENTS),
         required=True, verbose_name='Which key elements of ecosystem assessment are documented? ')
 
-    # ecosystems = db.StringField(max_length=3, choices=YES_NO, default='no')
+    ecosystems = db.BooleanField(default=False)
 
     # ecosystem_types = db.ListField(db.StringField(), default=None)
 
@@ -95,4 +95,35 @@ class LiteratureReview(db.EmbeddedDocument):
     # ecosystem_services_types = db.ListField(db.StringField(), default=None)
 
     feedback = db.StringField(default=None)
+
+
+class EcosystemTypes(db.EmbeddedDocument):
+
+    urban = db.ListField(db.StringField())
+
+    cropland = db.ListField(db.StringField())
+
+    grassland = db.ListField(db.StringField())
+
+    woodland = db.ListField(db.StringField())
+
+    heathland = db.ListField(db.StringField())
+
+    sparsely_vegetated_land = db.ListField(db.StringField())
+
+    wetland = db.ListField(db.StringField())
+
+    rivers_lakes = db.ListField(db.StringField())
+
+    marine = db.ListField(db.StringField())
+
+
+class EcosystemCategories(db.EmbeddedDocument):
+
+    provisioning = db.ListField(db.StringField())
+
+    regulating = db.ListField(db.StringField())
+
+    cultural = db.ListField(db.StringField())
+
 
