@@ -50,10 +50,16 @@ class LiteratureResourceForm(_LiteratureResourceForm):
         resource_type = kwargs.pop('resource_type')
         super(LiteratureResourceForm, self).__init__(*args, **kwargs)
 
+        required_flag = wtf.Flags()
+        required_flag.required = True
+
         self.resource_type.data = resource_type
         self.authors.validators = [wtf.validators.Required()]
+        self.authors.flags = required_flag
         self.organisations.validators = [wtf.validators.Required()]
+        self.organisations.flags = required_flag
         self.year_of_publication.validators = [wtf.validators.Required()]
+        self.year_of_publication.flags = required_flag
 
     def save(self):
         resource = models.Resource()
@@ -73,6 +79,7 @@ class LiteratureForm(_LiteratureForm):
     origin = wtf.SelectMultipleField('Origin of the document',
                                      choices=ORIGIN,
                                      validators=[wtf.validators.Required()])
+    origin_other = wtf.TextField()
 
     filename = CustomFileField('File upload representing the document, if freely available')
 
@@ -83,12 +90,25 @@ class LiteratureForm(_LiteratureForm):
     content = wtf.SelectMultipleField('Main content or purpose: mutliple select',
                                       choices=CONTENT,
                                       validators=[wtf.validators.Required()])
+    content_other = wtf.TextField()
+
+    feedback = wtf.SelectField('How did you came to know this document?',
+                               choices=FEEDBACK,
+                               validators=[wtf.validators.Required()])
+    feedback_other = wtf.TextField()
 
     def __init__(self, *args, **kwargs):
         super(LiteratureForm, self).__init__(*args, **kwargs)
 
+
     def save(self, resource):
         review = models.LiteratureReview()
+
+        origin = self.data['origin']
+        origin_other = self.data['origin_other'].split(',')
+        if origin_other:
+            origin.extend(origin_other)
+
         review.origin = self.data['origin']
         review.status = self.data['status']
         review.availability = self.data['availability']
@@ -106,6 +126,12 @@ class LiteratureForm(_LiteratureForm):
         review.countries = self.data['countries']
         review.content = self.data['content']
         review.key_elements = self.data['key_elements']
+
+        feedback = self.data['feedback']
+        feedback_other = self.data['feedback_other']
+        if feedback_other:
+            feedback = feedback_other
+        review.feedback = feedback
 
         resource.reviews.append(review)
         resource.save()

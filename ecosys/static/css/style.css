@@ -14,5 +14,26 @@ body {
 }
 
 .row {
-    padding: 4px 0;
+    overflow: hidden;
+    padding: 5px 0;
+}
+
+.row label {
+    float: left;
+    width: 120px;
+}
+
+.row .field,
+.row .other {
+    margin-left: 140px;
+}
+
+.row .other input {
+    width: 600px;
+}
+
+
+.required {
+    font-size: 12px;
+    color: red;
 }

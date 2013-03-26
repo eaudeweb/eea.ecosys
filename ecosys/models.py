@@ -1,6 +1,7 @@
 from flask.ext.mongoengine import MongoEngine
 from ecosys.model_data import *
 
+
 db = MongoEngine()
 
 

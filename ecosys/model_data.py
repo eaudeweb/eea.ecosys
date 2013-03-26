@@ -32,11 +32,11 @@ LANGUAGES = (
 )
 
 RESOURCE_TYPES = (
-    ('Literature', 'Literature'),
-    ('Tool', 'Tool'),
-    ('Event', 'Event'),
-    ('Website', 'Website'),
-    ('Maps', 'Maps'),
+    ('literature', 'Literature'),
+    ('tool', 'Tool'),
+    ('event', 'Event'),
+    ('website', 'Website'),
+    ('maps', 'Maps'),
 )
 
 ORIGIN_DATA = ('Science/academic organisation',
@@ -129,3 +129,11 @@ KEY_ELEMENTS_DATA = (
     'Scenario development and analyses',
     'Policy analyses or response options',)
 KEY_ELEMENTS = [(i, i) for i in KEY_ELEMENTS_DATA]
+
+FEEDBACK_DATA = (
+    'You have been using this document for your own work on ecosystem assessment',
+    'You were involved in reviewing the document',
+    'You commissioned this document',
+    'You were involved in the production of the document (author of a paper, organiser of an event...)',
+)
+FEEDBACK = [(i, i) for i in FEEDBACK_DATA]

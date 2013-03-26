@@ -11,6 +11,12 @@
       width: '600px',
     });
 
+    $('.tagit').select2({
+      width: '600px',
+      tags: [],
+      tokenSeparators: []
+    });
+
     $('#spatial').on('change', function () {
 
       if($(this).val() == '1') {
@@ -31,10 +37,26 @@
 
 {% macro render_field(field) %}
 
-  <label for="{{ field.id }}">{{ field.label }}</label>
-  {{ field(**kwargs) }}
-  {% if field.errors %}<div class="error">{{ field.errors[0] }}</div>{% endif %}
+  <label for="{{ field.id }}">
+    {{ field.label.text }}
+    {% if field.flags.required %}
+      <span class="required">*</span>
+    {% endif %}
+  </label>
+  <div class="field">
+    {{ field(**kwargs) }}
+    {% if field.errors %}
+      <div class="error">{{ field.errors[0] }}</div>{% endif %}
+  </div>
 
+{% endmacro %}
+
+
+{% macro render_other(field) %}
+  <div class="other">
+    <p>other</p>
+    {{ review_form.content_other(class_='tagit') }}
+  </div>
 {% endmacro %}
 
 
@@ -71,6 +93,7 @@
 
     <div class="row">
       {{ render_field(review_form.origin) }}
+      {{ render_other(review_form.origin_other) }}
     </div>
 
   </fieldset>
@@ -112,10 +135,19 @@
 
     <div class="row">
       {{ render_field(review_form.content) }}
+      {{ render_other(review_form.content_other) }}
     </div>
 
     <div class="row">
       {{ render_field(review_form.key_elements) }}
+    </div>
+
+    <div class="row">
+      {{ render_field(review_form.feedback) }}
+      <div class="other">
+        <p>other</p>
+        {{ review_form.feedback_other }}
+      </div>
     </div>
 
   </fieldset>
