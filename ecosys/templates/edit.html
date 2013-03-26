@@ -146,6 +146,12 @@
       {{ render_field(review_form.ecosystems) }}
     </div>
 
+    {% with ecosystem_types=review_form.ecosystem_types %}
+    <div class="row">
+      {% include "ecosystem_types.html" %}
+    </div>
+    {% endwith %}
+
     <div class="row">
       {{ render_field(review_form.feedback) }}
       <div class="other">

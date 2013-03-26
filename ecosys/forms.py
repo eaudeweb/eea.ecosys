@@ -46,6 +46,24 @@ class RequiredIfChecked(object):
 _LiteratureForm = model_form(models.LiteratureReview)
 _LiteratureResourceForm = model_form(models.Resource,
                                      exclude=['organizers', 'reviews'])
+_EcosystemType = model_form(models.EcosystemType)
+
+
+class EcosystemType(_EcosystemType):
+
+    COLSPAN = 10
+
+    ECOSYSTEM_ISSUES = ECOSYSTEM_ISSUES
+
+    ECOSYSTEM_METHODS = ECOSYSTEM_METHODS
+
+    def __init__(self, *args, **kwargs):
+        super(EcosystemType, self).__init__(*args, **kwargs)
+
+        self.woodland.label = wtf.Label('woodland', 'Woodland & forest')
+        self.heathland.label = wtf.Label('heathland', 'Heathland & shrub')
+        self.sparsely_vegetated_land.label = wtf.Label('sparsely_vegetated_land', 'Sparsely vegetated land')
+        self.rivers_lakes.label = wtf.Label('rivers_lakes', 'Rivers & lakes')
 
 
 class LiteratureResourceForm(_LiteratureResourceForm):
@@ -94,6 +112,8 @@ class LiteratureForm(_LiteratureForm):
 
     ecosystems = CustomBoolean('Are ecosystems studied?', choices=YES_NO, default='0')
 
+    ecosystem_types = wtf.FormField(EcosystemType)
+
     content = wtf.SelectMultipleField('Main content or purpose: mutliple select',
                                       choices=CONTENT,
                                       validators=[wtf.validators.Required()])
@@ -126,8 +146,6 @@ class LiteratureForm(_LiteratureForm):
         file_saved = files.save(filename) if filename else ''
         review.filename = file_saved
 
-        import pdb; pdb.set_trace()
-
         spatial = True if self.data['spatial'] == '1' else False
         review.spatial = spatial
 
@@ -145,6 +163,8 @@ class LiteratureForm(_LiteratureForm):
         if feedback_other:
             feedback = feedback_other
         review.feedback = feedback
+
+        import pdb; pdb.set_trace()
 
         resource.reviews.append(review)
         resource.save()

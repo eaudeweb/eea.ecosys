@@ -29,6 +29,36 @@ class Organizers(db.Document):
         return self.name
 
 
+class EcosystemType(db.EmbeddedDocument):
+
+    urban = db.ListField(db.StringField())
+
+    cropland = db.ListField(db.StringField())
+
+    grassland = db.ListField(db.StringField())
+
+    woodland = db.ListField(db.StringField())
+
+    heathland = db.ListField(db.StringField())
+
+    sparsely_vegetated_land = db.ListField(db.StringField())
+
+    wetland = db.ListField(db.StringField())
+
+    rivers_lakes = db.ListField(db.StringField())
+
+    marine = db.ListField(db.StringField())
+
+
+class EcosystemCategory(db.EmbeddedDocument):
+
+    provisioning = db.ListField(db.StringField())
+
+    regulating = db.ListField(db.StringField())
+
+    cultural = db.ListField(db.StringField())
+
+
 class Resource(db.Document):
 
     title = db.StringField(max_length=512, required=True)
@@ -88,7 +118,7 @@ class LiteratureReview(db.EmbeddedDocument):
 
     ecosystems = db.BooleanField(default=False)
 
-    # ecosystem_types = db.ListField(db.StringField(), default=None)
+    ecosystem_types = db.EmbeddedDocumentField(EcosystemType, default=None)
 
     # ecosystem_services = db.StringField(max_length=3, choices=YES_NO, default='no')
 
@@ -96,34 +126,5 @@ class LiteratureReview(db.EmbeddedDocument):
 
     feedback = db.StringField(default=None)
 
-
-class EcosystemTypes(db.EmbeddedDocument):
-
-    urban = db.ListField(db.StringField())
-
-    cropland = db.ListField(db.StringField())
-
-    grassland = db.ListField(db.StringField())
-
-    woodland = db.ListField(db.StringField())
-
-    heathland = db.ListField(db.StringField())
-
-    sparsely_vegetated_land = db.ListField(db.StringField())
-
-    wetland = db.ListField(db.StringField())
-
-    rivers_lakes = db.ListField(db.StringField())
-
-    marine = db.ListField(db.StringField())
-
-
-class EcosystemCategories(db.EmbeddedDocument):
-
-    provisioning = db.ListField(db.StringField())
-
-    regulating = db.ListField(db.StringField())
-
-    cultural = db.ListField(db.StringField())
 
 

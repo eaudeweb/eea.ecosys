@@ -1,0 +1,56 @@
+<table id="ecosystem-types" class="ecosystem-types"
+       cellpaddin="0" cellspacing="0">
+
+  <thead>
+    <tr>
+      <th class="category-left"></th>
+      {% for field in ecosystem_types %}
+        {% if field.id != 'ecosystem_types-csrf_token' %}
+          <th>{{ field.label.text }}</th>
+        {% endif %}
+      {% endfor %}
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <th colspan="{{ ecosystem_types.COLSPAN }}" class="category">
+        Issues</th>
+    </tr>
+
+    {% for k, v in ecosystem_types.ECOSYSTEM_ISSUES %}
+    <tr>
+      <th class="category-left">{{ k }}</th>
+      {% for field in ecosystem_types %}
+        {% if field.id != 'ecosystem_types-csrf_token' %}
+        <td style="text-align: center;">
+          <input type="checkbox" name="{{ field.name }}" id="{{ field.id }}"
+                 value="{{ v }}" />
+        </td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+
+    <tr>
+      <th colspan="{{ ecosystem_types.COLSPAN }}" class="category">
+        Methods</th>
+    </tr>
+
+    {% for k, v in ecosystem_types.ECOSYSTEM_METHODS %}
+    <tr>
+      <th class="category-left">{{ k }}</th>
+      {% for field in ecosystem_types %}
+        {% if field.id != 'ecosystem_types-csrf_token' %}
+        <td style="text-align: center;">
+          <input type="checkbox" name="{{ field.name }}" id="{{ field.id }}"
+                 value="{{ v }}" />
+        </td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+
+  </tbody>
+
+</table>

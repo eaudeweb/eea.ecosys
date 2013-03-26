@@ -137,3 +137,21 @@ FEEDBACK_DATA = (
     'You were involved in the production of the document (author of a paper, organiser of an event...)',
 )
 FEEDBACK = [(i, i) for i in FEEDBACK_DATA]
+
+ECOSYSTEM_ISSUES_DATA = (
+    'State & trends of Ecosystems',
+    'State & trends of Ecosystem services',
+    'Restoration',
+    'Compensation & no net loss',
+)
+ECOSYSTEM_ISSUES = [(i, i) for i in ECOSYSTEM_ISSUES_DATA]
+
+ECOSYSTEM_METHODS_DATA = (
+    'Indicators',
+    'Mapping',
+    'Natural capital accounting',
+    'Valuation of ecosystem services',
+    'Scenario',
+    'Policy analyses',
+)
+ECOSYSTEM_METHODS = [(i, i) for i in ECOSYSTEM_METHODS_DATA]
