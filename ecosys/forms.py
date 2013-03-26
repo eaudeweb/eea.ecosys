@@ -1,8 +1,12 @@
 from flask.ext.mongoengine.wtf import model_form
 from flask.ext import wtf
+from flask.ext.uploads import UploadSet, AllExcept, SCRIPTS, EXECUTABLES
 
 from ecosys import models
 from ecosys.model_data import *
+
+
+files = UploadSet('files', AllExcept(SCRIPTS + EXECUTABLES))
 
 
 class CustomBoolean(wtf.SelectField):
@@ -81,7 +85,8 @@ class LiteratureForm(_LiteratureForm):
                                      validators=[wtf.validators.Required()])
     origin_other = wtf.TextField()
 
-    filename = CustomFileField('File upload representing the document, if freely available')
+    filename = CustomFileField('File upload representing the document, if freely available',
+       validators=[wtf.file_allowed(files, 'Document is not valid')])
 
     spatial = CustomBoolean('Spatial specificity', choices=YES_NO, default='0',
         validators=[RequiredIfChecked(fields=['spatial_scale', 'countries'],
@@ -114,6 +119,12 @@ class LiteratureForm(_LiteratureForm):
         review.availability = self.data['availability']
         review.languages = self.data['languages']
         review.url = self.data['url']
+
+        filename = self.data['filename']
+        file_saved = files.save(filename) if filename else ''
+        review.filename = file_saved
+
+        import pdb; pdb.set_trace()
 
         spatial = True if self.data['spatial'] == '1' else False
         review.spatial = spatial

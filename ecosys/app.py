@@ -1,9 +1,11 @@
 import flask
 from flask.ext.assets import Environment, Bundle
+from werkzeug import SharedDataMiddleware
+
 from models import db
 
 # import blueprints
-from .library import library
+import library
 
 from .assets import BUNDLE_JS, BUNDLE_CSS
 
@@ -27,6 +29,7 @@ def create_app(instance_path=None, config={}):
     configure_app(app, config)
     configure_blueprints(app, BLUEPRINTS)
     configure_assets(app)
+    configure_static(app)
     db.init_app(app)
     return app
 
@@ -39,7 +42,7 @@ def configure_app(app, config):
 
 def configure_blueprints(app, blueprints):
     for blueprint in blueprints:
-        app.register_blueprint(blueprint)
+        blueprint.initialize_app(app)
 
 
 def configure_assets(app):
@@ -49,3 +52,9 @@ def configure_assets(app):
 
     assets.register('packed_js', js)
     assets.register('packed_css', css)
+
+def configure_static(app):
+ if app.config['DEBUG']:
+        app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
+            "/static/files": app.config['UPLOADED_FILES_DEST'],
+        })

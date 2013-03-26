@@ -1,8 +1,14 @@
 from flask import (Blueprint, request, abort, render_template)
+from flaskext.uploads import configure_uploads
 from ecosys import forms
 
 
 library = Blueprint('library', __name__)
+
+
+def initialize_app(app):
+    app.register_blueprint(library)
+    configure_uploads(app, forms.files)
 
 
 @library.route('/')

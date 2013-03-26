@@ -1,0 +1,9 @@
+from path import path
+
+SECRET_KEY = "ekpfjwiotur3409534"
+
+DEBUG = True
+
+UPLOADED_FILES_DEST = path(__file__).dirname().joinpath('files')
+
+UPLOADS_FILES_URL = '/static/files'

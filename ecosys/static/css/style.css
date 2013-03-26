@@ -13,6 +13,15 @@ body {
     color: red;
 }
 
+legend {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+fieldset {
+    margin-bottom: 15px;
+}
+
 .row {
     overflow: hidden;
     padding: 5px 0;
@@ -20,18 +29,17 @@ body {
 
 .row label {
     float: left;
-    width: 120px;
+    width: 220px;
 }
 
 .row .field,
 .row .other {
-    margin-left: 140px;
+    margin-left: 230px;
 }
 
 .row .other input {
     width: 600px;
 }
-
 
 .required {
     font-size: 12px;
