@@ -155,3 +155,16 @@ ECOSYSTEM_METHODS_DATA = (
     'Policy analyses',
 )
 ECOSYSTEM_METHODS = [(i, i) for i in ECOSYSTEM_METHODS_DATA]
+
+ECOSYSTEM_TYPES_DATA = (
+    'Urban',
+    'Cropland',
+    'Grassland',
+    'Woodland and forest',
+    'Heathland and shrub',
+    'Sparsely vegetated land',
+    'Wetlands',
+    'Rivers and lakes',
+    'Marine',
+)
+ECOSYSTEM_TYPES = [(i, i) for i in ECOSYSTEM_TYPES_DATA]

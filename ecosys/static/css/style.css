@@ -51,33 +51,33 @@ fieldset {
     /*width: 100%;*/
 }
 
-.ecosystem-types label {
+.ecosystem label {
     display: none;
 }
 
-.ecosystem-types ul,
-.ecosystem-types li {
+.ecosystem ul,
+.ecosystem li {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-.ecosystem-types th {
+.ecosystem th {
     padding: 5px 8px;
 }
 
-.ecosystem-types .category {
+.ecosystem .category {
     font-style: italic;
     text-align: left;
     background: #eee;
 }
 
-.ecosystem-types .category-left {
+.ecosystem .category-left {
     text-align: left;
     width: 200px;
 }
 
-.ecosystem-types .check-column {
+.ecosystem .check-column {
     text-align: center;
 }
 

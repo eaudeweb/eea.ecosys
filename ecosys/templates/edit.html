@@ -28,6 +28,23 @@
       }
 
     }).change();
+
+    $('#ecosystems').on('change', function () {
+      if($(this).val() == '1') {
+        $('#ecosystem-types').parents('.row').show();
+      } else {
+        $('#ecosystem-types').parents('.row').hide();
+      }
+    }).change();
+
+    $('#ecosystem_services').on('change', function () {
+      if($(this).val() == '1') {
+        $('#ecosystem-service-types').parents('.row').show();
+      } else {
+        $('#ecosystem-service-types').parents('.row').hide();
+      }
+    }).change();
+
   });
 
 </script>
@@ -146,12 +163,17 @@
       {{ render_field(review_form.ecosystems) }}
     </div>
 
-    {% with ecosystem_types=review_form.ecosystem_types %}
-    <div class="row">
-      {{ ecosystem_types }}
-      {# {% include "ecosystem_types.html" %} #}
+    <div class="row hide">
+      {{ review_form.ecosystem_types }}
     </div>
-    {% endwith %}
+
+    <div class="row">
+      {{ render_field(review_form.ecosystem_services) }}
+    </div>
+
+     <div class="row">
+      {{ review_form.ecosystem_services_types }}
+    </div>
 
     <div class="row">
       {{ render_field(review_form.feedback) }}

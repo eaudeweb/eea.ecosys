@@ -47,6 +47,22 @@ class EcosystemType(wtf.Form):
     marine = MultiCheckboxField(pre_validate=False)
 
 
+class EcosystemServiceType(wtf.Form):
+
+    COLSPAN = 4
+
+    ECOSYSTEM_TYPES_FORM_DATA = ECOSYSTEM_TYPES_DATA
+
+    provisioning = MultiCheckboxField(pre_validate=False,
+                                      choices=ECOSYSTEM_TYPES)
+
+    regulating = MultiCheckboxField(pre_validate=False,
+                                    choices=ECOSYSTEM_TYPES)
+
+    cultural = MultiCheckboxField(pre_validate=False,
+                                  choices=ECOSYSTEM_TYPES)
+
+
 class LiteratureResourceForm(_LiteratureResourceForm):
 
     def __init__(self, *args, **kwargs):
@@ -91,9 +107,17 @@ class LiteratureForm(_LiteratureForm):
         validators=[RequiredIfChecked(fields=['spatial_scale', 'countries'],
                                       message='Spatial scale and Countries are required')])
 
-    ecosystems = CustomBoolean('Are ecosystems studied?', choices=YES_NO, default='0')
+    ecosystems = CustomBoolean('Are ecosystems studied?', choices=YES_NO,
+        default='0')
 
-    ecosystem_types = wtf.FormField(EcosystemType, widget=EcosystemTableWidget())
+    ecosystem_types = wtf.FormField(EcosystemType,
+        widget=EcosystemTableWidget())
+
+    ecosystem_services = CustomBoolean('Are ecosystem services addressed?',
+        choices=YES_NO, default='0')
+
+    ecosystem_services_types = wtf.FormField(EcosystemServiceType,
+        widget=EcosystemServiceTableWidget())
 
     content = wtf.SelectMultipleField('Main content or purpose: mutliple select',
                                       choices=CONTENT,
@@ -107,7 +131,6 @@ class LiteratureForm(_LiteratureForm):
 
     def __init__(self, *args, **kwargs):
         super(LiteratureForm, self).__init__(*args, **kwargs)
-
 
     def save(self, resource):
         review = models.LiteratureReview()
@@ -145,7 +168,15 @@ class LiteratureForm(_LiteratureForm):
             feedback = feedback_other
         review.feedback = feedback
 
-        import pdb; pdb.set_trace()
+        ecosystems = True if self.data['ecosystems'] == '1' else False
+        review.ecosystems = ecosystems
+        if ecosystems:
+            review.ecosystem_types = self.data['ecosystem_types']
+
+        ecosystem_services = True if self.data['ecosystem_services'] == '1' else False
+        review.ecosystem_services = ecosystem_services
+        if ecosystem_services:
+            review.ecosystem_services_types = self.data['ecosystem_services_types']
 
         resource.reviews.append(review)
         resource.save()
