@@ -148,7 +148,8 @@
 
     {% with ecosystem_types=review_form.ecosystem_types %}
     <div class="row">
-      {% include "ecosystem_types.html" %}
+      {{ ecosystem_types }}
+      {# {% include "ecosystem_types.html" %} #}
     </div>
     {% endwith %}
 

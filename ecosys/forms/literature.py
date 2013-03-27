@@ -1,69 +1,50 @@
 from flask.ext.mongoengine.wtf import model_form
-from flask.ext import wtf
 from flask.ext.uploads import UploadSet, AllExcept, SCRIPTS, EXECUTABLES
+from flask.ext import wtf
 
 from ecosys import models
+from ecosys.forms.fields import *
 from ecosys.model_data import *
 
 
 files = UploadSet('files', AllExcept(SCRIPTS + EXECUTABLES))
 
 
-class CustomBoolean(wtf.SelectField):
-
-    def process_data(self, value):
-        self.data = (value == '1')
-
-
-class CustomFileField(wtf.FileField):
-
-    def process_formdata(self, valuelist):
-        if valuelist and valuelist[0]:
-            filestorage = valuelist[0]
-            filestorage.filename = filestorage.filename.lower()
-            self.data = filestorage
-        else:
-            self.data = ''
-
-
-class RequiredIfChecked(object):
-
-    def __init__(self, fields, message=None):
-        self.fields = fields
-        self.message = message or '%s are required' % (', '.join(fields))
-
-    def __call__(self, form, field):
-        if field.data == '0':
-            return True
-        for f in self.fields:
-            required_field = getattr(form, f, None)
-            if required_field and required_field.data:
-                continue
-            else:
-                raise wtf.ValidationError(self.message)
-
-
 _LiteratureForm = model_form(models.LiteratureReview)
 _LiteratureResourceForm = model_form(models.Resource,
                                      exclude=['organizers', 'reviews'])
-_EcosystemType = model_form(models.EcosystemType)
 
 
-class EcosystemType(_EcosystemType):
+class EcosystemType(wtf.Form):
 
     COLSPAN = 10
 
-    ECOSYSTEM_ISSUES = ECOSYSTEM_ISSUES
+    ECOSYSTEM_ISSUES_FORM_DATA = ECOSYSTEM_ISSUES_DATA
 
-    ECOSYSTEM_METHODS = ECOSYSTEM_METHODS
+    ECOSYSTEM_METHODS_FORM_DATA = ECOSYSTEM_METHODS_DATA
 
-    def __init__(self, *args, **kwargs):
-        super(EcosystemType, self).__init__(*args, **kwargs)
+    ECOSYSTEM_ISSUES_FORM = ECOSYSTEM_ISSUES
 
-        self.woodland.label = wtf.Label('woodland', 'Woodland & forest')
-        self.heathland.label = wtf.Label('heathland', 'Heathland & shrub')
-        self.sparsely_vegetated_land.label = wtf.Label('sparsely_vegetated_land', 'Sparsely vegetated land')
-        self.rivers_lakes.label = wtf.Label('rivers_lakes', 'Rivers & lakes')
+    ECOSYSTEM_METHODS_FORM = ECOSYSTEM_METHODS
+
+    urban = MultiCheckboxField(pre_validate=False)
+
+    cropland = MultiCheckboxField(pre_validate=False)
+
+    grassland = MultiCheckboxField(pre_validate=False)
+
+    woodland = MultiCheckboxField('Woodland & forest', pre_validate=False)
+
+    heathland = MultiCheckboxField('Heathland & shrub', pre_validate=False)
+
+    sparsely_vegetated_land = MultiCheckboxField('Sparsely vegetated land',
+                                                 pre_validate=False)
+
+    wetland = MultiCheckboxField(pre_validate=False)
+
+    rivers_lakes = MultiCheckboxField('Rivers & lakes', pre_validate=False)
+
+    marine = MultiCheckboxField(pre_validate=False)
 
 
 class LiteratureResourceForm(_LiteratureResourceForm):
@@ -112,7 +93,7 @@ class LiteratureForm(_LiteratureForm):
 
     ecosystems = CustomBoolean('Are ecosystems studied?', choices=YES_NO, default='0')
 
-    ecosystem_types = wtf.FormField(EcosystemType)
+    ecosystem_types = wtf.FormField(EcosystemType, widget=EcosystemTableWidget())
 
     content = wtf.SelectMultipleField('Main content or purpose: mutliple select',
                                       choices=CONTENT,
