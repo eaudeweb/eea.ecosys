@@ -4,7 +4,24 @@ from libs import markup
 from libs.markup import oneliner as e
 
 
-class EcosystemTableWidget():
+class EcosystemBaseWidget():
+
+    def update_data(self, form_field, data):
+        for value in form_field.data.values():
+            if not value: continue
+            for item in value:
+                if item not in [i[0] for i in data]: data.append((item, item))
+        return data
+
+    def update_keys(self, form_field, data_keys):
+        for value in form_field.data.values():
+            if not value: continue
+            for item in value:
+                if item not in data_keys: data_keys.append(item)
+        return data_keys
+
+
+class EcosystemTableWidget(EcosystemBaseWidget):
 
     def __init__(self, data, categ, **kwargs):
         self.data, self.categ = data, categ
@@ -13,6 +30,8 @@ class EcosystemTableWidget():
     def __call__(self, form_field, **kwargs):
         fields = [f for f in form_field if 'csrf_token' not in f.id ]
         data_keys = [i[0] for i in self.data]
+        data_keys = self.update_keys(form_field, data_keys)
+        self.data = self.update_data(form_field, self.data)
 
         page = markup.page()
         page.table(id='ecosystem-types-%s' % self.categ.lower(),
@@ -31,23 +50,28 @@ class EcosystemTableWidget():
         page.tr(e.th(self.categ, colspan=form_field.COLSPAN, class_='category'))
         page.tr()
         page.td(e.div(data_keys), class_='category-left')
+
         for field in fields:
             field.choices = [(k, v) for k, v in self.data]
             page.td(field(**kwargs), class_='check-column')
-        page.tr.close()
 
+        page.tr.close()
         page.tbody.close()
         page.table.close()
 
         return page
 
-class EcosystemServiceTableWidget():
+
+class EcosystemServiceTableWidget(EcosystemBaseWidget):
 
     def __init__(self, data, *args, **kwargs):
         self.data = data
 
     def __call__(self, form_field, **kwargs):
         fields = [f for f in form_field if 'csrf_token' not in f.id ]
+        data_keys = [i[0] for i in self.data]
+        data_keys = self.update_keys(form_field, data_keys)
+        self.data = self.update_data(form_field, self.data)
 
         page = markup.page()
         page.table(id='ecosystem-service-types', class_='ecosystem-setvice-types ecosystem')
@@ -62,8 +86,9 @@ class EcosystemServiceTableWidget():
         page.tbody()
         page.tr(e.th('Type of ecosystems', colspan=form_field.COLSPAN, class_='category'))
         page.tr()
-        page.td(e.div(self.data, class_='category-left'))
+        page.td(e.div(data_keys, class_='category-left'))
         for field in fields:
+            field.choices = [(k, v) for k, v in self.data]
             page.td(field(**kwargs), class_='check-column')
         page.tr.close()
 

@@ -65,7 +65,30 @@
         row.find('td').eq(i+1).append($('<input>').attr({
           'type': 'checkbox',
           'value': category,
-          'name': 'ecosystem_types_' + type + '-urban'
+          'name': 'ecosystem_types_' + type + '-' + value
+        }));
+      });
+
+    });
+
+    $('.ecosystem-service-typye-other').on('click', function (e) {
+      e.preventDefault();
+      var rel = $(this).data('rel');
+      var row = $(rel).find('tbody tr:last');
+      var category = prompt('Add another category');
+      var fields = ['provisioning', 'regulating', 'cultural'];
+
+      if(!category) return;
+
+      row.find('td').eq(0).append($('<div>').attr({
+        'class': 'category-left',
+      }).text(category));
+
+      $.each(fields, function (i, value) {
+        row.find('td').eq(i+1).append($('<input>').attr({
+          'type': 'checkbox',
+          'value': category,
+          'name': 'ecosystem_services_types-' + value
         }));
       });
 
@@ -212,6 +235,11 @@
 
      <div class="row">
       {{ review_form.ecosystem_services_types }}
+      <div class="other">
+        <a href="" class="ecosystem-service-typye-other"
+           data-rel="#ecosystem-service-types">
+          Add another</a>
+      </div>
     </div>
 
     <div class="row">

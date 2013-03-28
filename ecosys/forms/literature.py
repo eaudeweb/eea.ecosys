@@ -43,14 +43,11 @@ class EcosystemServiceType(wtf.Form):
 
     COLSPAN = 4
 
-    provisioning = MultiCheckboxField(pre_validate=False,
-                                      choices=ECOSYSTEM_TYPES)
+    provisioning = MultiCheckboxField(pre_validate=False)
 
-    regulating = MultiCheckboxField(pre_validate=False,
-                                    choices=ECOSYSTEM_TYPES)
+    regulating = MultiCheckboxField(pre_validate=False)
 
-    cultural = MultiCheckboxField(pre_validate=False,
-                                  choices=ECOSYSTEM_TYPES)
+    cultural = MultiCheckboxField(pre_validate=False)
 
 
 class LiteratureResourceForm(_LiteratureResourceForm):
@@ -111,7 +108,7 @@ class LiteratureForm(_LiteratureForm):
         choices=YES_NO, default='0')
 
     ecosystem_services_types = wtf.FormField(EcosystemServiceType,
-        widget=EcosystemServiceTableWidget(data=ECOSYSTEM_TYPES_DATA))
+        widget=EcosystemServiceTableWidget(data=ECOSYSTEM_TYPES))
 
     content = wtf.SelectMultipleField('Main content or purpose: mutliple select',
                                       choices=CONTENT,
