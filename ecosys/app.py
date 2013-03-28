@@ -2,10 +2,10 @@ import flask
 from flask.ext.assets import Environment, Bundle
 from werkzeug import SharedDataMiddleware
 
-from models import db
-
+from ecosys.models import db
+from ecosys.auth import login_manager
 # import blueprints
-import library
+from ecosys import library
 
 from .assets import BUNDLE_JS, BUNDLE_CSS
 
@@ -30,6 +30,7 @@ def create_app(instance_path=None, config={}):
     configure_blueprints(app, BLUEPRINTS)
     configure_assets(app)
     configure_static(app)
+    configure_authentication(app)
     db.init_app(app)
     return app
 
@@ -54,7 +55,10 @@ def configure_assets(app):
     assets.register('packed_css', css)
 
 def configure_static(app):
- if app.config['DEBUG']:
+    if app.config['DEBUG']:
         app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
             "/static/files": app.config['UPLOADED_FILES_DEST'],
         })
+
+def configure_authentication(app):
+    login_manager.setup_app(app)

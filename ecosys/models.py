@@ -1,4 +1,6 @@
 from flask.ext.mongoengine import MongoEngine
+from flask.ext.login import UserMixin
+
 from ecosys.model_data import *
 
 
@@ -106,4 +108,53 @@ class LiteratureReview(db.EmbeddedDocument):
     ecosystem_services_types = db.DictField(default=None)
 
     feedback = db.StringField(default=None)
+
+class EcosystemTypes(db.EmbeddedDocument):
+
+    urban = db.ListField(db.StringField())
+
+    cropland = db.ListField(db.StringField())
+
+    grassland = db.ListField(db.StringField())
+
+    woodland = db.ListField(db.StringField())
+
+    heathland = db.ListField(db.StringField())
+
+    sparsely_vegetated_land = db.ListField(db.StringField())
+
+    wetland = db.ListField(db.StringField())
+
+    rivers_lakes = db.ListField(db.StringField())
+
+    marine = db.ListField(db.StringField())
+
+
+class EcosystemCategories(db.EmbeddedDocument):
+
+    provisioning = db.ListField(db.StringField())
+
+    regulating = db.ListField(db.StringField())
+
+    cultural = db.ListField(db.StringField())
+
+
+class User(db.Document, UserMixin):
+
+    id = db.StringField(max_length=16, required=True, primary_key=True)
+
+    first_name = db.StringField(max_length=128, required=True)
+
+    last_name = db.StringField(max_length=128, required=True)
+
+    email = db.StringField(max_length=128, required=True)
+
+    phone_number = db.StringField(max_length=32)
+
+    organisation = db.StringField(max_length=128)
+
+    last_login = db.DateTimeField()
+
+    def get_id(self):
+        return self.id
 
