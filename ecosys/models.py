@@ -97,7 +97,9 @@ class LiteratureReview(db.EmbeddedDocument):
 
     ecosystems = db.BooleanField(default=False)
 
-    ecosystem_types = db.DictField(default=None)
+    ecosystem_types_issues = db.DictField(default=None)
+
+    ecosystem_types_methods = db.DictField(default=None)
 
     ecosystem_services = db.BooleanField(default=False)
 

@@ -19,14 +19,6 @@ class EcosystemType(wtf.Form):
 
     COLSPAN = 10
 
-    ECOSYSTEM_ISSUES_FORM_DATA = ECOSYSTEM_ISSUES_DATA
-
-    ECOSYSTEM_METHODS_FORM_DATA = ECOSYSTEM_METHODS_DATA
-
-    ECOSYSTEM_ISSUES_FORM = ECOSYSTEM_ISSUES
-
-    ECOSYSTEM_METHODS_FORM = ECOSYSTEM_METHODS
-
     urban = MultiCheckboxField(pre_validate=False)
 
     cropland = MultiCheckboxField(pre_validate=False)
@@ -50,8 +42,6 @@ class EcosystemType(wtf.Form):
 class EcosystemServiceType(wtf.Form):
 
     COLSPAN = 4
-
-    ECOSYSTEM_TYPES_FORM_DATA = ECOSYSTEM_TYPES_DATA
 
     provisioning = MultiCheckboxField(pre_validate=False,
                                       choices=ECOSYSTEM_TYPES)
@@ -110,14 +100,18 @@ class LiteratureForm(_LiteratureForm):
     ecosystems = CustomBoolean('Are ecosystems studied?', choices=YES_NO,
         default='0')
 
-    ecosystem_types = wtf.FormField(EcosystemType,
-        widget=EcosystemTableWidget())
+    ecosystem_types_issues = wtf.FormField(EcosystemType,
+        widget=EcosystemTableWidget(data=ECOSYSTEM_ISSUES, categ='Issues'))
+
+    ecosystem_types_methods = wtf.FormField(EcosystemType,
+        widget=EcosystemTableWidget(data=ECOSYSTEM_METHODS, categ='Methods',
+                                    header=False))
 
     ecosystem_services = CustomBoolean('Are ecosystem services addressed?',
         choices=YES_NO, default='0')
 
     ecosystem_services_types = wtf.FormField(EcosystemServiceType,
-        widget=EcosystemServiceTableWidget())
+        widget=EcosystemServiceTableWidget(data=ECOSYSTEM_TYPES_DATA))
 
     content = wtf.SelectMultipleField('Main content or purpose: mutliple select',
                                       choices=CONTENT,
@@ -171,7 +165,8 @@ class LiteratureForm(_LiteratureForm):
         ecosystems = True if self.data['ecosystems'] == '1' else False
         review.ecosystems = ecosystems
         if ecosystems:
-            review.ecosystem_types = self.data['ecosystem_types']
+            review.ecosystem_types_issues = self.data['ecosystem_types_issues']
+            review.ecosystem_types_methods = self.data['ecosystem_types_methods']
 
         ecosystem_services = True if self.data['ecosystem_services'] == '1' else False
         review.ecosystem_services = ecosystem_services

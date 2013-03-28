@@ -31,9 +31,9 @@
 
     $('#ecosystems').on('change', function () {
       if($(this).val() == '1') {
-        $('#ecosystem-types').parents('.row').show();
+        $('#ecosystem-types-issues').parents('.row').show();
       } else {
-        $('#ecosystem-types').parents('.row').hide();
+        $('#ecosystem-types-issues').parents('.row').hide();
       }
     }).change();
 
@@ -44,6 +44,32 @@
         $('#ecosystem-service-types').parents('.row').hide();
       }
     }).change();
+
+
+    $('.ecosystem-type-other').on('click', function (e) {
+      e.preventDefault();
+      var rel = $(this).data('rel');
+      var type = $(this).data('type');
+      var row = $(rel).find('tbody tr:last');
+      var category = prompt('Add another category');
+      var fields = ['urban', 'cropland', 'grassland', 'woodland', 'heathland',
+                    'vegetated', 'wetland', 'rivers', 'marine'];
+
+      if(!category) return;
+
+      row.find('td').eq(0).append($('<div>').attr({
+        'class': 'category-left',
+      }).text(category));
+
+      $.each(fields, function (i, value) {
+        row.find('td').eq(i+1).append($('<input>').attr({
+          'type': 'checkbox',
+          'value': category,
+          'name': 'ecosystem_types_' + type + '-urban'
+        }));
+      });
+
+    });
 
   });
 
@@ -142,11 +168,11 @@
       {{ render_field(review_form.spatial) }}
     </div>
 
-    <div class="row hide">
+    <div class="row">
       {{ render_field(review_form.spatial_scale) }}
     </div>
 
-    <div class="row hide">
+    <div class="row">
       {{ render_field(review_form.countries) }}
     </div>
 
@@ -163,8 +189,21 @@
       {{ render_field(review_form.ecosystems) }}
     </div>
 
-    <div class="row hide">
-      {{ review_form.ecosystem_types }}
+    <div class="row">
+      {{ review_form.ecosystem_types_issues }}
+      <div class="other">
+        <a href="" class="ecosystem-type-other"
+           data-rel="#ecosystem-types-issues"
+           data-type="issues">
+          Add another</a>
+      </div>
+      {{ review_form.ecosystem_types_methods }}
+      <div class="other">
+        <a href="" class="ecosystem-type-other"
+           data-rel="#ecosystem-types-methods"
+           data-type="methods">
+          Add another</a>
+      </div>
     </div>
 
     <div class="row">

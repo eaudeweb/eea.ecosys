@@ -6,34 +6,33 @@ from libs.markup import oneliner as e
 
 class EcosystemTableWidget():
 
+    def __init__(self, data, categ, **kwargs):
+        self.data, self.categ = data, categ
+        self.header = kwargs.pop('header', True)
+
     def __call__(self, form_field, **kwargs):
         fields = [f for f in form_field if 'csrf_token' not in f.id ]
+        data_keys = [i[0] for i in self.data]
 
         page = markup.page()
-        page.table(id='ecosystem-types', class_='ecosystem-types ecosystem')
+        page.table(id='ecosystem-types-%s' % self.categ.lower(),
+                   class_='ecosystem-types ecosystem')
 
-        page.thead()
-        page.tr()
-        page.th('', class_='category-left')
-        page.th([f.label.text for f in fields])
-        page.tr.close()
-        page.thead.close()
+        if self.header:
+            page.thead()
+            page.tr()
+            page.th('', class_='category-left')
+            page.th([f.label.text for f in fields])
+            page.tr.close()
+            page.thead.close()
 
         page.tbody()
 
-        page.tr(e.th('Issues', colspan=form_field.COLSPAN, class_='category'))
+        page.tr(e.th(self.categ, colspan=form_field.COLSPAN, class_='category'))
         page.tr()
-        page.td(e.div(form_field.ECOSYSTEM_ISSUES_FORM_DATA, class_='category-left'))
+        page.td(e.div(data_keys), class_='category-left')
         for field in fields:
-            field.choices = [(k, v) for k, v in form_field.ECOSYSTEM_ISSUES_FORM]
-            page.td(field(**kwargs), class_='check-column')
-        page.tr.close()
-
-        page.tr(e.th('Methods', colspan=form_field.COLSPAN, class_='category'))
-        page.tr()
-        page.td(e.div(form_field.ECOSYSTEM_METHODS_FORM_DATA, class_='category-left'))
-        for field in fields:
-            field.choices = [(k, v) for k, v in form_field.ECOSYSTEM_METHODS_FORM]
+            field.choices = [(k, v) for k, v in self.data]
             page.td(field(**kwargs), class_='check-column')
         page.tr.close()
 
@@ -43,6 +42,9 @@ class EcosystemTableWidget():
         return page
 
 class EcosystemServiceTableWidget():
+
+    def __init__(self, data, *args, **kwargs):
+        self.data = data
 
     def __call__(self, form_field, **kwargs):
         fields = [f for f in form_field if 'csrf_token' not in f.id ]
@@ -60,7 +62,7 @@ class EcosystemServiceTableWidget():
         page.tbody()
         page.tr(e.th('Type of ecosystems', colspan=form_field.COLSPAN, class_='category'))
         page.tr()
-        page.td(e.div(form_field.ECOSYSTEM_TYPES_FORM_DATA, class_='category-left'))
+        page.td(e.div(self.data, class_='category-left'))
         for field in fields:
             page.td(field(**kwargs), class_='check-column')
         page.tr.close()
