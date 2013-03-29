@@ -62,11 +62,14 @@
       }).text(category));
 
       $.each(fields, function (i, value) {
-        row.find('td').eq(i+1).append($('<input>').attr({
+        var parent_html = $('<li>');
+        var input = $('<input>').attr({
           'type': 'checkbox',
           'value': category,
           'name': 'ecosystem_types_' + type + '-' + value
-        }));
+        })
+        parent_html.append(input);
+        row.find('td').eq(i+1).find('ul').append(parent_html);
       });
 
     });
@@ -85,11 +88,14 @@
       }).text(category));
 
       $.each(fields, function (i, value) {
-        row.find('td').eq(i+1).append($('<input>').attr({
+        var parent_html = $('<li>')
+        var input = $('<input>').attr({
           'type': 'checkbox',
           'value': category,
           'name': 'ecosystem_services_types-' + value
-        }));
+        });
+        parent_html.append(input);
+        row.find('td').eq(i+1).find('ul').append(parent_html);
       });
 
     });
