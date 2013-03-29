@@ -4,20 +4,6 @@ from random import choice
 
 import ldap
 
-#LDAP_SERVERS = [("ldap.eionet.europa.eu", 389),
-#                ("ldap2.eionet.europa.eu", 389),
-#                ("ldap3.eionet.europa.eu", 389),]
-#LDAP_ENCODING = 'utf-8'
-#LDAP_USER_DN = "uid=%s,ou=Users,o=EIONET,l=Europe"
-#LDAP_USER_SCHEMA = {
-#    'first_name': 'givenName',
-#    'last_name': 'sn',
-#    'email': 'mail',
-#    'phone_number': 'telephoneNumber',
-#    'organisation': 'o',
-#    'uid': 'uid',
-#}
-
 
 def get_ldap_cfg():
     app = flask.current_app
