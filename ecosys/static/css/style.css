@@ -22,7 +22,8 @@ fieldset {
     margin-bottom: 15px;
 }
 
-.row {
+.row,
+.row-simple {
     overflow: hidden;
     padding: 5px 0;
 }
@@ -36,6 +37,15 @@ fieldset {
 .row .other,
 .row table  {
     margin-left: 230px;
+}
+
+.row-simple label {
+    float: left;
+    width: 90px;
+}
+
+.row-simple .field {
+    margin-left: 100px;
 }
 
 .row .other input {
@@ -87,3 +97,14 @@ fieldset {
     width: 120px;
 }
 
+
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}

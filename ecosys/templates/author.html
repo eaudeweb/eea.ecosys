@@ -1,0 +1,13 @@
+{% from "_form_helpers.html" import render_field %}
+
+<form id="author-form" action="{{ url_for('resource.edit_author') }}" method="POST">
+
+  <div class="row-simple">
+    {{ render_field(form.name) }}
+  </div>
+
+  <div class="row">
+    <button type="submit">Submit</button>
+  </div>
+
+</form>

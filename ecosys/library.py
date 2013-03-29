@@ -20,7 +20,7 @@ def home():
     return current_user['email']
 
 
-@library.route("/login", methods=["GET", "POST"])
+@library.route('/login', methods=['GET', 'POST'])
 def login():
     form = auth.LoginForm()
     if form.validate_on_submit():

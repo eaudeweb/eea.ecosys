@@ -1,0 +1,23 @@
+{% macro render_field(field) %}
+
+  <label for="{{ field.id }}">
+    {{ field.label.text }}
+    {% if field.flags.required %}
+      <span class="required">*</span>
+    {% endif %}
+  </label>
+  <div class="field">
+    {{ field(**kwargs) }}
+    {% if field.errors %}
+      <div class="error">{{ field.errors[0] }}</div>{% endif %}
+  </div>
+
+{% endmacro %}
+
+
+{% macro render_other(field) %}
+  <div class="other">
+    <p>other</p>
+    {{ field(class_='tagit') }}
+  </div>
+{% endmacro %}

@@ -7,7 +7,7 @@ from ecosys.model_data import *
 db = MongoEngine()
 
 
-class Authors(db.Document):
+class Author(db.Document):
 
     name = db.StringField(max_length=128, required=True)
 
@@ -15,7 +15,7 @@ class Authors(db.Document):
         return self.name
 
 
-class Organisations(db.Document):
+class Organisation(db.Document):
 
     name = db.StringField(max_length=128, required=True)
 
@@ -23,7 +23,7 @@ class Organisations(db.Document):
         return self.name
 
 
-class Organizers(db.Document):
+class Organizer(db.Document):
 
     name = db.StringField(max_length=128, required=True)
 
@@ -52,16 +52,15 @@ class Resource(db.Document):
     resource_type = db.StringField(max_length=20, required=True,
                                    choices=RESOURCE_TYPES)
 
-    authors = db.ListField(db.ReferenceField(Authors), default=None)
+    authors = db.ListField(db.ReferenceField(Author), default=None)
 
-    organisations = db.ListField(db.ReferenceField(Organisations), default=None)
+    organisations = db.ListField(db.ReferenceField(Organisation), default=None)
 
-    organizers = db.ListField(db.ReferenceField(Organizers), default=None)
+    organizers = db.ListField(db.ReferenceField(Organizer), default=None)
 
     year_of_publication = db.IntField(min_value=0, default=None)
 
     reviews = db.ListField(db.GenericEmbeddedDocumentField())
-
 
 
 class LiteratureReview(db.EmbeddedDocument):
@@ -109,7 +108,8 @@ class LiteratureReview(db.EmbeddedDocument):
 
     feedback = db.StringField(default=None)
 
-class EcosystemTypes(db.EmbeddedDocument):
+
+class EcosystemType(db.EmbeddedDocument):
 
     urban = db.ListField(db.StringField())
 
@@ -130,7 +130,7 @@ class EcosystemTypes(db.EmbeddedDocument):
     marine = db.ListField(db.StringField())
 
 
-class EcosystemCategories(db.EmbeddedDocument):
+class EcosystemCategory(db.EmbeddedDocument):
 
     provisioning = db.ListField(db.StringField())
 
