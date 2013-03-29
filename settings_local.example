@@ -7,3 +7,18 @@ DEBUG = True
 UPLOADED_FILES_DEST = path(__file__).dirname().joinpath('files')
 
 UPLOADS_FILES_URL = '/static/files'
+
+# LDAP related
+LDAP_SERVERS = [("ldap.eionet.europa.eu", 389),
+                ("ldap2.eionet.europa.eu", 389),
+                ("ldap3.eionet.europa.eu", 389),]
+LDAP_ENCODING = 'utf-8'
+LDAP_USER_DN = "uid=%s,ou=Users,o=EIONET,l=Europe"
+LDAP_USER_SCHEMA = {
+    'first_name': 'givenName',
+    'last_name': 'sn',
+    'email': 'mail',
+    'phone_number': 'telephoneNumber',
+    'organisation': 'o',
+    'uid': 'uid',
+}
