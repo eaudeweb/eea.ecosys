@@ -5,10 +5,6 @@ from ecosys.models import User
 from ecosys import plugldap
 
 
-login_manager = LoginManager()
-login_manager.login_view = '.login'
-
-
 def get_user(userid):
     """ Get or create user document in local db, using info in LDAP """
     try:
@@ -22,12 +18,9 @@ def get_user(userid):
         else:
             return None
 
-
-@login_manager.user_loader
-def load_user(userid):
-    # for some reason the decorator makes this method unusable otherwise
-    return get_user(userid)
-
+login_manager = LoginManager()
+login_manager.login_view = '.login'
+login_manager.user_loader(get_user)
 
 class LoginForm(wtf.Form):
 
