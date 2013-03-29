@@ -6,6 +6,7 @@ from ecosys import plugldap
 
 
 login_manager = LoginManager()
+login_manager.login_view = '.login'
 
 
 def get_user(userid):
