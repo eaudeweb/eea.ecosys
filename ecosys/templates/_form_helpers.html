@@ -21,3 +21,8 @@
     {{ field(class_='tagit') }}
   </div>
 {% endmacro %}
+
+
+{% macro render_label(field) %}
+  {{ field.label.text }}
+{% endmacro %}

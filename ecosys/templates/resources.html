@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<h3>Resources</h3>
+
+<table cellspacing="1" cellpadding="0" class="resources">
+
+  <thead>
+
+    <tr>
+      <th>Title</th>
+      <th>English title</th>
+      <th>Language</th>
+      <th>Type</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    {% for resource in resources %}
+    <tr>
+      <td>
+        <a href="{{ url_for('.view', resource_id=resource.id) }}">
+          {{ resource.title }}</a>
+      </td>
+      <td>
+        {{ resource.english_title }}
+      </td>
+      <td>
+        {{ resource.language_verbose }}
+      </td>
+      <td>
+        {{ resource.resource_type_verbose }}
+      </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+
+</table>
+
+{% endblock %}

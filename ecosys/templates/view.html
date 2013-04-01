@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+{% from "_form_helpers.html" import render_label %}
+
+
+{% block content %}
+
+<h3>Resource identification</h3>
+
+<table cellspaging="1" cellpadding="0" class="resources resource-identification">
+
+  <tbody>
+
+    <tr>
+      <td class="label">{{ render_label(resource_form.title) }}</td>
+      <td>{{ resource.title }}</td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(resource_form.language) }}</td>
+      <td>{{ resource.language_verbose }}</td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(resource_form.english_title) }}</td>
+      <td>{{ resource.english_title }}</td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(resource_form.authors) }}</td>
+      <td>
+        <ul class="reset-ul">
+        {% for author in resource.authors %}
+          <li>{{ author.name }}</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(resource_form.organisations) }}</td>
+      <td>
+        <ul class="reset-ul">
+        {% for organisation in resource.organisations %}
+          <li>{{ organisation.name }}</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(resource_form.year_of_publication) }}</td>
+      <td>{{ resource.year_of_publication }}</td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+<h3>Reviews</h3>
+
+{% for review in resource.reviews %}
+
+<table cellspaging="1" cellpadding="0" class="resources resource-review">
+  <caption>{{ review.user.name }} -
+           {{ review.datetime.strftime('%Y-%m-%d %H:%M') }}</caption>
+  <tbody>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.origin) }}</td>
+      <td>
+        <ul class="reset-ul">
+        {% for origin in review.origin %}
+          <li>{{ origin }}</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.status) }}</td>
+      <td>{{ review.status }}</td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.availability) }}</td>
+      <td>{{ review.availability }}</td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.languages) }}</td>
+      <td>
+        <ul class="reset-ul">
+        {% for language in review.languages_verbose %}
+          <li>{{ language }}</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+  </tbody>
+
+</table>
+
+{% endfor %}
+
+
+
+{% endblock %}

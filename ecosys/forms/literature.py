@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask.ext.mongoengine.wtf import model_form
 from flask.ext.uploads import UploadSet, AllExcept, SCRIPTS, EXECUTABLES
 from flask.ext import wtf
@@ -171,6 +173,7 @@ class LiteratureForm(_LiteratureForm):
             review.ecosystem_services_types = self.data['ecosystem_services_types']
 
         review.user = models.User.objects().get(id=user.id)
+        review.datetime = datetime.now()
         resource.reviews.append(review)
         resource.save()
 

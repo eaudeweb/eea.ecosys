@@ -26,10 +26,16 @@ class User(db.Document, UserMixin):
     def get_id(self):
         return self.id
 
+    @property
+    def name(self):
+        return '%s %s' % (self.first_name, self.last_name)
 
-class UserReviewMixin():
+
+class ReviewMixin():
 
     user = db.ReferenceField(User)
+
+    datetime = db.DateTimeField()
 
 
 class Author(db.Document):
@@ -87,8 +93,16 @@ class Resource(db.Document):
 
     reviews = db.ListField(db.GenericEmbeddedDocumentField())
 
+    @property
+    def language_verbose(self):
+        return dict(LANGUAGES).get(self.language, None)
 
-class LiteratureReview(db.EmbeddedDocument, UserReviewMixin):
+    @property
+    def resource_type_verbose(self):
+        return dict(RESOURCE_TYPES).get(self.resource_type, None)
+
+
+class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
 
     origin = db.ListField(db.StringField(), required=True,
         verbose_name='Origin of document')
