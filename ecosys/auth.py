@@ -11,7 +11,7 @@ from ecosys import plugldap
 auth = Blueprint('auth', __name__)
 
 login_manager = LoginManager()
-login_manager.login_view = '.login'
+login_manager.login_view = 'auth.login'
 
 
 def initialize_app(app):

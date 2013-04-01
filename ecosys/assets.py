@@ -8,8 +8,7 @@ BUNDLE_JS = (
 
 BUNDLE_CSS = (
     'css/style.css',
-    'css/flick/jquery-ui.css',
-    'css/flick/jquery.ui.theme.css',
+    'css/flick/jquery-ui-1.10.2.custom.css',
     'js/select2/select2.css',
 )
 
