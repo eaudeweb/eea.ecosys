@@ -79,7 +79,7 @@ class Resource(db.Document):
     english_title = db.StringField(max_length=512)
 
     language = db.StringField(choices=LANGUAGES, required=True,
-                              verbose_name='Original language')
+                              verbose_name='Original language', default='EN')
 
     resource_type = db.StringField(max_length=20, required=True,
                                    choices=RESOURCE_TYPES)
