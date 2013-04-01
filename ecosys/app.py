@@ -5,7 +5,7 @@ from werkzeug import SharedDataMiddleware
 from ecosys.models import db
 from ecosys.auth import login_manager
 # import blueprints
-from ecosys import library, resource
+from ecosys import library, resource, auth
 
 from .assets import BUNDLE_JS, BUNDLE_CSS
 
@@ -21,6 +21,7 @@ DEFAULT_CONFIG = {
 BLUEPRINTS = (
     library,
     resource,
+    auth,
 )
 
 
