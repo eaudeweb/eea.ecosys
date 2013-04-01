@@ -123,7 +123,7 @@ class LiteratureForm(_LiteratureForm):
     def __init__(self, *args, **kwargs):
         super(LiteratureForm, self).__init__(*args, **kwargs)
 
-    def save(self, resource):
+    def save(self, resource, user):
         review = models.LiteratureReview()
 
         origin = self.data['origin']
@@ -170,6 +170,7 @@ class LiteratureForm(_LiteratureForm):
         if ecosystem_services:
             review.ecosystem_services_types = self.data['ecosystem_services_types']
 
+        review.user = models.User.objects().get(id=user.id)
         resource.reviews.append(review)
         resource.save()
 

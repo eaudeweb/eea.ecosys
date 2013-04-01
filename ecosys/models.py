@@ -7,6 +7,31 @@ from ecosys.model_data import *
 db = MongoEngine()
 
 
+class User(db.Document, UserMixin):
+
+    id = db.StringField(max_length=16, required=True, primary_key=True)
+
+    first_name = db.StringField(max_length=128, required=True)
+
+    last_name = db.StringField(max_length=128, required=True)
+
+    email = db.StringField(max_length=128, required=True)
+
+    phone_number = db.StringField(max_length=32)
+
+    organisation = db.StringField(max_length=128)
+
+    last_login = db.DateTimeField()
+
+    def get_id(self):
+        return self.id
+
+
+class UserReviewMixin():
+
+    user = db.ReferenceField(User)
+
+
 class Author(db.Document):
 
     name = db.StringField(max_length=128, required=True)
@@ -63,7 +88,7 @@ class Resource(db.Document):
     reviews = db.ListField(db.GenericEmbeddedDocumentField())
 
 
-class LiteratureReview(db.EmbeddedDocument):
+class LiteratureReview(db.EmbeddedDocument, UserReviewMixin):
 
     origin = db.ListField(db.StringField(), required=True,
         verbose_name='Origin of document')
@@ -137,24 +162,3 @@ class EcosystemCategory(db.EmbeddedDocument):
     regulating = db.ListField(db.StringField())
 
     cultural = db.ListField(db.StringField())
-
-
-class User(db.Document, UserMixin):
-
-    id = db.StringField(max_length=16, required=True, primary_key=True)
-
-    first_name = db.StringField(max_length=128, required=True)
-
-    last_name = db.StringField(max_length=128, required=True)
-
-    email = db.StringField(max_length=128, required=True)
-
-    phone_number = db.StringField(max_length=32)
-
-    organisation = db.StringField(max_length=128)
-
-    last_login = db.DateTimeField()
-
-    def get_id(self):
-        return self.id
-

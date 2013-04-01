@@ -36,12 +36,13 @@ def edit(resource_type):
     resource_form = ResourceForm(resource_type=resource_type)
     review_form = ReviewForm()
 
+    user = flask_login.current_user
     if request.method == 'POST':
         resource_form_validate = resource_form.validate()
         review_form_validate = review_form.validate()
         if resource_form_validate and review_form_validate:
             resource = resource_form.save()
-            review_form.save(resource)
+            review_form.save(resource, user)
 
     return render_template('edit.html', resource_form=resource_form,
                            review_form=review_form)
