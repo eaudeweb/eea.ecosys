@@ -1,5 +1,6 @@
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import UserMixin
+from werkzeug.utils import cached_property
 
 from ecosys.model_data import *
 
@@ -93,7 +94,7 @@ class Resource(db.Document):
 
     reviews = db.ListField(db.GenericEmbeddedDocumentField())
 
-    @property
+    @cached_property
     def language_verbose(self):
         return dict(LANGUAGES).get(self.language, None)
 
@@ -146,6 +147,16 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
     ecosystem_services_types = db.DictField(default=None)
 
     feedback = db.StringField(default=None)
+
+    @cached_property
+    def languages_verbose(self):
+        languages = dict(LANGUAGES)
+        return [languages.get(l) for l in self.languages]
+
+    @cached_property
+    def countries_verbose(self):
+        countries = dict(COUNTRIES)
+        return [countries.get(c) for c in self.countries]
 
 
 class EcosystemType(db.EmbeddedDocument):

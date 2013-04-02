@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% from "_form_helpers.html" import render_label %}
+{% from "_form_helpers.html" import render_label, render_bool %}
 
 
 {% block content %}
@@ -97,12 +97,171 @@
       </td>
     </tr>
 
+    <tr>
+      <td class="label">{{ render_label(review_form.url) }}</td>
+      <td>{{ review.url }}</td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.filename) }}</td>
+      <td>
+        {% if review.filename %}
+        <a href="/static/files/{{ review.filename }}" title="Download file">
+          {{ review.filanem }}
+        </a>
+        {% endif %}
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.spatial) }}</td>
+      <td>{{ render_bool(review.spatial) }}</td>
+    </tr>
+
+    {% if review.spatial %}
+    <tr>
+      <td class="label">{{ render_label(review_form.spatial_scale) }}</td>
+      <td>
+        <ul class="reset-ul">
+        {% for spatial_scale in review.spatial_scale %}
+          <li>{{ spatial_scale }}</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.countries) }}</td>
+      <td>
+        <ul class="reset-ul">
+        {% for country in review.countries_verbose %}
+          <li>{{ country }}</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    {% endif %}
+
+    <tr>
+      <td class="label">{{ render_label(review_form.content) }}</td>
+      <td>
+        <ul class="reset-ul">
+        {% for content in review.content %}
+          <li>{{ content }}</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.key_elements) }}</td>
+      <td>
+        <ul class="reset-ul">
+        {% for key_element in review.key_elements %}
+          <li>{{ key_element }}</li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.ecosystems) }}</td>
+      <td>{{ render_bool(review.ecosystems) }}</td>
+    </tr>
+
+    {% if review.ecosystems %}
+    <tr>
+      <td class="label">{{ render_label(review_form.ecosystem_types_issues) }}</td>
+      <td>
+        {% if review.ecosystem_types_issues %}
+          {% for type, issues in review.ecosystem_types_issues.items() %}
+            {% if issues %}
+              <div>
+                <strong>
+                  {{ review_form.ecosystem_types_issues[type].label }}
+                </strong>
+              </div>
+
+              <ul class="reset-ul">
+              {% for issue in issues %}
+                <li> &nbsp;&nbsp;- {{ issue }}</li>
+              {% endfor %}
+              </ul>
+
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.ecosystem_types_methods) }}</td>
+      <td>
+        {% if review.ecosystem_types_methods %}
+          {% for type, methods in review.ecosystem_types_methods.items() %}
+            {% if methods %}
+              <div>
+                <strong>
+                  {{ review_form.ecosystem_types_methods[type].label }}
+                </strong>
+              </div>
+
+              <ul class="reset-ul">
+              {% for method in methods %}
+                <li> &nbsp;&nbsp;- {{ method }}</li>
+              {% endfor %}
+              </ul>
+
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+
+    <tr>
+      <td class="label">{{ render_label(review_form.ecosystem_services) }}</td>
+      <td>
+        {{ render_bool(review.ecosystem_services) }}
+      </td>
+    </tr>
+
+    {% if review.ecosystem_services %}
+    <tr>
+      <td class="label">{{ render_label(review_form.ecosystem_services_types) }}</td>
+      <td>
+        {% if review.ecosystem_services_types %}
+          {% for type, methods in review.ecosystem_services_types.items() %}
+            {% if methods %}
+              <div>
+                <strong>
+                  {{ review_form.ecosystem_services_types[type].label }}
+                </strong>
+              </div>
+
+              <ul class="reset-ul">
+              {% for method in methods %}
+                <li> &nbsp;&nbsp;- {{ method }}</li>
+              {% endfor %}
+              </ul>
+
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+
+    <tr>
+      <td class="label">{{ render_label(review_form.feedback) }}</td>
+      <td>{{ review.feedback }}</td>
+    </tr>
+
   </tbody>
 
 </table>
+<br />
 
 {% endfor %}
-
-
 
 {% endblock %}

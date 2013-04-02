@@ -24,7 +24,7 @@ def home():
 
 
 
-@library.route('/resource/add/<string:resource_type>',
+@library.route('/resources/add/<string:resource_type>',
                methods=['GET', 'POST'])
 @flask_login.login_required
 def edit(resource_type):

@@ -16,13 +16,28 @@
 
 
 {% macro render_other(field) %}
+
   <div class="other">
     <p>other</p>
     {{ field(class_='tagit') }}
   </div>
+
 {% endmacro %}
 
 
 {% macro render_label(field) %}
+
   {{ field.label.text }}
+
+{% endmacro %}
+
+
+{% macro render_bool(field) %}
+
+  {% if field %}
+    Yes
+  {% else %}
+    No
+  {% endif %}
+
 {% endmacro %}
