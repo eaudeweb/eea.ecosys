@@ -1,7 +1,13 @@
 $(function () {
 
+  var format = function (state) {
+    console.log('ala bala');
+    return state.text.substring(0, 46) + '...';
+  };
+
   $('select[multiple]').select2({
     width: '600px',
+    formatSelection: format
   });
 
   $('.tagit').select2({
