@@ -22,5 +22,3 @@ LDAP_USER_SCHEMA = {
     'organisation': 'o',
     'uid': 'uid',
 }
-
-FRAME_URL = 'http://biodiversity.europa.eu/ecosystem-assessments/frame'
