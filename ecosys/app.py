@@ -2,10 +2,12 @@ import flask
 from flask.ext.assets import Environment, Bundle
 from werkzeug import SharedDataMiddleware
 
+import jinja2
+
 from ecosys.models import db
 from ecosys.auth import login_manager
 # import blueprints
-from ecosys import library, resource, auth
+from ecosys import library, resource, auth, frameservice
 
 from .assets import BUNDLE_JS, BUNDLE_CSS
 
@@ -33,6 +35,7 @@ def create_app(instance_path=None, config={}):
     configure_assets(app)
     configure_static(app)
     configure_authentication(app)
+    configure_templating(app)
     db.init_app(app)
     return app
 
@@ -64,3 +67,8 @@ def configure_static(app):
 
 def configure_authentication(app):
     login_manager.setup_app(app)
+
+def configure_templating(app):
+    original_loader = app.jinja_env.loader
+    func_loader = jinja2.FunctionLoader(frameservice.load_template)
+    app.jinja_env.loader = jinja2.ChoiceLoader([func_loader, original_loader])

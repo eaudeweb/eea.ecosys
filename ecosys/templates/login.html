@@ -1,3 +1,6 @@
+{% extends "layout.html" %}
+
+{% block content %}
 <form method="POST">
     {{ form.csrf_token }}
     <p>
@@ -8,3 +11,4 @@
     </p>
     <input type="submit" value="Go">
 </form>
+{% endblock content %}

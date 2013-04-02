@@ -14,5 +14,6 @@ https://github.com/eaudeweb/flask-mongoengine/archive/master.zip
 WTForms==1.0.3
 
 path.py==3.0.1
+requests==1.1.0
 
 python-ldap==2.4.10
