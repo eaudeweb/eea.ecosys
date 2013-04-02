@@ -119,10 +119,14 @@ $(function () {
       if(data.status == 'success') {
         $('#modal').dialog('close');
         var option = $('<option>').attr({
-          'value': data.author.id
+          'value': data.author.id,
         });
         option.text(data.author.name)
         $('#authors').append(option);
+
+        var values = $('#authors').val() || [];
+        values.push(data.author.id);
+        $('#authors').val(values).trigger('change');
       } else {
         $('#modal').html(data.html);
       }
@@ -137,11 +141,14 @@ $(function () {
     $.post(url, data, function (data) {
       if(data.status == 'success') {
         $('#modal').dialog('close');
-        var option = $('<option>').attr({
-          'value': data.organisation.id
+        var option = $('<option selected>').attr({
+          'value': data.organisation.id,
         });
         option.text(data.organisation.name)
         $('#organisations').append(option);
+        var values = $('#organisations').val() || [];
+        values.push(data.organisation.id);
+        $('#organisations').val(values).trigger('change');
       } else {
         $('#modal').html(data.html);
       }
