@@ -18,10 +18,10 @@ def initialize_app(app):
 @library.route('/')
 def home():
     if flask_login.current_user.is_anonymous():
-        return "not logged in"
+        pass
     else:
-        return "You must be %s" % flask_login.current_user['email']
-
+        pass
+    return render_template('home.html')
 
 
 @library.route('/resources/add/<string:resource_type>',

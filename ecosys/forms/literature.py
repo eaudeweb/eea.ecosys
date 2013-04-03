@@ -54,6 +54,10 @@ class EcosystemServiceType(wtf.Form):
 
 class LiteratureResourceForm(_LiteratureResourceForm):
 
+    META = {
+        'item': 'document',
+    }
+
     def __init__(self, *args, **kwargs):
         resource_type = kwargs.pop('resource_type')
         super(LiteratureResourceForm, self).__init__(*args, **kwargs)
@@ -96,6 +100,8 @@ class LiteratureForm(_LiteratureForm):
         validators=[RequiredIfChecked(fields=['spatial_scale', 'countries'],
                                       message='Spatial scale and Countries are required')])
 
+    url = wtf.TextField()
+
     ecosystems = CustomBoolean('Are ecosystems studied?', choices=YES_NO,
         default='0')
 
@@ -112,7 +118,7 @@ class LiteratureForm(_LiteratureForm):
     ecosystem_services_types = wtf.FormField(EcosystemServiceType,
         widget=EcosystemServiceTableWidget(data=ECOSYSTEM_TYPES))
 
-    content = wtf.SelectMultipleField('Main content or purpose: mutliple select',
+    content = wtf.SelectMultipleField('Main content or purpose',
                                       choices=CONTENT,
                                       validators=[wtf.validators.Required()])
     content_other = wtf.TextField()

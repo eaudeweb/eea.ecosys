@@ -1,13 +1,8 @@
 {% extends "frame" %}
 {% from "_bits.html" import flash_messages %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block frame_title %} - Virtual Library{% block title %}{% endblock %}{% endblock %}
 
-  <head>
-
-    <meta charset="utf-8">
-    <title></title>
     {% block head %}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
@@ -21,13 +16,11 @@
     {% endassets %}
     {% block scripts %}{% endblock %}
     {% endblock head %}
-  </head>
 
-  <body>
+
     {% block frame_content %}
-    {{ flash_messages() }}
+    <div class="message information">
+      {{ flash_messages() }}
+    </div>
     {% block content %}{% endblock %}
     {% endblock frame_content %}
-  </body>
-
-</html>

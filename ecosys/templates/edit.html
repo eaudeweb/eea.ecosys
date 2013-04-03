@@ -7,7 +7,7 @@
 <form method="POST" enctype="multipart/form-data" class="ecoAsVir">
 
   <fieldset>
-    <legend>Resource identification</legend>
+    <legend>Add a new {{ resource_form.META.item }}</legend>
 
     <div class="row">
       {{ render_field(resource_form.title) }}
@@ -49,7 +49,7 @@
   </fieldset>
 
   <fieldset class="second">
-    <legend>Document availability and status</legend>
+    <legend>{{ resource_form.META.item|capitalize }} availability and status</legend>
 
     <div class="row">
       {{ render_field(review_form.status) }}
@@ -117,7 +117,7 @@
       {{ render_field(review_form.ecosystem_services) }}
     </div>
 
-     <div class="row">
+     <div class="row special">
       {{ review_form.ecosystem_services_types }}
       <div class="other">
         <a href="" class="ecosystem-service-type-other"

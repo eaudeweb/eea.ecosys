@@ -26,7 +26,7 @@ def prepare_frame(frame_contents):
     baseurl = FRAME_URL.rsplit('/', 1)[0]
     return frame_contents.replace(MARKER, '{% block frame_content %}{% endblock %}')\
         .replace('<title>Ecosystem Assessments in Europe - </title>',
-                 '<title>Ecosystem Assessments in Europe - {% block title %}{% endblock %}</title>')\
+                 '<title>Ecosystem Assessments in Europe{% block frame_title %}{% endblock %}</title>')\
         .replace('</head>', '{% block head %}{% endblock %}</head>')\
         .replace('<img src="images', '<img src="%s/images' % baseurl)
 
