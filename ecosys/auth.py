@@ -1,9 +1,11 @@
 import base64
 
-from flask import (Blueprint, request, render_template, redirect, url_for, flash)
+from flask import (Blueprint, request, render_template, redirect, url_for,
+                   flash, g)
 from flask.ext.login import LoginManager
 from flask.ext import wtf
 from flask.ext import login as flask_login
+
 
 from ecosys.forms import LoginForm
 from ecosys.models import User
@@ -16,8 +18,13 @@ login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 
 
+def load_user_in_g():
+    g.user = flask_login.current_user
+
+
 def initialize_app(app):
     app.register_blueprint(auth)
+    app.before_request(load_user_in_g)
 
 def get_user(userid):
     """ Get or create user document in local db, using info in LDAP """
