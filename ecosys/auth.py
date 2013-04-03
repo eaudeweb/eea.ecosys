@@ -49,13 +49,16 @@ def login():
         if plugldap.login_user(username, password):
             user = get_user(username)
             flask_login.login_user(user)
-            flash('Logged in successfully.')
+            flash('Logged in successfully as %s %s (%s).' %
+                  (user.first_name, user.last_name, user.id))
             resp = redirect(request.args.get("next") or url_for('library.home'))
             resp.set_cookie("__ac",
                             base64.b64encode("%s:%s" % (username, password)))
             return resp
         else:
             flash('Bad username or password.')
+    if request.args.get("next"):
+        flash("You need to login in order to continue.")
     return render_template('login.html', form=form)
 
 
@@ -63,6 +66,11 @@ def login():
 @flask_login.login_required
 def logout():
     flask_login.logout_user()
+    flash("You have successfully logged out.")
     resp = redirect(url_for('library.home'))
     resp.set_cookie("__ac", "")
     return resp
+
+def can_contribute():
+    user = flask_login.current_user
+    return not user.is_anonymous() and 'contributor' in user.roles

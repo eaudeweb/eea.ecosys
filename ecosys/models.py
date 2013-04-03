@@ -24,6 +24,8 @@ class User(db.Document, UserMixin):
 
     last_login = db.DateTimeField()
 
+    roles = db.ListField(db.StringField(), default=[])
+
     def get_id(self):
         return self.id
 

@@ -21,7 +21,7 @@ def home():
         pass
     else:
         pass
-    return render_template('home.html')
+    return render_template('home.html', can_contribute=auth.can_contribute())
 
 
 @library.route('/resources/add/<string:resource_type>',
