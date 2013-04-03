@@ -73,7 +73,7 @@ $(function () {
 
   });
 
-  $('.ecosystem-service-typye-other').on('click', function (e) {
+  $('.ecosystem-service-type-other').on('click', function (e) {
     e.preventDefault();
     var rel = $(this).data('rel');
     var row = $(rel).find('tbody tr:last');
