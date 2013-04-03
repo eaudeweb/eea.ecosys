@@ -76,22 +76,24 @@ class EcosystemServiceTableWidget(EcosystemBaseWidget):
         self.data = self.update_data(form_field, self.data)
 
         page = markup.page()
-        page.table(id='ecosystem-service-types', class_='ecosystem-setvice-types ecosystem')
+        page.table(id='ecosystem-service-types', class_='ecosystem-service-types ecosystem')
 
         page.thead()
         page.tr()
         page.th('', class_='category-left')
-        page.th([f.label.text for f in fields])
+        for i, f in enumerate(fields):
+            page.th(f.label.text, class_=i%2 and 'odd' or 'even')
         page.tr.close()
         page.thead.close()
 
         page.tbody()
         page.tr(e.th('Type of ecosystems', colspan=form_field.COLSPAN, class_='category'))
         page.tr()
-        page.td(e.div(data_keys, class_='category-left'))
-        for field in fields:
+        page.td(e.div(data_keys), class_='category-left')
+        for i, field in enumerate(fields):
             field.choices = [(k, v) for k, v in self.data]
-            page.td(field(**kwargs), class_='check-column')
+            odd_even = i%2 and 'odd' or 'even'
+            page.td(field(**kwargs), class_=('check-column %s' % odd_even))
         page.tr.close()
 
         page.tbody.close()

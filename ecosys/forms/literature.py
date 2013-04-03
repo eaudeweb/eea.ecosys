@@ -123,7 +123,7 @@ class LiteratureForm(_LiteratureForm):
                                       validators=[wtf.validators.Required()])
     content_other = wtf.TextField()
 
-    feedback = wtf.SelectField('How did you came to know this document?',
+    feedback = wtf.SelectField('How did you find out about this resource?',
                                choices=FEEDBACK,
                                validators=[wtf.validators.Required()])
     feedback_other = wtf.TextField()
