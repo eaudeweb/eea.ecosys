@@ -21,7 +21,7 @@ def home():
         pass
     else:
         pass
-    return render_template('home.html', can_contribute=auth.can_contribute())
+    return render_template('home.html')
 
 
 @library.route('/resources/add/<string:resource_type>',
@@ -58,6 +58,7 @@ def resources():
 
 @library.route('/resource/<string:resource_id>')
 @flask_login.login_required
+@auth.requires_role('contributor')
 def view(resource_id):
     resource = Resource.objects.get_or_404(id=resource_id)
     try:

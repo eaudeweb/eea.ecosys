@@ -1,4 +1,5 @@
 import base64
+from functools import wraps
 
 from flask import (Blueprint, request, render_template, redirect, url_for,
                    flash, g)
@@ -71,6 +72,23 @@ def logout():
     resp.set_cookie("__ac", "")
     return resp
 
-def can_contribute():
+def get_current_user_roles():
     user = flask_login.current_user
-    return not user.is_anonymous() and 'contributor' in user.roles
+    if user.is_anonymous():
+        return []
+    else:
+        return user.roles
+
+def requires_role(role):
+    def wrapper(f):
+        @wraps(f)
+        def wrapped(*args, **kwargs):
+            if role not in get_current_user_roles():
+                return redirect(url_for('auth.unauthorized'))
+            return f(*args, **kwargs)
+        return wrapped
+    return wrapper
+
+@auth.route("/unauthorized")
+def unauthorized():
+    return render_template("unauthorized.html")
