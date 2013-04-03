@@ -1,42 +1,21 @@
 
+/*  GENERAL */
 body {
     font-family: Arial;
-    font-size: 13px;
+    font-size: 13px; 
 }
 
 .hide {
-    display: none;
+    display: none; 
 }
 
 .error {
     font-size: 12px;
-    color: red;
+    color: red; 
 }
 
-legend {
-    font-weight: bold;
-    font-size: 14px;
-}
-
-fieldset {
-    margin-bottom: 15px;
-}
-
-.row,
-.row-simple {
-    overflow: hidden;
-    padding: 5px 0;
-}
-
-.row label {
-    float: left;
-    width: 220px;
-}
-
-.row .field,
-.row .other,
-.row table  {
-    margin-left: 230px;
+.row-simple .field {
+    margin-left: 100px;
 }
 
 .row-simple label {
@@ -57,10 +36,6 @@ fieldset {
     color: red;
 }
 
-.ecosystem-types {
-
-}
-
 .ecosystem-types td {
     vertical-align: top;
 }
@@ -69,8 +44,6 @@ fieldset {
     display: none;
 }
 
-.ecosystem ul,
-.ecosystem li ,
 .reset-ul,
 .reset-ul li {
     list-style-type: none;
@@ -84,21 +57,18 @@ fieldset {
 }
 
 .ecosystem .category {
-    font-style: italic;
     text-align: left;
-    background: #eee;
+    font-size: 14px;
 }
 
 .ecosystem .category-left {
     text-align: left;
-    width: 250px;
 }
 
 .ecosystem .check-column {
     text-align: center;
     width: 120px;
 }
-
 
 #lean_overlay {
     position: fixed;
@@ -130,4 +100,153 @@ fieldset {
 
 .resources .label {
     width: 160px;
+}
+
+
+/*  restyle the form */
+.ecoAsVir fieldset {
+	border: 2px solid #B4D8AE;
+	margin-bottom: 15px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	width: 96%;
+}
+
+.ecoAsVir .second {
+	margin-top: 30px;
+}
+
+.ecoAsVir legend {
+	padding: 0px 5px;
+	color: #333;
+	margin-left: 8px;
+	font-weight: bold; 
+}
+
+.ecoAsVir label {
+	width: 250px;
+	float: left;
+	color: #5A5A5A;
+}
+
+.ecoAsVir .field {
+	display: inline-block;
+	margin: 0;
+}
+
+.ecoAsVir .row {
+	margin: 0px;
+	padding: 13px 5px;
+	border-bottom: 1px dashed #DDD;
+	overflow: hidden;
+}
+
+.ecoAsVir .row.lastOfType {
+	border-bottom: 0px;
+}
+
+.ecoAsVir .required {
+	color: red;
+	padding: 0px 3px;
+}
+
+.ecoAsVir #title,
+.ecoAsVir #english_title,
+.ecoAsVir #origin_other,
+.ecoAsVir #url,
+.ecoAsVir #content_other,
+.ecoAsVir #key_elements,
+.ecoAsVir #feedback,
+.ecoAsVir #feedback_other {
+	width: 597px;
+}
+
+.ecoAsVir .other {
+	margin-left: 255px;
+	margin-bottom: 5px;
+}
+
+.ecoAsVir .add-object {
+	padding: 5px 5px 0px 0px;
+	display: inline-block;
+}
+
+
+/*  TABLES */
+.ecoAsVir .ecosystem {
+    margin-left: 255px;
+}
+
+.ecoAsVir .ecosystem .category-left {
+	vertical-align: top;
+}
+
+.ecoAsVir .ecosystem .category-left div {
+    width: 246px;
+    border-bottom: 1px solid #FFF;
+    padding: 4px 3px 6px 10px;
+    color: #444;
+}
+
+.ecoAsVir .even ul,
+.ecoAsVir th.even {
+	background: #D4F1F1; 
+}
+
+.ecoAsVir .odd ul,
+.ecoAsVir th.odd {
+	background: #B4DBDB;
+}
+
+/* red table with issues */
+.ecoAsVir #ecosystem-types-issues .category,
+.ecoAsVir #ecosystem-types-issues .category-left div {
+    background: #FD9288;
+}
+
+/* green table with methods */
+.ecoAsVir #ecosystem-types-methods .category,
+.ecoAsVir #ecosystem-types-methods .category-left div {
+    background: #76D176;
+}
+
+/*  yellow table with services */
+.ecoAsVir #ecosystem-service-types .category,
+.ecoAsVir #ecosystem-service-types .category-left div {
+    background: #EBF38E;
+}
+
+.ecoAsVir .ecosystem li {
+	border-bottom: 1px solid #fff;
+  padding: 4px 3px 4px 3px;
+  margin: 0;
+  width: 79px;
+}
+
+.ecoAsVir #ecosystem-service-types li {
+    width: 100%;
+}
+
+.ecoAsVir .ecosystem ul {
+	list-style-type: none;
+	padding: 0px;
+  margin: 0px;
+}
+
+.ecoAsVir .row.special {
+	overflow-x: scroll;
+  width: 865px; /* only for Firefox */
+}
+
+.ecoAsVir .category-left:empty,
+.ecoAsVir #ecosystem-service-types .category-left:empty {
+	border: 0px;
+	background: #fff;
+}
+
+
+/* FIXINGS from jQuery */
+body .ui-dialog .ui-dialog-titlebar-close span {
+    margin-top: -7px;
+    margin-left: -7px; /* margin for span inside close button, from browser alert window */
 }

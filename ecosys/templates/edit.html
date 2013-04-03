@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" class="ecoAsVir">
 
   <fieldset>
     <legend>Resource identification</legend>
@@ -41,14 +41,14 @@
       {{ render_field(resource_form.year_of_publication) }}
     </div>
 
-    <div class="row">
+    <div class="row lastOfType">
       {{ render_field(review_form.origin) }}
       {{ render_other(review_form.origin_other) }}
     </div>
 
   </fieldset>
 
-  <fieldset>
+  <fieldset class="second">
     <legend>Document availability and status</legend>
 
     <div class="row">
@@ -96,7 +96,7 @@
       {{ render_field(review_form.ecosystems) }}
     </div>
 
-    <div class="row">
+    <div class="row special">
       {{ review_form.ecosystem_types_issues }}
       <div class="other">
         <a href="" class="ecosystem-type-other"
@@ -120,13 +120,13 @@
      <div class="row">
       {{ review_form.ecosystem_services_types }}
       <div class="other">
-        <a href="" class="ecosystem-service-typye-other"
+        <a href="" class="ecosystem-service-type-other"
            data-rel="#ecosystem-service-types">
           Add another</a>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row lastOfType">
       {{ render_field(review_form.feedback) }}
       <div class="other">
         <p>other</p>
@@ -136,7 +136,7 @@
 
   </fieldset>
 
-  <div class="row">
+  <div class="row lastOfType">
     <button type="submit">Submit</button>
   </div>
 
