@@ -41,7 +41,8 @@ class EcosystemTableWidget(EcosystemBaseWidget):
             page.thead()
             page.tr()
             page.th('', class_='category-left')
-            page.th([f.label.text for f in fields])
+            for i, f in enumerate(fields):
+                page.th(f.label.text, class_=i%2 and 'odd' or 'even')
             page.tr.close()
             page.thead.close()
 
@@ -51,9 +52,10 @@ class EcosystemTableWidget(EcosystemBaseWidget):
         page.tr()
         page.td(e.div(data_keys), class_='category-left')
 
-        for field in fields:
+        for i, field in enumerate(fields):
             field.choices = [(k, v) for k, v in self.data]
-            page.td(field(**kwargs), class_='check-column')
+            odd_even = i%2 and 'odd' or 'even'
+            page.td(field(**kwargs), class_=('check-column %s' % odd_even))
 
         page.tr.close()
         page.tbody.close()
