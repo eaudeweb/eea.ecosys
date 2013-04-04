@@ -10,7 +10,8 @@ setup(
     author='Eau de Web',
     author_email='office@eaudeweb.ro',
     description='Virtual Library for Ecosystem Assessments in Europe',
-    py_modules=['ecosys'],
+    packages=['libs', 'ecosys', 'ecosys.forms'],
+    include_package_data=True,
     zip_safe=False,
     platforms='any',
     install_requires=['Flask==0.9',
@@ -27,7 +28,7 @@ setup(
                       'WTForms==1.0.3',
                       'path.py==3.0.1',
                       'requests==1.1.0',
-                      'python-ldap==2.4.10',
+                      'python-ldap==2.3.13',
                     ],
     dependency_links=['https://github.com/eaudeweb/flask-mongoengine/archive/master.zip'],
     classifiers=[
