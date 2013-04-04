@@ -18,6 +18,16 @@ DEFAULT_CONFIG = {
     },
     'ASSETS_DEBUG': True,
     'CSRF_ENABLED': False,
+    'LDAP_ENCODING': 'utf-8',
+    'LDAP_USER_DN': "uid=%s,ou=Users,o=EIONET,l=Europe",
+    'LDAP_USER_SCHEMA': {
+        'first_name': 'givenName',
+        'last_name': 'sn',
+        'email': 'mail',
+        'phone_number': 'telephoneNumber',
+        'organisation': 'o',
+        'uid': 'uid',
+    }
 }
 
 BLUEPRINTS = (
