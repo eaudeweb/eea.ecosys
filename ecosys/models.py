@@ -123,7 +123,7 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
 
     filename = db.StringField(max_length=128, default=None)
 
-    spatial = db.BooleanField(default=False)
+    spatial = db.BooleanField(default=True)
 
     spatial_scale = db.ListField(
         db.StringField(max_length=128, choices=SPATIAL_SCALE), default=None,

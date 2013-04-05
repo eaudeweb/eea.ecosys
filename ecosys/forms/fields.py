@@ -117,9 +117,7 @@ class MultiCheckboxField(wtf.SelectMultipleField):
 
 
 class CustomBoolean(wtf.SelectField):
-
-    def process_data(self, value):
-        self.data = (value == '1')
+    pass
 
 
 class CustomFileField(wtf.FileField):

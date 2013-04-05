@@ -96,14 +96,14 @@ class LiteratureForm(_LiteratureForm):
     filename = CustomFileField('File upload representing the document, if freely available',
        validators=[wtf.file_allowed(files, 'Document is not valid')])
 
-    spatial = CustomBoolean('Spatial specificity', choices=YES_NO, default='0',
+    spatial = CustomBoolean('Spatial specificity', choices=YES_NO, default='1',
         validators=[RequiredIfChecked(fields=['spatial_scale', 'countries'],
                                       message='Spatial scale and Countries are required')])
 
     url = wtf.TextField()
 
     ecosystems = CustomBoolean('Are ecosystems studied?', choices=YES_NO,
-        default='0')
+        default='1')
 
     ecosystem_types_issues = wtf.FormField(EcosystemType,
         widget=EcosystemTableWidget(data=ECOSYSTEM_ISSUES, categ='Issues'))
@@ -113,7 +113,7 @@ class LiteratureForm(_LiteratureForm):
                                     header=False))
 
     ecosystem_services = CustomBoolean('Are ecosystem services addressed?',
-        choices=YES_NO, default='0')
+        choices=YES_NO, default='1')
 
     ecosystem_services_types = wtf.FormField(EcosystemServiceType,
         widget=EcosystemServiceTableWidget(data=ECOSYSTEM_TYPES))
