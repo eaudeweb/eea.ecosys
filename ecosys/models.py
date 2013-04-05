@@ -131,7 +131,7 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
 
     countries = db.ListField(
         db.StringField(max_length=128, choices=COUNTRIES),
-        default=None)
+        default=None, verbose_name="Countries in Europe")
 
     content = db.ListField(db.StringField(), required=True)
 

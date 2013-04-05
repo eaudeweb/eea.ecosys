@@ -7,7 +7,7 @@
 <form method="POST" enctype="multipart/form-data" class="ecoAsVir">
 
   <fieldset>
-    <legend>Resource identification</legend>
+    <legend>{{ resource_form.META['item']|capitalize }} identification</legend>
 
     <div class="row">
       {{ render_field(resource_form.title) }}
