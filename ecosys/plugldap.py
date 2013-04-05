@@ -15,8 +15,8 @@ def get_ldap_cfg():
 
 
 def connect_to_ldap(ldap_servers):
-    host = choice(ldap_servers)
-    return ldap.open(host)
+    host, port = choice(ldap_servers)
+    return ldap.open(host, port=port)
 
 
 def user_info(username):
