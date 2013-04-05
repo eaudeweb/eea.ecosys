@@ -9,6 +9,6 @@ UPLOADED_FILES_DEST = path(__file__).dirname().joinpath('files')
 UPLOADS_FILES_URL = '/static/files'
 
 # LDAP related
-LDAP_SERVERS = ["ldap://ldap.eionet.europa.eu:389",
-                "ldap://ldap2.eionet.europa.eu:389",
-                "ldap://ldap3.eionet.europa.eu:389"]
+LDAP_SERVERS = [('ldap.eionet.europa.eu', 389),
+                ('ldap2.eionet.europa.eu', 389),
+                ('ldap3.eionet.europa.eu', 389),]
