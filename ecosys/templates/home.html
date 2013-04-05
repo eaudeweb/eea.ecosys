@@ -3,26 +3,31 @@
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
-    <h2>The Virtual Library for Ecosystem Assessments in Europe</h2>
-    
-    
-    
-    <p>
-        This Virtual Library is intended for uploading specific information
-        on relevant resources
-        for ecosystem assessment in Europe
-        (including grey literature, tools, events, websites and maps,
-        in any language).
-    </p>
-    <p>The library will provide a search tool for
-    <ul>
-        <li>Resources (document, websites, maps, events) relevant for ecosystem assessment in Europe</li>
-        <li>Experts that produced these resources</li>
-        <li>Organisations that produced these resources</li>
-    </ul>
-    </p>
-    <p>The contributing interface is currently tested by a restricted number of
+
+  <h2>The Virtual Library for Ecosystem Assessments in Europe</h2>
+  <p>This Virtual Library is intended for uploading specific information
+     on relevant resources for ecosystem assessment in Europe
+     (including grey literature, tools, events, websites and maps, in any language).</p>
+  <p>The library will provide a search tool for</p>
+
+  <ul>
+
+    <li>Resources (document, websites, maps, events) relevant for ecosystem assessment in Europe</li>
+
+    <li>Experts that produced these resources</li>
+
+    <li>Organisations that produced these resources</li>
+
+  </ul>
+
+  <p>The contributing interface is currently tested by a restricted number of
     invited experts. For any inquiries, please contact
     <a href="mailto:Valerie.Laporte@eea.europa.eu">Valérie Laporte</a>
     (Valerie.Laporte@eea.europa.eu) in the EEA.</p>
+
+  <p>
+    <a href="{{ url_for('library.edit', resource_type='literature') }}">
+      Add literature resource
+    </a>
+  </p>
 {% endblock %}

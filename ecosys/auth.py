@@ -58,8 +58,8 @@ def login():
             return resp
         else:
             flash('Bad username or password.')
-    if request.args.get("next"):
-        flash("You need to login in order to continue.")
+    # if request.args.get("next"):
+        # flash("You need to login in order to continue.")
     return render_template('login.html', form=form)
 
 

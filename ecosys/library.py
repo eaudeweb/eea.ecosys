@@ -27,6 +27,7 @@ def home():
 @library.route('/resources/add/<string:resource_type>',
                methods=['GET', 'POST'])
 @flask_login.login_required
+@auth.requires_role('contributor')
 def edit(resource_type):
     try:
         ResourceForm, ReviewForm = forms.FORMS[resource_type]
@@ -58,7 +59,6 @@ def resources():
 
 @library.route('/resource/<string:resource_id>')
 @flask_login.login_required
-@auth.requires_role('contributor')
 def view(resource_id):
     resource = Resource.objects.get_or_404(id=resource_id)
     try:
