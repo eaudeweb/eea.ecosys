@@ -11,6 +11,7 @@ setup(
     author_email='office@eaudeweb.ro',
     description='Virtual Library for Ecosystem Assessments in Europe',
     packages=['libs', 'ecosys', 'ecosys.forms'],
+    py_modules=['middlewares', 'manage'],
     include_package_data=True,
     zip_safe=False,
     platforms='any',
