@@ -71,6 +71,11 @@
       {{ render_field(review_form.filename) }}
     </div>
 
+  </fieldset>
+
+  <fieldset>
+
+    <legend>Spatial specificity and main purpose</legend>
     <div class="row">
       {{ render_field(review_form.spatial) }}
     </div>
@@ -87,6 +92,10 @@
       {{ render_field(review_form.content) }}
       {{ render_other(review_form.content_other) }}
     </div>
+
+  </fieldset>
+  <fieldset>
+    <legend>Ecosystem assessment elements</legend>
 
     <div class="row">
       {{ render_field(review_form.key_elements) }}
@@ -126,6 +135,9 @@
       </div>
     </div>
 
+  </fieldset>
+  <fieldset>
+    <legend>About the document and your work</legend>
     <div class="row lastOfType">
       {{ render_field(review_form.feedback) }}
       <div class="other">
