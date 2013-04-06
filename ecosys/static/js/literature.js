@@ -1,7 +1,6 @@
 $(function () {
 
   var format = function (state) {
-    console.log('ala bala');
     return state.text.substring(0, 46) + '...';
   };
 
