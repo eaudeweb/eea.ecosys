@@ -46,6 +46,7 @@ def create_app(instance_path=None, config={}):
     configure_static(app)
     configure_authentication(app)
     configure_templating(app)
+    configure_error_pages(app)
     db.init_app(app)
     return app
 
@@ -77,6 +78,22 @@ def configure_static(app):
 
 def configure_authentication(app):
     login_manager.setup_app(app)
+
+
+def configure_error_pages(app):
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return flask.render_template('404.html'), 404
+
+    @app.errorhandler(500)
+    def page_error(e):
+        return flask.render_template('500.html'), 500
+
+    @app.route('/crashme')
+    def crashme():
+        raise Exception
+
 
 def configure_templating(app):
     original_loader = app.jinja_env.loader
