@@ -76,7 +76,8 @@ class EcosystemCategory(db.EmbeddedDocument):
 
 class Resource(db.Document):
 
-    title = db.StringField(max_length=512, required=True)
+    title = db.StringField(max_length=512, required=True,
+        verbose_name='Title in original language')
 
     english_title = db.StringField(max_length=512)
 
