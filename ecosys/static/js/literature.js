@@ -1,7 +1,7 @@
 $(function () {
 
   var format = function (state) {
-    return state.text.substring(0, 46) + '...';
+    return state.text.replace(/\(.*\)/, '');
   };
 
   $('select[multiple]').select2({
