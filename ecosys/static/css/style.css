@@ -2,16 +2,16 @@
 /*  GENERAL */
 body {
     font-family: Arial;
-    font-size: 13px; 
+    font-size: 13px;
 }
 
 .hide {
-    display: none; 
+    display: none;
 }
 
 .error {
     font-size: 12px;
-    color: red; 
+    color: red;
 }
 
 .row-simple .field {
@@ -120,7 +120,7 @@ body {
 	padding: 0px 5px;
 	color: #333;
 	margin-left: 8px;
-	font-weight: bold; 
+	font-weight: bold;
 }
 
 .ecoAsVir label {
@@ -190,7 +190,7 @@ body {
 
 .ecoAsVir .even ul,
 .ecoAsVir th.even {
-	background: #D4F1F1; 
+	background: #D4F1F1;
 }
 
 .ecoAsVir .odd ul,
@@ -249,4 +249,28 @@ body {
 body .ui-dialog .ui-dialog-titlebar-close span {
     margin-top: -7px;
     margin-left: -7px; /* margin for span inside close button, from browser alert window */
+}
+
+
+.login-container {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background: #e4eed6;
+    padding: 20px;
+    margin: 15px auto;
+    width: 500px;
+}
+.login-container label {
+    width: 120px;
+    float: left;
+}
+.login-container .row {
+    overflow: hidden;
+    height: 40px;
+}
+.login-container input[type=text],
+.login-container input[type=password] {
+    padding: 4px;
+    width: 300px;
 }
