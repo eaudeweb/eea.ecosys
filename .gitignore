@@ -1,2 +1,4 @@
 instance
 fabfile.py
+.webassets-cache
+output

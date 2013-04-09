@@ -30,6 +30,8 @@ setup(
                       'path.py==3.0.1',
                       'requests==1.1.0',
                       'python-ldap==2.3.13',
+                      'jsmin==2.0.2-1',
+                      'cssmin==0.1.4',
                     ],
     dependency_links=['https://github.com/eaudeweb/flask-mongoengine/archive/master.zip'],
     classifiers=[

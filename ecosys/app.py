@@ -16,7 +16,7 @@ DEFAULT_CONFIG = {
     'MONGODB_SETTINGS': {
         'DB': 'ecosys',
     },
-    'ASSETS_DEBUG': True,
+    'ASSETS_DEBUG': False,
     'CSRF_ENABLED': False,
     'LDAP_ENCODING': 'utf-8',
     'LDAP_USER_DN': "uid=%s,ou=Users,o=EIONET,l=Europe",
