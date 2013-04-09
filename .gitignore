@@ -2,3 +2,5 @@ instance
 fabfile.py
 .webassets-cache
 output
+dist
+ecosys.egg-info
