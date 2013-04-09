@@ -1,12 +1,15 @@
 import flask
+import logging
+import jinja2
+
 from flask.ext.assets import Environment, Bundle
 from werkzeug import SharedDataMiddleware
-
-import jinja2
+from raven.contrib.flask import Sentry
+from raven.conf import setup_logging
+from raven.handlers.logging import SentryHandler
 
 from ecosys.models import db
 from ecosys.auth import login_manager
-# import blueprints
 from ecosys import library, resource, auth, frameservice
 
 from .assets import BUNDLE_JS, BUNDLE_CSS
@@ -37,6 +40,9 @@ BLUEPRINTS = (
 )
 
 
+sentry = Sentry()
+
+
 def create_app(instance_path=None, config={}):
     app = flask.Flask(__name__, instance_path=instance_path,
                       instance_relative_config=True)
@@ -47,6 +53,7 @@ def create_app(instance_path=None, config={}):
     configure_authentication(app)
     configure_templating(app)
     configure_error_pages(app)
+    configure_sentry(app)
     db.init_app(app)
     return app
 
@@ -99,3 +106,10 @@ def configure_templating(app):
     original_loader = app.jinja_env.loader
     func_loader = jinja2.FunctionLoader(frameservice.load_template)
     app.jinja_env.loader = jinja2.ChoiceLoader([func_loader, original_loader])
+
+
+def configure_sentry(app):
+    sentry.init_app(app)
+    sentry_handler = SentryHandler(sentry.client)
+    sentry_handler.setLevel(logging.WARN)
+    setup_logging(sentry_handler)
