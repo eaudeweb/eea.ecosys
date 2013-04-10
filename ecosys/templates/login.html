@@ -1,6 +1,14 @@
 {% extends "layout.html" %}
 
+
+{% block flash_messages %}
+  <div class="login-message">{{ flash_messages() }}</div>
+{% endblock %}
+
+
 {% block content %}
+
+<div class="login-title">Login credentials</div>
 
 <div class="login-container">
 

@@ -27,7 +27,7 @@
 
     {% block frame_content %}
     <div class="message information">
-      {{ flash_messages() }}
+      {% block flash_messages %} {{ flash_messages() }} {% endblock %}
     </div>
     {% block content %}{% endblock %}
     {% endblock frame_content %}

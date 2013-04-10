@@ -251,15 +251,25 @@ body .ui-dialog .ui-dialog-titlebar-close span {
     margin-left: -7px; /* margin for span inside close button, from browser alert window */
 }
 
-
-.login-container {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    background: #e4eed6;
+.login-container,
+.login-title {
     padding: 20px;
     margin: 15px auto;
     width: 500px;
+}
+.login-container {
+    -webkit-border-bottom-right-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom: 1px solid #d1dfbd;
+    border-left: 1px solid #d1dfbd;
+    border-right: 1px solid #dee9ce;
+    border-top: 1px solid #dee9ce;
+    background: #e4eed6;
+    margin-top: 0;
 }
 .login-container label {
     width: 120px;
@@ -273,4 +283,24 @@ body .ui-dialog .ui-dialog-titlebar-close span {
 .login-container input[type=password] {
     padding: 4px;
     width: 300px;
+}
+.login-title {
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid #74864f;
+    background: #74864f;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.login-message {
+    font-size: 18px;
+    text-align: center;
 }
