@@ -32,7 +32,7 @@ setup(
                       'python-ldap==2.3.13',
                       'jsmin==2.0.2-1',
                       'cssmin==0.1.4',
-                      'raven==3.3.3',
+                      'raven==2.0.3',
                       'blinker==1.2',
                     ],
     dependency_links=['https://github.com/eaudeweb/flask-mongoengine/archive/master.zip'],
