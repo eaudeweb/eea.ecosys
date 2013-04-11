@@ -24,7 +24,6 @@ def home():
     return render_template('home.html')
 
 
-
 class Edit(views.MethodView):
 
     def _get_instance_form(self, resource_type):
@@ -72,7 +71,7 @@ def resources():
 
 
 @library.route('/resource/<string:resource_id>')
-@flask_login.login_required
+#@flask_login.login_required
 def view(resource_id):
     resource = Resource.objects.get_or_404(id=resource_id)
     try:

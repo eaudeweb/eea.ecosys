@@ -1,13 +1,23 @@
-Install
+Install::
 
     virtualenv sandbox
-    pip install -r requirements.txt
+    python setup.py install
 
-Run
-    ./manage.py runserver
+Run::
+
+    cd /var/local/project-root
+    manage runserver
+    manage shell
+    etc..
 
 
-Deploy:
+Deploy::
+
+    cp fabfile.py.sample fabfile.py # configure `project_root` and `host_string`
 
     tsocks fab deploy:target=production
-    zope >>> /var/local/ecosys/sandbox/bin/supervisorctl -c /var/local/ecosys/instance/supervisord.conf restart ecosys
+    tsocks fab restart:target=production
+
+Check status::
+
+    tsocks fab status:target=production

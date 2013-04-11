@@ -1,5 +1,6 @@
 import base64
 from functools import wraps
+import datetime
 
 from flask import (Blueprint, request, render_template, redirect, url_for,
                    flash, g)
@@ -52,6 +53,8 @@ def login():
             flask_login.login_user(user)
             flash('Logged in successfully as %s %s (%s).' %
                   (user.first_name, user.last_name, user.id))
+            user.last_login = datetime.datetime.utcnow()
+            user.save(safe=False)
             resp = redirect(request.args.get("next") or url_for('library.home'))
             resp.set_cookie("__ac",
                             base64.b64encode("%s:%s" % (username, password)))

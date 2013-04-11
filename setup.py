@@ -11,7 +11,6 @@ setup(
     author_email='office@eaudeweb.ro',
     description='Virtual Library for Ecosystem Assessments in Europe',
     packages=['libs', 'ecosys', 'ecosys.forms'],
-    py_modules=['middlewares', 'manage'],
     include_package_data=True,
     zip_safe=False,
     platforms='any',
@@ -35,6 +34,7 @@ setup(
                       'raven==2.0.3',
                       'blinker==1.2',
                     ],
+    entry_points={'console_scripts': ['manage = ecosys.manage:main']},
     dependency_links=['https://github.com/eaudeweb/flask-mongoengine/archive/master.zip'],
     classifiers=[
         'Development Status :: 4 - Beta',

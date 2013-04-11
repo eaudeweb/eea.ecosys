@@ -5,17 +5,22 @@ import os
 from flask.ext import script
 from path import path
 
-from middlewares import ReverseProxied
+from ecosys.middlewares import ReverseProxied
 from ecosys.app import create_app
 
 
-PROJECT_ROOT = os.environ.get('PROJECT_ROOT', path(__file__).parent.abspath())
+PROJECT_ROOT = os.environ.get('PROJECT_ROOT', os.getcwd())
 
 
 app = create_app(instance_path=path(PROJECT_ROOT) / 'instance')
 app.wsgi_app = ReverseProxied(app.wsgi_app)
-manager = script.Manager(app)
+
+
+def main():
+    global app
+    manager = script.Manager(app)
+    manager.run()
 
 
 if __name__ == '__main__':
-    manager.run()
+    main()
