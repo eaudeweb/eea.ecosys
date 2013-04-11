@@ -100,6 +100,7 @@ def deploy():
             # now setup the package in our virtual environment
             with cd(dist):
                 run('%s/sandbox/bin/python setup.py install' % env['project_root'])
+        execute("restart")
     except:
         pass
     finally:
