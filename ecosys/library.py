@@ -1,5 +1,5 @@
 from flask import (Blueprint, request, abort, render_template, flash, redirect,
-                   url_for)
+                   url_for, views)
 from flaskext.uploads import configure_uploads
 from flask.ext import login as flask_login
 
@@ -24,30 +24,44 @@ def home():
     return render_template('home.html')
 
 
-@library.route('/resources/add/<string:resource_type>',
-               methods=['GET', 'POST'])
-@flask_login.login_required
-@auth.requires_role('contributor')
-def edit(resource_type):
-    try:
-        ResourceForm, ReviewForm = forms.FORMS[resource_type]
-    except KeyError:
-        abort(404)
 
-    resource_form = ResourceForm(resource_type=resource_type)
-    review_form = ReviewForm()
+class Edit(views.MethodView):
 
-    user = flask_login.current_user
-    if request.method == 'POST':
+    def _get_instance_form(self, resource_type):
+        try:
+            ResourceForm, ReviewForm = forms.FORMS[resource_type]
+        except KeyError:
+            abort(404)
+
+        resource_form = ResourceForm(resource_type=resource_type)
+        review_form = ReviewForm()
+        return resource_form, review_form
+
+    @flask_login.login_required
+    def get(self, resource_type):
+        resource_form, review_form = self._get_instance_form(resource_type)
+        return render_template('edit.html', resource_form=resource_form,
+                               review_form=review_form)
+
+    @flask_login.login_required
+    @auth.requires_role('contributor')
+    def post(self, resource_type):
+        resource_form, review_form = self._get_instance_form(resource_type)
+        user = flask_lxogin.current_user
+
         resource_form_validate = resource_form.validate()
         review_form_validate = review_form.validate()
+
         if resource_form_validate and review_form_validate:
             resource = resource_form.save()
             review_form.save(resource, user)
             flash('Resource added successfully')
 
-    return render_template('edit.html', resource_form=resource_form,
-                           review_form=review_form)
+        return render_template('edit.html', resource_form=resource_form,
+                               review_form=review_form)
+
+library.add_url_rule('/resources/add/<string:resource_type>',
+                     view_func=Edit.as_view('edit'))
 
 
 @library.route('/resources')
