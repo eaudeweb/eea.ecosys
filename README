@@ -10,4 +10,4 @@ Run
 Deploy:
 
     tsocks fab deploy:target=production
-    zope >>> /var/local/ecosys/sandbox/bin/supervisorctl -c /var/local/ecosys/instance/supervisord.conf restart ecosys
+    tsocks fab restart:target=production

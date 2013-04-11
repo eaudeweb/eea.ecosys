@@ -5,7 +5,7 @@ import os
 from flask.ext import script
 from path import path
 
-from middlewares import ReverseProxied
+from ecosys.middlewares import ReverseProxied
 from ecosys.app import create_app
 
 
