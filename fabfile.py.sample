@@ -53,11 +53,35 @@ def first_deploy():
     run("%s --python=%s --no-site-packages --distribute %s" %
         (env['virtualenv'], env['python'], sandbox))
 
+
+def supervisor(root, command):
+    run('%s/sandbox/bin/supervisorctl -c %s/instance/supervisord.conf %s' %
+                    (root, root, command))
+
+
 @task
 @choose_target
 def restart():
-    run('%s/sandbox/bin/supervisorctl -c %s/instance/supervisord.conf restart ecosys' %
-                    (env['project_root'], env['project_root']))
+    supervisor(env['project_root'], "restart ecosys")
+
+
+@task
+@choose_target
+def status():
+    supervisor(env['project_root'],"status")
+
+
+@task
+@choose_target
+def start():
+    supervisor(env['project_root'],"start ecosys")
+
+
+@task
+@choose_target
+def stop():
+    supervisor(env['project_root'],"stop ecosys")
+
 
 @task
 @choose_target
