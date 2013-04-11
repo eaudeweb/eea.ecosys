@@ -1,13 +1,19 @@
 Install
 
     virtualenv sandbox
-    pip install -r requirements.txt
+    python setup.py install
 
 Run
-    ./manage.py runserver
+    cd /var/local/project/root
+    manage runserver
+    manage shell
+    etc..
 
 
 Deploy:
 
     tsocks fab deploy:target=production
     tsocks fab restart:target=production
+
+Check status
+    supervisorctl -c instance/supervisord.conf status

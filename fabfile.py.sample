@@ -9,7 +9,7 @@ env['target_defs'] = {
     },
     'production': {
         'host_string': 'user@host',
-        'project_root': '/var/local/project/root/',
+        'project_root': '/var/local/project/root', # not slash ended!
         'virtualenv':  'virtualenv',
         'python': '/var/local/a/Python/bin/python',
     },
