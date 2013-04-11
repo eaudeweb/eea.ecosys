@@ -55,6 +55,12 @@ def first_deploy():
 
 @task
 @choose_target
+def restart():
+    run('%s/sandbox/bin/supervisorctl -c %s/instance/supervisord.conf restart ecosys' %
+                    (env['project_root'], env['project_root']))
+
+@task
+@choose_target
 def deploy():
     execute("pack")
     # figure out the release name and version
@@ -70,8 +76,7 @@ def deploy():
             # now setup the package in our virtual environment
             with cd(dist):
                 run('%s/sandbox/bin/python setup.py install' % env['project_root'])
-                run('%s/sandbox/bin/supervisorctl -c %s/instance/supervisord.conf restart ecosys' %
-                    (env['project_root'], env['project_root']))
+                execute("restart")
     except:
         pass
     finally:
