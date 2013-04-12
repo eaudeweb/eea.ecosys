@@ -25,6 +25,7 @@ setup(
                       'webassets==0.8',
                       'pymongo==2.4.2',
                       'mongoengine==0.7.9',
+                      'flask-mongoengine',
                       'WTForms==1.0.3',
                       'path.py==3.0.1',
                       'requests==1.1.0',
@@ -35,7 +36,7 @@ setup(
                       'blinker==1.2',
                     ],
     entry_points={'console_scripts': ['manage = ecosys.manage:main']},
-    dependency_links=['https://github.com/eaudeweb/flask-mongoengine/archive/master.zip'],
+    dependency_links=['https://github.com/eaudeweb/flask-mongoengine/archive/master.zip#egg=flask_mongoengine'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
