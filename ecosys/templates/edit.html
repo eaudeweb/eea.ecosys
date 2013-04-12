@@ -19,6 +19,11 @@
       Adding tools, events, websites, maps will soon follow (process will be very similar).
     </div>
 
+    {% if g.user.is_anonymous() %}
+    <div class="row error">This form is available for testing by logged in Eionet Members.
+      You are not currently logged in - you will not be able to save data using this page.</div>
+    {% endif %}
+
     <div class="row">
       {{ render_field(resource_form.title) }}
     </div>
@@ -158,10 +163,16 @@
 
   </fieldset>
 
+    {% if g.user.is_anonymous() %}
+    <div class="row error">This form is available for testing by logged in Eionet Members.
+      You are not currently logged in - you will not be able to save data using this page.</div>
+    {% else %}
+
   <div class="row lastOfType">
     <button type="submit">Submit</button>
   </div>
 
+      {% endif %}
 </form>
 
 <div id="modal"></div>

@@ -36,14 +36,12 @@ class Edit(views.MethodView):
         review_form = ReviewForm()
         return resource_form, review_form
 
-    @flask_login.login_required
     def get(self, resource_type):
         resource_form, review_form = self._get_instance_form(resource_type)
         return render_template('edit.html', resource_form=resource_form,
                                review_form=review_form)
 
     @flask_login.login_required
-    @auth.requires_role('contributor')
     def post(self, resource_type):
         resource_form, review_form = self._get_instance_form(resource_type)
         user = flask_login.current_user
