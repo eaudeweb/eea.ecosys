@@ -103,7 +103,8 @@ $(function () {
 
     var title = $(this).data('title');
     var url = $(this).attr('href');
-
+    $('#modal').html('')
+    $('#modal').removeData();
     $.get(url, function (data) {
       $('#modal').attr('title', title);
       $('#modal').html(data.html);
