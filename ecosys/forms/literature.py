@@ -161,7 +161,11 @@ class LiteratureForm(_LiteratureForm):
 
         review.spatial_scale = self.data['spatial_scale']
         review.countries = self.data['countries']
-        review.content = self.data['content']
+        content =  self.data['content']
+        content_other = self.data['content_other'].split(',')
+        if content_other:
+            content.extend(content_other)
+        review.content = content
         review.key_elements = self.data['key_elements']
 
         feedback = self.data['feedback']
