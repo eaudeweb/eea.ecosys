@@ -46,7 +46,7 @@ class Edit(views.MethodView):
     @auth.requires_role('contributor')
     def post(self, resource_type):
         resource_form, review_form = self._get_instance_form(resource_type)
-        user = flask_lxogin.current_user
+        user = flask_login.current_user
 
         resource_form_validate = resource_form.validate()
         review_form_validate = review_form.validate()
