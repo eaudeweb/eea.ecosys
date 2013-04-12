@@ -146,3 +146,16 @@ class RequiredIfChecked(object):
                 continue
             else:
                 raise wtf.ValidationError(self.message)
+
+
+class TextInputWithAttributes(wtf.widgets.TextInput):
+
+    def __init__(self, *args, **kwargs):
+        self.attr = kwargs.pop('attr', {})
+        super(TextInputWithAttributes, self).__init__(*args, **kwargs)
+
+    def __call__(self, field, **kwargs):
+        for k, v in self.attr.items():
+            kwargs[k] = v
+        return super(TextInputWithAttributes, self).__call__(field, **kwargs)
+

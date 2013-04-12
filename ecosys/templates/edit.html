@@ -150,10 +150,7 @@
     <legend>About the document and your work</legend>
     <div class="row lastOfType">
       {{ render_field(review_form.feedback) }}
-      <div class="other">
-        <p>other</p>
-        {{ review_form.feedback_other }}
-      </div>
+      {{ render_other(review_form.feedback_other) }}
     </div>
 
   </fieldset>

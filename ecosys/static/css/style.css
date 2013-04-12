@@ -27,6 +27,11 @@ body {
     margin-left: 100px;
 }
 
+.row .other {
+    padding-top: 10px;
+    position: relative;
+    left: -5px;
+}
 .row .other input {
     width: 600px;
 }
