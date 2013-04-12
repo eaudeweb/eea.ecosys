@@ -19,7 +19,6 @@ DEFAULT_CONFIG = {
     'MONGODB_SETTINGS': {
         'DB': 'ecosys',
     },
-    'HOSTNAME': 'http://biodiversity.europa.eu/ecosystem-assessments/virtual-library/',
     'ASSETS_DEBUG': False,
     'CSRF_ENABLED': False,
     'LDAP_ENCODING': 'utf-8',

@@ -8,8 +8,6 @@ UPLOADED_FILES_DEST = path(__file__).dirname().joinpath('files')
 
 UPLOADS_FILES_URL = '/static/files'
 
-HOSTNAME = 'http://localhost:5000'
-
 # LDAP related
 LDAP_SERVERS = [('ldap.eionet.europa.eu', 389),
                 ('ldap2.eionet.europa.eu', 389),
