@@ -92,7 +92,7 @@ class LiteratureForm(_LiteratureForm):
                                      choices=ORIGIN,
                                      validators=[wtf.validators.Required()])
     origin_other = wtf.TextField(widget=TextInputWithAttributes(attr={
-        'data-placeholder': 'or type different ones'}))
+        'data-placeholder': 'or type here different ones'}))
 
     filename = CustomFileField('File upload representing the document, if freely available',
        validators=[wtf.file_allowed(files, 'Document is not valid')])
@@ -123,13 +123,13 @@ class LiteratureForm(_LiteratureForm):
                                       choices=CONTENT,
                                       validators=[wtf.validators.Required()])
     content_other = wtf.TextField(widget=TextInputWithAttributes(attr={
-        'data-placeholder': 'or type different ones'}))
+        'data-placeholder': 'or type here different ones'}))
 
     feedback = wtf.SelectField('How did you find out about this resource?',
                                choices=FEEDBACK,
                                validators=[wtf.validators.Required()])
     feedback_other = wtf.TextField(widget=TextInputWithAttributes(attr={
-        'data-placeholder': 'or type different ones'}))
+        'data-placeholder': 'or type here different ones'}))
 
     def __init__(self, *args, **kwargs):
         super(LiteratureForm, self).__init__(*args, **kwargs)

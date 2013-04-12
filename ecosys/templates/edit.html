@@ -40,7 +40,7 @@
       {{ render_field(resource_form.authors) }}
       <div class="other">
         <a class="add-object" href="{{ url_for('resource.edit_author') }}"
-           data-title="Add another author">Add author</a>
+           data-title="Add another author">Or add new author</a> (if not present in list)
       </div>
     </div>
 
@@ -48,7 +48,7 @@
       {{ render_field(resource_form.organisations) }}
       <div class="other">
         <a class="add-object" href="{{ url_for('resource.edit_organisation') }}"
-           data-title="Add another organization">Add organization</a>
+           data-title="Add another organization">Or add new organization</a> (if not present in list)
       </div>
     </div>
 
