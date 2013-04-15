@@ -23,18 +23,16 @@
     {% for resource in resources %}
     <tr>
       <td>
+
         <a href="{{ url_for('.view', resource_id=resource.id) }}">
           {{ resource.title }}</a>
+        {% if resource.user.id == g.user.id %}
+          <span style="color: #468847">(added by me)</span>
+        {% endif %}
       </td>
-      <td>
-        {{ resource.english_title }}
-      </td>
-      <td>
-        {{ resource.language_verbose }}
-      </td>
-      <td>
-        {{ resource.resource_type_verbose }}
-      </td>
+      <td>{{ resource.english_title }}</td>
+      <td>{{ resource.language_verbose }}</td>
+      <td>{{ resource.resource_type_verbose }}</td>
     </tr>
     {% endfor %}
 

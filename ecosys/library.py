@@ -62,14 +62,17 @@ library.add_url_rule('/resources/add/<string:resource_type>',
 
 
 @library.route('/resources')
+@library.route('/resources/me', defaults={'filter_by': 'me'})
 @flask_login.login_required
-def resources():
+def resources(filter_by=None):
+    user = flask_login.current_user
     resources = Resource.objects
+    if filter_by == 'me':
+        resources = resources.filter(reviews__match={'user.$id': user.id})
     return render_template('resources.html', resources=resources)
 
 
 @library.route('/resource/<string:resource_id>')
-#@flask_login.login_required
 def view(resource_id):
     resource = Resource.objects.get_or_404(id=resource_id)
     try:

@@ -105,6 +105,12 @@ class Resource(db.Document):
     def resource_type_verbose(self):
         return dict(RESOURCE_TYPES).get(self.resource_type, None)
 
+    @cached_property
+    def user(self):
+        if self.reviews:
+            return self.reviews[0].user
+        return None
+
 
 class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
 
