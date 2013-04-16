@@ -11,6 +11,7 @@ from raven.handlers.logging import SentryHandler
 from ecosys.models import db
 from ecosys.auth import login_manager
 from ecosys import library, resource, auth, frameservice
+from ecosys.admin import admin
 
 from .assets import BUNDLE_JS, BUNDLE_CSS
 
@@ -55,6 +56,7 @@ def create_app(instance_path=None, config={}):
     configure_error_pages(app)
     configure_sentry(app)
     db.init_app(app)
+    admin.init_app(app)
     return app
 
 

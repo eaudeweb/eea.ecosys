@@ -34,6 +34,7 @@ setup(
                       'cssmin==0.1.4',
                       'raven==2.0.3',
                       'blinker==1.2',
+                      'Flask-SuperAdmin==1.6.1',
                     ],
     entry_points={'console_scripts': ['manage = ecosys.manage:main']},
     dependency_links=['https://github.com/eaudeweb/flask-mongoengine/archive/master.zip#egg=flask_mongoengine'],

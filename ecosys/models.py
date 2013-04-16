@@ -29,6 +29,9 @@ class User(db.Document, UserMixin):
     def get_id(self):
         return self.id
 
+    def __unicode__(self):
+        return self.name
+
     @property
     def name(self):
         return '%s %s' % (self.first_name, self.last_name)
