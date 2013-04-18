@@ -11,7 +11,8 @@
 <div class="login-title">Login credentials</div>
 
 <div class="login-container">
-
+  <p>You will need to use your Eionet credentials (8-letter user ID)</p>
+  <br />
   <form method="POST">
     {{ form.csrf_token }}
     <div class="row">
@@ -22,6 +23,9 @@
     </div>
     <input type="submit" value="Go" />
   </form>
+  <br />
+  <p>Forgot your Eionet user ID or password?
+  <a href="http://www.eionet.europa.eu/password-reset" target="_blank">Reset it!</a></p>
 
 </div>
 
