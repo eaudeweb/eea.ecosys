@@ -313,10 +313,11 @@ body .ui-dialog .ui-dialog-titlebar-close span {
 .alert {
     background-color: #f8f5e4;
     padding: 6px;
+    margin-bottom: 20px;
 }
 
 .alert.error {
     background-color: #f8f5e4;
     padding: 6px;
-    color: #900;
+    color: #700;
 }

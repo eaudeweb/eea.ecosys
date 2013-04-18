@@ -49,11 +49,19 @@ class Edit(views.MethodView):
         resource_form_validate = resource_form.validate()
         review_form_validate = review_form.validate()
 
-        if resource_form_validate and review_form_validate:
-            resource = resource_form.save()
-            review_form.save(resource, user)
-            flash('Resource added successfully', 'success')
-            return redirect(url_for('.resources'))
+        if request.method == 'POST':
+            if resource_form_validate and review_form_validate:
+                resource = resource_form.save()
+                review_form.save(resource, user)
+                flash('Resource added successfully', 'success')
+                return redirect(url_for('.resources'))
+            else:
+                message = ('You have required fields unfilled. '
+                            'Please correct the errors and resubmit.')
+                if request.files:
+                    message = (('%s You will need to re-select the file '
+                                'for upload') % message)
+                flash(message, 'error')
 
         return render_template('edit.html', resource_form=resource_form,
                                review_form=review_form)
