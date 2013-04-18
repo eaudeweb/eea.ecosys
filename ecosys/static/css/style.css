@@ -309,3 +309,14 @@ body .ui-dialog .ui-dialog-titlebar-close span {
     font-size: 18px;
     text-align: center;
 }
+
+.alert {
+    background-color: #f8f5e4;
+    padding: 6px;
+}
+
+.alert.error {
+    background-color: #f8f5e4;
+    padding: 6px;
+    color: #900;
+}

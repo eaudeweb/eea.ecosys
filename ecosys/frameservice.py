@@ -30,11 +30,10 @@ def prepare_frame(frame_contents):
     login_re = r"<a href=\"[^>]+>login</a>"
 
     frame_contents = frame_contents.replace(MARKER, '{% block frame_content %}{% endblock %}')\
-        .replace('<title>Ecosystem Assessments in Europe - </title>',
-                 '<title>Ecosystem Assessments in Europe{% block frame_title %}{% endblock %}</title>')\
-        .replace('</head>', '{% block head %}{% endblock %}</head>')\
-        .replace('<img src="images', '<img src="%s/images' % baseurl)
-    return re.sub(login_re, '{% block login %}{% endblock %}', frame_contents)
+        .replace('</title>', '{% block frame_title %}{% endblock %}</title>')\
+        .replace('</head>', '{% block head %}{% endblock %}</head>')
+    return re.sub(login_re, '{% block login %}{% endblock %}', frame_contents,
+                  flags=re.IGNORECASE)
 
 
 def load_template(name):

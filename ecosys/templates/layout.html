@@ -32,9 +32,9 @@
 
     {% block login %}
     {% if g.user.is_anonymous() %}
-      <a href="{{ url_for('auth.login') }}">login</a>
+      <a href="{{ url_for('auth.login') }}">LOGIN</a>
       {% else %}
-      <a href="{{ url_for('auth.logout') }}">logout ({{ g.user.id }})</a>
+      <a href="{{ url_for('auth.logout') }}">LOGOUT ({{ g.user.id|upper }})</a>
       {% endif %}
     {% endblock %}
 

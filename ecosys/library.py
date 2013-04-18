@@ -52,7 +52,8 @@ class Edit(views.MethodView):
         if resource_form_validate and review_form_validate:
             resource = resource_form.save()
             review_form.save(resource, user)
-            flash('Resource added successfully')
+            flash('Resource added successfully', 'success')
+            return redirect(url_for('.resources'))
 
         return render_template('edit.html', resource_form=resource_form,
                                review_form=review_form)
