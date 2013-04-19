@@ -1,5 +1,17 @@
 {% extends 'admin/layout.html' %}
-
+<style type="text/css">
+    body{
+        background: #f8f5e4 url(site-top.png) 0 0 repeat-x }
+</style>
 {% block body %}
-    Hello World from MyView!
+    <p>
+    Welcome to the Management area of the Ecosystem Assessments Virtual Library!</p>
+    <p>
+    This section is only accessible by virtual library contributors with "administrator" role.
+    </p>
+    <p>
+    The purpose of this Administration dashboard is to allow management of user roles
+    (grant/remove contributor/administrator roles)
+    and management of data inside the library (edit or delete resources/factsheets).
+    </p>
 {% endblock %}
