@@ -28,7 +28,8 @@ class OrganizerAdmin(AdminLogin, superadmin.model.ModelAdmin):
 
 
 class UserAdmin(AdminLogin, superadmin.model.ModelAdmin):
-    pass
+
+    readonly_fields = ('id',)
 
 
 admin = superadmin.Admin(index_view=AdminIndex())

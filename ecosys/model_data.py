@@ -1,5 +1,8 @@
 # -*- coding: utf-8
 
+ROLES = (('contributor', 'contributor'),
+         ('administrator', 'administrator'))
+
 LANGUAGES = (
     ('BG', 'Bulgarian'),
     ('CS', 'Czech'),
