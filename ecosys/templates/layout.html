@@ -12,6 +12,12 @@
       <link rel="stylesheet" href="{{ ASSET_URL }}" />
     {% endassets %}
 
+    {% assets "packed_ie_css" %}
+     <!--[if IE 7]>
+        <link rel="stylesheet" href="{{ ASSET_URL }}" />
+      <![endif]-->
+    {% endassets %}
+
     {% assets "packed_js" %}
       <script src="{{ ASSET_URL }}"></script>
     {% endassets %}

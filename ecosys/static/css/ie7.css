@@ -1,0 +1,23 @@
+/* CSS fixes for IE7 */
+
+body {
+  padding: 0px;
+}
+
+#outer_wrapper {
+  width: 99%;
+}
+
+.ecoAsVir .add-object,
+.ecoAsVir .field ul li,
+.ecoAsVir .field {
+  display: inline;
+}
+
+.ecoAsVir .matrix .category-left div {
+  padding-bottom: 8px;
+}
+
+.ecoAsVir .matrix ul {
+  width: 134px;
+}
