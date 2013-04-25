@@ -4,13 +4,10 @@ body {
   padding: 0px;
 }
 
-#outer_wrapper {
-  width: 99%;
-}
-
 .ecoAsVir .add-object,
 .ecoAsVir .field ul li,
-.ecoAsVir .field {
+.ecoAsVir .field,
+#topnav li {
   display: inline;
 }
 
@@ -21,3 +18,8 @@ body {
 .ecoAsVir .matrix ul {
   width: 134px;
 }
+
+.ecosys fieldset {
+  margin-top: 5px;
+}
+
