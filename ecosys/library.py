@@ -78,7 +78,8 @@ def resources(filter_by=None):
     resources = Resource.objects
     if filter_by == 'me':
         resources = resources.filter(reviews__match={'user.$id': user.id})
-    return render_template('resources.html', resources=resources)
+    return render_template('resources.html', resources=resources,
+                           filter_by=filter_by)
 
 
 @library.route('/resource/<string:resource_id>')
