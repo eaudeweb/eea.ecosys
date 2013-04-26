@@ -22,7 +22,11 @@ class User(db.Document, UserMixin):
 
     organisation = db.StringField(max_length=128)
 
+    phone_number = db.StringField(max_length=32)
+
     last_login = db.DateTimeField()
+
+    country = db.StringField(max_length=3, choices=COUNTRIES)
 
     roles = db.ListField(db.StringField(choices=ROLES, verbose_name='Roles'),
                          default=[])
