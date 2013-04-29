@@ -1,6 +1,15 @@
 {% extends "layout.html" %}
 {% from "_form_helpers.html" import render_field, render_other %}
 
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+  div.login-container form div.row {height: 80px;}
+  div.login-container form div.row label {float: none;}
+  </style>
+  
+{% endblock %}
+
 {% block flash_messages %}
   <div class="login-message">{{ flash_messages() }}</div>
 {% endblock %}
