@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-
+{% from "_form_helpers.html" import render_field, render_other %}
 
 {% block flash_messages %}
   <div class="login-message">{{ flash_messages() }}</div>
@@ -15,19 +15,28 @@
   <form method="POST">
     {{ form.csrf_token }}
     <div class="row">
-      {{ form.first_name.label }} {{ form.first_name(size=20) }}
+      {{ render_field(form.first_name) }}
     </div>
     <div class="row">
-      {{ form.last_name.label }} {{ form.last_name(size=20) }}
+      {{ render_field(form.last_name) }}
     </div>
     <div class="row">
-      {{ form.phone_number.label }} {{ form.phone_number(size=20) }}
+      {{ render_field(form.phone_number) }}
     </div>
     <div class="row">
-      {{ form.organisation.label }} {{ form.organisation(size=20) }}
+      {{ render_field(form.field_of_expertise) }}
     </div>
     <div class="row">
-      {{ form.country.label }} {{ form.country() }}
+      {{ render_field(form.organisation) }}
+    </div>
+    <div class="row" style="height: 84px;">
+      {{ render_field(form.organisation_type) }}
+    </div>
+    <div class="row">
+      {{ render_other(form.organisation_type_other) }}
+    </div>
+    <div class="row">
+      {{ render_field(form.country) }}
     </div>
     <input type="submit" value="Access Virtual Library" />
   </form>

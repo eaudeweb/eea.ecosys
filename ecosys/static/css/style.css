@@ -321,3 +321,42 @@ body .ui-dialog .ui-dialog-titlebar-close span {
     padding: 6px;
     color: #700;
 }
+
+div#vl-menu{
+    padding-bottom: 10px;
+}
+ul#navigation
+{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+ul#navigation li {
+display:inline;
+}
+
+ul#navigation li a {
+    padding: 8px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #84af4d;
+    text-decoration: none;
+}
+
+ul#navigation li.active a {
+    padding: 8px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #998640;
+    text-decoration: underline;
+}
+
+ul#navigation li a:visited{
+    color: white;
+    text-decoration: none;
+}
+
+ul#navigation li a:active{
+    color: white;
+    text-decoration: none;
+}

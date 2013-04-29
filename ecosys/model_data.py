@@ -3,6 +3,10 @@
 ROLES = (('contributor', 'contributor'),
          ('administrator', 'administrator'))
 
+ORGANISATION_TYPES_DATA = ('Administration', 'Academic', 'Business', 'NGO')
+ORGANISATION_TYPES = [(i, i) for i in ORGANISATION_TYPES_DATA]
+ORGANISATION_TYPES += (('Other', 'Other, please describe below'), )
+
 LANGUAGES = (
     ('BG', 'Bulgarian'),
     ('CS', 'Czech'),

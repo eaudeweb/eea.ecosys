@@ -28,6 +28,10 @@ class User(db.Document, UserMixin):
 
     country = db.StringField(max_length=3, choices=COUNTRIES)
 
+    field_of_expertise = db.StringField(max_length=128)
+
+    organisation_type = db.ListField(db.StringField(), default=[])
+
     roles = db.ListField(db.StringField(choices=ROLES, verbose_name='Roles'),
                          default=[])
 
