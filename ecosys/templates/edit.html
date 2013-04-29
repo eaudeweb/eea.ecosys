@@ -22,7 +22,8 @@
 
     {% if g.user.is_anonymous() %}
     <div class="row error">This form is available for testing by logged in Eionet Members.
-      You are not currently logged in - you will not be able to save data using this page.</div>
+      You are not currently logged in - you will not be able to save data using this page.<br />
+    If you have an Eionet account, please login <a href="{{ url_for('auth.login') }}">here</a>.</div>
     {% endif %}
 
     <div class="row">
@@ -163,7 +164,8 @@
 
     {% if g.user.is_anonymous() %}
     <div class="row error lastOfType">This form is available for testing by logged in Eionet Members.
-      You are not currently logged in - you will not be able to save data using this page.</div>
+      You are not currently logged in - you will not be able to save data using this page.<br />
+    If you have an Eionet account, please login <a href="{{ url_for('auth.login') }}">here</a>.</div>
     {% else %}
 
   <div class="row lastOfType">
