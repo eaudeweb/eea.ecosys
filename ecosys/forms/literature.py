@@ -83,7 +83,7 @@ class LiteratureResourceForm(_LiteratureResourceForm):
         resource.organisations = self.data['organisations']
         resource.year_of_publication = self.data['year_of_publication']
         resource.reviews = []
-        return resource.save()
+        return resource
 
 
 class LiteratureForm(_LiteratureForm):

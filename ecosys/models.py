@@ -1,5 +1,8 @@
+from datetime import datetime
+
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import UserMixin
+from mongoengine import signals
 from werkzeug.utils import cached_property
 
 from ecosys.model_data import *
@@ -208,3 +211,27 @@ class EcosystemCategory(db.EmbeddedDocument):
     regulating = db.ListField(db.StringField())
 
     cultural = db.ListField(db.StringField())
+
+
+class TaskQueue(db.Document):
+
+    resource = db.ReferenceField(Resource, primary_key=True)
+
+    action = db.StringField(max_length=64)
+
+    date = db.DateTimeField()
+
+    def __unicode__(self):
+        return '%s - %s' % (self.resource.id, self.action)
+
+    @classmethod
+    def add_task_signal(cls, sender, document, **kwargs):
+        created = kwargs.get('created', False)
+        action = 'post' if created else 'put'
+        task_queue = cls.objects.create(
+            resource=document,
+            action=action,
+            date=datetime.now())
+
+signals.post_save.connect(TaskQueue.add_task_signal, sender=Resource)
+
