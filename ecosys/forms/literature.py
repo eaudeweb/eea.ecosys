@@ -139,7 +139,7 @@ class LiteratureForm(_LiteratureForm):
 
         origin = self.data['origin']
         origin_other = self.data['origin_other'].split(',')
-        if origin_other:
+        if origin_other and origin_other[0]:
             origin.extend(origin_other)
 
         review.origin = self.data['origin']
