@@ -31,7 +31,8 @@ DEFAULT_CONFIG = {
         'phone_number': 'telephoneNumber',
         'organisation': 'o',
         'uid': 'uid',
-    }
+    },
+    'API_URL': 'http://194.30.43.115:3000/api/v1/ecosystem_assessments',
 }
 
 BLUEPRINTS = (

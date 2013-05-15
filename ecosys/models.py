@@ -221,17 +221,19 @@ class TaskQueue(db.Document):
 
     date = db.DateTimeField()
 
+    compleated = db.BooleanField(default=False)
+
     def __unicode__(self):
         return '%s - %s' % (self.resource.id, self.action)
 
     @classmethod
     def add_task_signal(cls, sender, document, **kwargs):
         created = kwargs.get('created', False)
-        action = 'post' if created else 'put'
-        task_queue = cls.objects.create(
-            resource=document,
-            action=action,
-            date=datetime.now())
+        if created:
+            task_queue = TaskQueue.objects.create(
+                resource=document,
+                action='post',
+                date=datetime.now())
 
 signals.post_save.connect(TaskQueue.add_task_signal, sender=Resource)
 

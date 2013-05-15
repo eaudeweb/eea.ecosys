@@ -1,4 +1,4 @@
-from flask import (Blueprint, request, render_template, jsonify)
+from flask import (Blueprint, request, render_template, jsonify, views, jsonify)
 from ecosys import models, forms
 
 
@@ -48,4 +48,15 @@ def edit_organisation():
         response['html'] = render_template('organisation.html', form=form)
 
     return jsonify(response)
+
+
+class ApiTest(views.MethodView):
+
+    def get(self):
+        return ''
+
+    def post(self):
+        return jsonify(request.form.to_dict())
+
+resource.add_url_rule('/api/test', view_func=ApiTest.as_view('api_test'))
 

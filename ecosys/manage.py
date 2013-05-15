@@ -7,6 +7,7 @@ from path import path
 
 from ecosys.middlewares import ReverseProxied
 from ecosys.app import create_app
+from ecosys.management.commands import ApiRequest
 
 
 PROJECT_ROOT = os.environ.get('PROJECT_ROOT', os.getcwd())
@@ -19,6 +20,7 @@ app.wsgi_app = ReverseProxied(app.wsgi_app)
 def main():
     global app
     manager = script.Manager(app)
+    manager.add_command('api_request', ApiRequest())
     manager.run()
 
 
