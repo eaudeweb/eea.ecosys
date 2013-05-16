@@ -226,7 +226,7 @@ class TaskQueue(db.Document):
 
     date = db.DateTimeField()
 
-    compleated = db.BooleanField(default=False)
+    completed = db.BooleanField(default=False)
 
     def __unicode__(self):
         return '%s - %s' % (self.resource.id, self.action)

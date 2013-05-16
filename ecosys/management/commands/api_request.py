@@ -14,7 +14,7 @@ class ApiRequest(Command):
 
     def run(self):
         api_url = app.config['API_URL']
-        for task in TaskQueue.objects.filter(compleated=False):
+        for task in TaskQueue.objects.filter(completed=False):
             if task.action == 'post':
                 resource = task.resource
 
@@ -39,7 +39,7 @@ class ApiRequest(Command):
             request = requests.post(api_url, data=json.dumps(data),
                 headers={'Content-Type': 'application/json'})
             if request.status_code == 200:
-                task.compleated = True
+                task.completed = True
                 task.save()
             else:
                 print 'Response with status code %s and message %s' % (
