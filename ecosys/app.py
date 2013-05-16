@@ -12,6 +12,7 @@ from ecosys.models import db
 from ecosys.auth import login_manager
 from ecosys import library, resource, auth, frameservice
 from ecosys.admin import admin
+from ecosys.template import inject_user
 
 from .assets import BUNDLE_JS, BUNDLE_CSS, BUNDLE_IE_CSS
 
@@ -111,6 +112,7 @@ def configure_templating(app):
     original_loader = app.jinja_env.loader
     func_loader = jinja2.FunctionLoader(frameservice.load_template)
     app.jinja_env.loader = jinja2.ChoiceLoader([func_loader, original_loader])
+    app.context_processor(inject_user)
 
 
 def configure_sentry(app):

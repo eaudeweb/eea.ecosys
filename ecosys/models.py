@@ -48,6 +48,11 @@ class User(db.Document, UserMixin):
     def name(self):
         return '%s %s' % (self.first_name, self.last_name)
 
+    def has_delete_role(self, resource):
+        if 'administrator' in self.roles or resource.user == self:
+            return True
+        return False
+
 
 class ReviewMixin():
 

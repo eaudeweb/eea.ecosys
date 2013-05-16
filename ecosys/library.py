@@ -1,5 +1,5 @@
 from flask import (Blueprint, request, abort, render_template, flash, redirect,
-                   url_for, views)
+                   url_for, views, g, jsonify)
 from flaskext.uploads import configure_uploads
 from flask.ext import login as flask_login
 
@@ -101,3 +101,15 @@ def view(resource_id):
     return render_template('view.html', resource=resource,
                            resource_form=resource_form,
                            review_form=review_form)
+
+
+@library.route('/resource/<string:resource_id>', methods=['DELETE'])
+@flask_login.login_required
+def delete(resource_id):
+    resource = Resource.objects.get_or_404(id=resource_id)
+    user = flask_login.current_user
+    if user.has_delete_role(resource):
+        resource.delete()
+        return jsonify({'url': url_for('.resources')})
+    else:
+        abort(401)

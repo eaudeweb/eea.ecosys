@@ -4,6 +4,12 @@
 
 {% block content %}
 
+{% if user.is_active() and user.has_delete_role(resource) %}
+<a href="{{ url_for('library.delete', resource_id=resource.id) }}"
+   id="resource-delete">
+  Delete</a>
+{% endif %}
+
 <h3>{{ resource_form.META.item|capitalize }}</h3>
 
 <table cellspaging="1" cellpadding="0" class="resources resource-identification">

@@ -28,6 +28,7 @@ def initialize_app(app):
     app.register_blueprint(auth)
     app.before_request(load_user_in_g)
 
+
 def get_user(userid):
     """ Get or create user document in local db, using info in LDAP. """
     try:
@@ -98,12 +99,14 @@ def logout():
     resp.set_cookie("__ac", "")
     return resp
 
+
 def get_current_user_roles():
     user = flask_login.current_user
     if user.is_anonymous():
         return []
     else:
         return user.roles
+
 
 def requires_role(role):
     def wrapper(f):
@@ -114,6 +117,7 @@ def requires_role(role):
             return f(*args, **kwargs)
         return wrapped
     return wrapper
+
 
 @auth.route("/unauthorized")
 def unauthorized():

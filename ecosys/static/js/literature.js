@@ -161,4 +161,17 @@ $(function () {
     });
   });
 
+  $('#resource-delete').on('click', function (e) {
+    e.preventDefault();
+    if(confirm('Are you sure you want to delete this resource ?')) {
+      $.ajax({
+        type: 'DELETE',
+        url: $(this).attr('href'),
+        success: function (data) {
+          document.location = data.url;
+        }
+      })
+    }
+  });
+
 });
