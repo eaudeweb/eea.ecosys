@@ -227,13 +227,22 @@ class TaskQueue(db.Document):
         return '%s - %s' % (self.resource.id, self.action)
 
     @classmethod
-    def add_task_signal(cls, sender, document, **kwargs):
+    def post_save(cls, sender, document, **kwargs):
         created = kwargs.get('created', False)
         if created:
-            task_queue = TaskQueue.objects.create(
+            task_queue = cls.objects.create(
                 resource=document,
                 action='post',
                 date=datetime.now())
 
-signals.post_save.connect(TaskQueue.add_task_signal, sender=Resource)
+    @classmethod
+    def post_delete(cls, sender, document, **kwargs):
+        task_queue = cls.objects.create(
+                resource=document,
+                action='delete',
+                date=datetime.now())
+
+
+signals.post_save.connect(TaskQueue.post_save, sender=Resource)
+signals.post_delete.connect(TaskQueue.post_delete, sender=Resource)
 
