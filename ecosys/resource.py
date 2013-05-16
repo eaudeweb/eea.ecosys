@@ -49,14 +49,3 @@ def edit_organisation():
 
     return jsonify(response)
 
-
-class ApiTest(views.MethodView):
-
-    def get(self):
-        return ''
-
-    def post(self):
-        return jsonify(request.form.to_dict())
-
-resource.add_url_rule('/api/test', view_func=ApiTest.as_view('api_test'))
-
