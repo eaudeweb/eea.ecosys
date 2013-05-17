@@ -1,3 +1,5 @@
 include *.txt *.rst
 recursive-include ecosys *
 global-exclude *py[co]
+exclude ecosys/static/.webassets-cache/*
+exclude ecosys/static/output/*

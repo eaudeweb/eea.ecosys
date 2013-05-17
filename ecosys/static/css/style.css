@@ -322,15 +322,18 @@ body .ui-dialog .ui-dialog-titlebar-close span {
     color: #700;
 }
 
-div#vl-menu{
-    padding-bottom: 10px;
+div#vl-menu {
+    padding-bottom: 7px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #998640;
 }
-ul#navigation
-{
+
+ul#navigation {
 list-style-type:none;
 margin:0;
 padding:0;
 }
+
 ul#navigation li {
 display:inline;
 }
