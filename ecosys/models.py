@@ -29,7 +29,7 @@ class User(db.Document, UserMixin):
 
     last_login = db.DateTimeField()
 
-    country = db.StringField(max_length=3, choices=COUNTRIES)
+    country = db.StringField(max_length=3)
 
     field_of_expertise = db.StringField(max_length=128)
 

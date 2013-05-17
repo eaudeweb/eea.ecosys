@@ -24,7 +24,7 @@ class ProfileForm(wtf.Form):
     organisation = wtf.TextField('Organisation',
                                  validators=[wtf.validators.Required()])
 
-    country = wtf.SelectField(choices=(('', ''),) + COUNTRIES,
+    country = wtf.SelectField(choices=(('EU', 'Europe'),) + COUNTRIES,
                               validators=[wtf.validators.Required()])
 
     field_of_expertise = wtf.TextField('Field of expertise')
