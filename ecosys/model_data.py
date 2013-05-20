@@ -19,7 +19,7 @@ LANGUAGES = (
     ('FI', 'Finnish'),
     ('FR', 'French'),
     ('GA', 'Irish'),
-    ('H', 'Hungarian'),
+    ('HU', 'Hungarian'),
     ('IS', 'Icelandic'),
     ('IT', 'Italian'),
     ('LB', 'Luxembourgish'),
