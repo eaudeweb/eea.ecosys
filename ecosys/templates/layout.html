@@ -50,7 +50,8 @@
           (url_for('library.home'), 'about', 'About Ecosystem assessments Virtual Library', 'About'),
           (url_for('library.resources', filter_by=''), 'resources', 'Browse Resources', 'Explore'),
           (url_for('library.resources'), 'my-resources', 'Resources added or reviewed by you', 'My List'),
-          (url_for('library.edit', resource_type='literature'), 'contribute', 'Contribute to the Virtual Library', 'Contribute')
+          (url_for('library.edit', resource_type='literature'), 'contribute', 'Contribute to the Virtual Library', 'Contribute'),
+          (url_for('auth.profile'), 'myinformation', 'View and edit my profile', 'My Information'),
       ] -%}
       {% set active_page = active_page|default('unset') -%}
       <ul id="navigation">
