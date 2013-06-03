@@ -2,6 +2,8 @@ import flask
 import logging
 import jinja2
 
+from webassets.filter import get_filter
+
 from flask.ext.assets import Environment, Bundle
 from werkzeug import SharedDataMiddleware
 from raven.contrib.flask import Sentry
@@ -76,7 +78,9 @@ def configure_blueprints(app, blueprints):
 def configure_assets(app):
     assets = Environment(app)
     js = Bundle(*BUNDLE_JS, filters='jsmin', output='output/packed.js')
-    css = Bundle(*BUNDLE_CSS, filters='cssmin', output='output/packed.css')
+    css_rewrite = get_filter('cssrewrite', replace={'/static/':'../'})
+    css = Bundle(*BUNDLE_CSS, filters=(css_rewrite, 'cssmin'),
+                 output='output/packed.css')
     ie_css = Bundle(*BUNDLE_IE_CSS, filters='cssmin', output='output/ie7.css')
 
     assets.register('packed_js', js)
