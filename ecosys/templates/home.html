@@ -27,8 +27,16 @@
     (Valerie.Laporte@eea.europa.eu) in the EEA.</p>
 
   <p>
-    <a href="{{ url_for('library.edit', resource_type='literature') }}">
-      Add literature resource
-    </a>
+    <ul>
+        <li>
+            <a href="http://biodiversity.europa.eu/ecosystem-assessments/virtual_library_testing.pdf"
+               target="_blank">Terms of reference and testing phase information</a>
+        </li>
+        <li>
+            <a href="{{ url_for('library.edit', resource_type='literature') }}">
+              Add literature resource
+            </a>
+        </li>
+    </ul>
   </p>
 {% endblock %}
