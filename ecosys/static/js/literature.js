@@ -174,4 +174,17 @@ $(function () {
     }
   });
 
+  $('#select-countries').on('click', function (e) {
+    e.preventDefault();
+    var countries = $('#countries');
+    countries.select2('val', $.map(countries.find('option'), function (obj) {
+      return $(obj).val();
+    }));
+  });
+
+  $('#remove-countries').on('click', function (e) {
+    e.preventDefault();
+    $('#countries').select2('val', ['']);
+  });
+
 });
