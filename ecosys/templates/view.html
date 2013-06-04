@@ -112,7 +112,7 @@
       <td class="label">{{ render_label(review_form.filename) }}</td>
       <td>
         {% if review.filename %}
-        <a href="/static/files/{{ review.filename }}" title="Download file">
+        <a href="{{ config.HOSTNAME }}/static/files/{{ review.filename }}" title="Download file">
           {{ review.filename }}
         </a>
         {% endif %}
