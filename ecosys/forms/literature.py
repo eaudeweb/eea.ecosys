@@ -94,8 +94,8 @@ class LiteratureForm(_LiteratureForm):
     origin_other = wtf.TextField(widget=TextInputWithAttributes(attr={
         'data-placeholder': 'or type here different ones'}))
 
-    filename = CustomFileField('File upload representing the document, if freely available',
-       validators=[wtf.file_allowed(files, 'Document is not valid')])
+    filename = MultipleFileField('File upload representing the document, if freely available',
+        validators=[MultipleFileAllowed(files, 'Document is not valid')])
 
     spatial = CustomBoolean('Spatial specificity', choices=YES_NO, default='1',
         validators=[RequiredIfChecked(fields=['spatial_scale', 'countries'],
@@ -148,9 +148,9 @@ class LiteratureForm(_LiteratureForm):
         review.languages = self.data['languages']
         review.url = self.data['url']
 
-        filename = self.data['filename']
-        file_saved = files.save(filename) if filename else ''
-        review.filename = file_saved
+        filename_list = self.data['filename']
+        if isinstance(filename_list, list) and filename_list:
+            review.filename = [files.save(f) for f in filename_list]
 
         spatial = True if self.data['spatial'] == '1' else False
         review.spatial = spatial

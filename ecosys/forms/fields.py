@@ -1,4 +1,5 @@
 from flask.ext import wtf
+from werkzeug import FileStorage
 
 from libs import markup
 from libs.markup import oneliner as e
@@ -114,6 +115,40 @@ class MultiCheckboxField(wtf.SelectMultipleField):
     widget = wtf.widgets.ListWidget(prefix_label=False)
 
     option_widget = wtf.widgets.CheckboxInput()
+
+
+
+class MultipleFileField(wtf.FileField):
+
+    def process_formdata(self, valuelist):
+        if valuelist:
+            self.data = [v for v in valuelist if v]
+        else:
+            self.data = []
+
+    def has_file(self):
+        if self.data and isinstance(self.data, list):
+            for item in self.data:
+                if not isinstance(item, FileStorage):
+                    return False
+
+            return True
+        else:
+            return False
+
+
+class MultipleFileAllowed(wtf.FileAllowed):
+
+    def __call__(self, form, field):
+        if not field.has_file():
+            return
+        data = field.data
+        if data and isinstance(data, list):
+            for item in data:
+                if not self.upload_set.file_allowed(item, item.filename):
+                    raise wtf.ValidationError(self.message)
+        else:
+            raise wtf.ValidationError(self.message)
 
 
 class CustomBoolean(wtf.SelectField):

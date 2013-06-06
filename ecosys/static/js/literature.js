@@ -187,4 +187,15 @@ $(function () {
     $('#countries').select2('val', ['']);
   });
 
+
+  $('#add-another-file').on('click', function (e) {
+    e.preventDefault();
+    var file_field = $('<div />');
+    file_field.attr({'style': 'padding-bottom: 4px; padding-top: 4px;'});
+    var input = $('<input />');
+    input.attr({'type': 'file', 'name': 'filename'});
+    file_field.append(input);
+    $(this).parents('.row').find('.field').append(file_field);
+  });
+
 });

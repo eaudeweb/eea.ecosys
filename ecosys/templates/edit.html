@@ -84,8 +84,11 @@
       {{ render_field(review_form.url) }}
     </div>
 
-    <div class="row lastOfType">
+    <div class="row lastOfType file-container">
       {{ render_field(review_form.filename) }}
+      <div style="margin-left: 250px;">
+        <a href="" id="add-another-file">Add another</a>
+      </div>
     </div>
 
   </fieldset>
@@ -113,6 +116,7 @@
     </div>
 
   </fieldset>
+
   <fieldset>
     <legend>Ecosystem assessment elements</legend>
 

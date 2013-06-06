@@ -26,14 +26,18 @@ def home():
 
 class Edit(views.MethodView):
 
-    def _get_instance_form(self, resource_type):
+    def _get_instance_form(self, resource_type, data=None):
         try:
             ResourceForm, ReviewForm = forms.FORMS[resource_type]
         except KeyError:
             abort(404)
 
-        resource_form = ResourceForm(resource_type=resource_type)
-        review_form = ReviewForm()
+        if data:
+            resource_form = ResourceForm(data, resource_type=resource_type)
+            review_form = ReviewForm(data)
+        else:
+            resource_form = ResourceForm(resource_type=resource_type)
+            review_form = ReviewForm()
         return resource_form, review_form
 
     def get(self, resource_type):
@@ -48,25 +52,27 @@ class Edit(views.MethodView):
 
     @flask_login.login_required
     def post(self, resource_type):
-        resource_form, review_form = self._get_instance_form(resource_type)
+        data = request.form.copy()
+        data.update(request.files)
+
+        resource_form, review_form = self._get_instance_form(resource_type, data)
         user = flask_login.current_user
 
         resource_form_validate = resource_form.validate()
         review_form_validate = review_form.validate()
 
-        if request.method == 'POST':
-            if resource_form_validate and review_form_validate:
-                resource = resource_form.save()
-                review_form.save(resource, user)
-                flash('Resource added successfully', 'success')
-                return redirect(url_for('.resources'))
-            else:
-                message = ('You have required fields unfilled. '
-                            'Please correct the errors and resubmit.')
-                if request.files:
-                    message = (('%s You will need to re-select the file '
-                                'for upload') % message)
-                flash(message, 'error')
+        if resource_form_validate and review_form_validate:
+            resource = resource_form.save()
+            review_form.save(resource, user)
+            flash('Resource added successfully', 'success')
+            return redirect(url_for('.resources'))
+        else:
+            message = ('You have required fields unfilled. '
+                        'Please correct the errors and resubmit.')
+            if request.files:
+                message = (('%s You will need to re-select the file '
+                            'for upload') % message)
+            flash(message, 'error')
 
         return render_template('edit.html', resource_form=resource_form,
                                review_form=review_form)

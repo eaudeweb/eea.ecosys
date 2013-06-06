@@ -148,7 +148,7 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
 
     url = db.StringField(default=None, verbose_name='URL')
 
-    filename = db.StringField(max_length=128, default=None)
+    filename = db.ListField(db.StringField(max_length=128), default=None)
 
     spatial = db.BooleanField(default=True)
 
