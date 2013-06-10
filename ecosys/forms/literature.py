@@ -179,11 +179,10 @@ class LiteratureForm(_LiteratureForm):
             feedback = feedback_other
         review.feedback = feedback
 
-        if user.is_admin():
-            review.admin_feedback = self.data['admin_feedback']
-            admin_feedback_files_list = self.data['admin_feedback_files']
-            if isinstance(admin_feedback_files_list, list):
-                review.admin_feedback_files = [files.save(f) for f in admin_feedback_files_list]
+        review.admin_feedback = self.data['admin_feedback']
+        admin_feedback_files_list = self.data['admin_feedback_files']
+        if isinstance(admin_feedback_files_list, list):
+            review.admin_feedback_files = [files.save(f) for f in admin_feedback_files_list]
 
         ecosystems = True if self.data['ecosystems'] == '1' else False
         review.ecosystems = ecosystems

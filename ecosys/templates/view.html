@@ -17,7 +17,7 @@
   <tbody>
 
     <tr>
-      <td class="label">{{ render_label(resource_form.title) }}</td>
+      <td class="label" style="width: 10px;">{{ render_label(resource_form.title) }}</td>
       <td>{{ resource.title }}</td>
     </tr>
 
@@ -58,6 +58,14 @@
       <td>{{ resource.year_of_publication }}</td>
     </tr>
 
+    {% set resource_user = resource.reviews[0].user %}
+    <tr>
+      <td class="label">Resource contributed by</td>
+      <td>
+        <a href="http://www.eionet.europa.eu/users/{{ resource_user.id }}">
+          {{ resource_user.name }}</a></td>
+    </tr>
+
   </tbody>
 
 </table>
@@ -67,8 +75,9 @@
 {% for review in resource.reviews %}
 
 <table cellspaging="1" cellpadding="0" class="resources resource-review">
-  <caption>{{ review.user.name }} -
-           {{ review.datetime.strftime('%Y-%m-%d %H:%M') }}</caption>
+  <caption>
+    Review by <a href="http://www.eionet.europa.eu/users/{{ review.user.id }}">{{ review.user.name }}</a> on {{ review.datetime.strftime('%Y-%m-%d %H:%M') }}
+  </caption>
   <tbody>
 
     <tr>
@@ -262,6 +271,24 @@
       <td class="label">{{ render_label(review_form.feedback) }}</td>
       <td>{{ review.feedback }}</td>
     </tr>
+
+    {% if not g.user.is_anonymous() and g.user.is_admin() %}
+    <tr>
+      <td class="label">{{ render_label(review_form.admin_feedback) }}</td>
+      <td>{{ review.admin_feedback }}</td>
+    </tr>
+
+    <tr>
+      <td class="label">{{ render_label(review_form.admin_feedback_files) }}</td>
+      <td>
+        {% if review.admin_feedback_files %}
+          {% for filename in review.admin_feedback_files %}
+            <a href="{{ config.HOSTNAME }}/static/files/{{ filename }}" title="Download file">{{ filename }}</a>
+          {% endfor %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
 
   </tbody>
 

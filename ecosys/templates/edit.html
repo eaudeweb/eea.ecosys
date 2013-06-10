@@ -167,7 +167,6 @@
     </div>
   </fieldset>
 
-  {% if not g.user.is_anonymous() and g.user.is_admin() %}
   <fieldset class="feedback">
     <legend>Feedback</legend>
     <div class="row">
@@ -180,7 +179,6 @@
       </div>
     </div>
   </fieldset>
-  {% endif %}
 
   {% if g.user.is_anonymous() %}
     <div class="row error lastOfType">This form is available for testing by logged in Eionet Members.
