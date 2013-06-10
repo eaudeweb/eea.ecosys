@@ -190,10 +190,11 @@ $(function () {
 
   $('.add-another-file').on('click', function (e) {
     e.preventDefault();
+    var name = $(this).data('name');
     var file_field = $('<div />');
     file_field.attr({'style': 'padding-bottom: 4px; padding-top: 4px;'});
     var input = $('<input />');
-    input.attr({'type': 'file', 'name': 'filename'});
+    input.attr({'type': 'file', 'name': name});
     file_field.append(input);
     $(this).parents('.row').find('.field').append(file_field);
   });

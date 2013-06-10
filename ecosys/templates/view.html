@@ -283,7 +283,7 @@
       <td>
         {% if review.admin_feedback_files %}
           {% for filename in review.admin_feedback_files %}
-            <a href="{{ config.HOSTNAME }}/static/files/{{ filename }}" title="Download file">{{ filename }}</a>
+            <a href="{{ config.HOSTNAME }}/static/files/{{ filename }}" title="Download file">{{ filename }}</a><br />
           {% endfor %}
         {% endif %}
       </td>
