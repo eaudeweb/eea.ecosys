@@ -131,6 +131,11 @@ class LiteratureForm(_LiteratureForm):
     feedback_other = wtf.TextField(widget=TextInputWithAttributes(attr={
         'data-placeholder': 'or type here different ones'}))
 
+    admin_feedback = wtf.TextAreaField('Please provide feedback for this page')
+
+    admin_feedback_files = MultipleFileField('You can also attach screenshots or other files related to your feedback',
+        validators=[MultipleFileAllowed(files, 'Document is not valid')])
+
     def __init__(self, *args, **kwargs):
         super(LiteratureForm, self).__init__(*args, **kwargs)
 
@@ -173,6 +178,12 @@ class LiteratureForm(_LiteratureForm):
         if feedback_other:
             feedback = feedback_other
         review.feedback = feedback
+
+        if user.is_admin():
+            review.admin_feedback = self.data['admin_feedback']
+            admin_feedback_files_list = self.data['admin_feedback_files']
+            if isinstance(admin_feedback_files_list, list):
+                review.admin_feedback_files = [files.save(f) for f in admin_feedback_files_list]
 
         ecosystems = True if self.data['ecosystems'] == '1' else False
         review.ecosystems = ecosystems

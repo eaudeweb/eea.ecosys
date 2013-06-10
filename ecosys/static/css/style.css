@@ -135,8 +135,7 @@ body {
 }
 
 .ecoAsVir .field {
-	display: inline-block;
-	margin: 0;
+	margin-left: 250px;
 }
 
 .ecoAsVir .row {
@@ -362,4 +361,9 @@ ul#navigation li a:visited{
 ul#navigation li a:active{
     color: white;
     text-decoration: none;
+}
+
+.feedback textarea {
+    height: 80px;
+    width: 100%;
 }

@@ -53,6 +53,9 @@ class User(db.Document, UserMixin):
             return True
         return False
 
+    def is_admin(self):
+        return True if 'administrator' in self.roles else False
+
 
 class ReviewMixin():
 
@@ -176,6 +179,10 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
     ecosystem_services_types = db.DictField(default=None)
 
     feedback = db.StringField(default=None)
+
+    admin_feedback = db.StringField(default=None)
+
+    admin_feedback_files = db.ListField(db.StringField(max_length=128), default=None)
 
     @cached_property
     def languages_verbose(self):

@@ -188,7 +188,7 @@ $(function () {
   });
 
 
-  $('#add-another-file').on('click', function (e) {
+  $('.add-another-file').on('click', function (e) {
     e.preventDefault();
     var file_field = $('<div />');
     file_field.attr({'style': 'padding-bottom: 4px; padding-top: 4px;'});

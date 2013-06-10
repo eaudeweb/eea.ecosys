@@ -87,7 +87,7 @@
     <div class="row lastOfType file-container">
       {{ render_field(review_form.filename) }}
       <div style="margin-left: 250px;">
-        <a href="" id="add-another-file">Add another</a>
+        <a href="" class="add-another-file">Add another</a>
       </div>
     </div>
 
@@ -157,28 +157,41 @@
           Add another</a>
       </div>
     </div>
-
   </fieldset>
+
   <fieldset>
     <legend>About the document and your work</legend>
     <div class="row lastOfType">
       {{ render_field(review_form.feedback) }}
       {{ render_other(review_form.feedback_other) }}
     </div>
-
   </fieldset>
 
-    {% if g.user.is_anonymous() %}
+  {% if not g.user.is_anonymous() and g.user.is_admin() %}
+  <fieldset class="feedback">
+    <legend>Feedback</legend>
+    <div class="row">
+      {{ render_field(review_form.admin_feedback) }}
+    </div>
+    <div class="row lastOfType file-container">
+       {{ render_field(review_form.admin_feedback_files) }}
+      <div style="margin-left: 250px;">
+        <a href="" class="add-another-file">Add another</a>
+      </div>
+    </div>
+  </fieldset>
+  {% endif %}
+
+  {% if g.user.is_anonymous() %}
     <div class="row error lastOfType">This form is available for testing by logged in Eionet Members.
       You are not currently logged in - you will not be able to save data using this page.<br />
     If you have an Eionet account, please login <a href="{{ url_for('auth.login') }}">here</a>.</div>
-    {% else %}
+  {% else %}
+    <div class="row lastOfType">
+      <button type="submit">Submit</button>
+    </div>
+  {% endif %}
 
-  <div class="row lastOfType">
-    <button type="submit">Submit</button>
-  </div>
-
-      {% endif %}
 </form>
 
 <div id="modal"></div>
