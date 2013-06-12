@@ -57,6 +57,18 @@ class User(db.Document, UserMixin):
         return True if 'administrator' in self.roles else False
 
 
+class Country(db.Document):
+
+    code = db.StringField(max_length=3, required=True, primary_key=True)
+
+    name = db.StringField(max_length=128, required=True)
+
+    categories = db.ListField(db.StringField(max_length=128), default=None)
+
+    def __unicode__(self):
+        return '%s <%s>' % (self.name, self.code)
+
+
 class ReviewMixin():
 
     user = db.ReferenceField(User)

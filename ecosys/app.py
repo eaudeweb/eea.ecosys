@@ -9,6 +9,7 @@ from werkzeug import SharedDataMiddleware
 from raven.contrib.flask import Sentry
 from raven.conf import setup_logging
 from raven.handlers.logging import SentryHandler
+from path import path
 
 from ecosys.models import db
 from ecosys.auth import login_manager
@@ -23,6 +24,7 @@ DEFAULT_CONFIG = {
     'MONGODB_SETTINGS': {
         'DB': 'ecosys',
     },
+    'ROOT_PATH': path(__file__).dirname().expand(),
     'ASSETS_DEBUG': False,
     'CSRF_ENABLED': False,
     'LDAP_ENCODING': 'utf-8',
@@ -36,7 +38,9 @@ DEFAULT_CONFIG = {
         'uid': 'uid',
     },
     'API_URL': 'http://194.30.43.115:3000/api/v1/ecosystem_assessments',
+    'SPARQL_ENDPOINT': 'http://semantic.eea.europa.eu/sparql',
 }
+
 
 BLUEPRINTS = (
     library,

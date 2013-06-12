@@ -1,0 +1,18 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX eea: <http://rdfdata.eionet.europa.eu/eea/ontology/>
+
+SELECT DISTINCT ?code ?countryname ?publishingCode
+  IF(bound(?eumember),'Yes','') AS ?eu
+  IF(bound(?eeamember),'Yes','') AS ?eea
+  IF(bound(?eionetmember),'Yes','') AS ?eionet
+  IF(bound(?eun22member),'Yes','') AS ?eun22
+WHERE {
+  ?ucountry a eea:Country ;
+            eea:code ?code;
+            eea:publishingCode ?publishingCode;
+            rdfs:label ?countryname
+ OPTIONAL { <http://rdfdata.eionet.europa.eu/eea/countries/EU27> skos:member ?ucountry, ?eumember }
+ OPTIONAL { <http://rdfdata.eionet.europa.eu/eea/countries/EUN22> skos:member ?ucountry, ?eun22member }
+ OPTIONAL { <http://rdfdata.eionet.europa.eu/eea/countries/EEA> skos:member ?ucountry, ?eeamember }
+ OPTIONAL { <http://rdfdata.eionet.europa.eu/eea/countries/EIONET> skos:member ?ucountry, ?eionetmember }
+} ORDER BY ?code
