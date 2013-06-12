@@ -11,6 +11,18 @@ from ecosys.model_data import *
 db = MongoEngine()
 
 
+class Country(db.Document):
+
+    code = db.StringField(max_length=3, required=True, primary_key=True)
+
+    name = db.StringField(max_length=128, required=True)
+
+    categories = db.ListField(db.StringField(max_length=128), default=None)
+
+    def __unicode__(self):
+        return self.name
+
+
 class User(db.Document, UserMixin):
 
     id = db.StringField(max_length=16, required=True, primary_key=True)
@@ -55,18 +67,6 @@ class User(db.Document, UserMixin):
 
     def is_admin(self):
         return True if 'administrator' in self.roles else False
-
-
-class Country(db.Document):
-
-    code = db.StringField(max_length=3, required=True, primary_key=True)
-
-    name = db.StringField(max_length=128, required=True)
-
-    categories = db.ListField(db.StringField(max_length=128), default=None)
-
-    def __unicode__(self):
-        return '%s <%s>' % (self.name, self.code)
 
 
 class ReviewMixin():
@@ -171,8 +171,7 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
         db.StringField(max_length=128, choices=SPATIAL_SCALE), default=None,
         verbose_name='Spatial scale')
 
-    countries = db.ListField(
-        db.StringField(max_length=128, choices=COUNTRIES),
+    countries = db.ListField(db.ReferenceField(Country),
         default=None, verbose_name="Countries in Europe")
 
     content = db.ListField(db.StringField(), required=True)
@@ -203,8 +202,7 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
 
     @cached_property
     def countries_verbose(self):
-        countries = dict(COUNTRIES)
-        return [countries.get(c) for c in self.countries]
+        return [c.name for c in self.countries]
 
 
 class EcosystemType(db.EmbeddedDocument):
