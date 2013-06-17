@@ -14,7 +14,7 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=['Flask==0.9',
-                      'Jinja2==2.6',
+                      'Jinja2==2.7',
                       'Werkzeug==0.8.3',
                       'Flask-Script==0.5.3',
                       'Flask-WTF==0.8.3',

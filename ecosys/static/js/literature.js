@@ -174,7 +174,7 @@ $(function () {
     }
   });
 
-  $('#select-countries').on('click', function (e) {
+  $('#countries-all').on('click', function (e) {
     e.preventDefault();
     var countries = $('#countries');
     countries.select2('val', $.map(countries.find('option'), function (obj) {
@@ -182,11 +182,17 @@ $(function () {
     }));
   });
 
-  $('#remove-countries').on('click', function (e) {
+  $('.countries-select').on('click', function (e) {
+    e.preventDefault();
+    var countries = $('#countries');
+    var data = $(this).data('countries');
+    countries.select2('val', data);
+  });
+
+  $('#countries-clear').on('click', function (e) {
     e.preventDefault();
     $('#countries').select2('val', ['']);
   });
-
 
   $('.add-another-file').on('click', function (e) {
     e.preventDefault();

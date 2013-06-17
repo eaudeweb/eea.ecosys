@@ -44,9 +44,8 @@ class Edit(views.MethodView):
         resource_form, review_form = self._get_instance_form(resource_type)
         user = flask_login.current_user
         if not user.is_anonymous() and not user.country:
-            resp = redirect(url_for('auth.profile',
-                            next=url_for('.edit', resource_type=resource_type)))
-            return resp
+            next_url = url_for('.edit', resource_type=resource_type)
+            return redirect(url_for('auth.profile', next=next_url))
         return render_template('edit.html', resource_form=resource_form,
                                review_form=review_form)
 

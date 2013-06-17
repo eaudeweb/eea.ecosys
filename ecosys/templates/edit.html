@@ -91,11 +91,9 @@
           Add another</a>
       </div>
     </div>
-
   </fieldset>
 
   <fieldset>
-
     <legend>Spatial specificity and main purpose</legend>
     <div class="row">
       {{ render_field(review_form.spatial) }}
@@ -105,17 +103,31 @@
       {{ render_field(review_form.spatial_scale) }}
     </div>
 
+    {% set countries_eu = countries|filter_eu|map(attribute='code')|list %}
+    {% set countries_eea = countries|filter_eea|map(attribute='code')|list %}
+    {% set countries_eionet = countries|filter_eionet|map(attribute='code')|list %}
+    {% set countries_eun22 = countries|filter_eun22|map(attribute='code')|list %}
+
     <div class="row">
       {{ render_field(review_form.countries) }}
-      <a id="select-countries" href="" style="position: relative; left: 250px;">Select all countries</a>
-      <a id="remove-countries" href="" style="position: relative; left: 255px;">Remove all countries</a>
+      <span style="position: relative; left: 250px;">
+        <strong>Select:</strong>
+        <a id="countries-all" href="">All</a>
+        <a class="countries-select" href=""
+           data-countries='{{ countries_eu|to_json }}'>EU</a>
+        <a class="countries-select" href=""
+           data-countries='{{ countries_eea|to_json }}'>EEA</a>
+        <a class="countries-select" href=""
+           data-countries='{{ countries_eionet|to_json }}'>EIONET</a>
+        <a class="countries-select" href=""
+           data-countries='{{ countries_eun22|to_json }}'>EUN22</a>
+        <a id="countries-clear" href="">Clear</a>
     </div>
 
     <div class="row lastOfType">
       {{ render_field(review_form.content) }}
       {{ render_other(review_form.content_other) }}
     </div>
-
   </fieldset>
 
   <fieldset>

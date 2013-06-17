@@ -15,7 +15,9 @@ from ecosys.models import db
 from ecosys.auth import login_manager
 from ecosys import library, resource, auth, frameservice
 from ecosys.admin import admin
-from ecosys.template import inject_user
+from ecosys.template import inject_user, inject_countries
+from ecosys.template import (filter_eu, filter_eea, filter_eionet,
+                             filter_eun22, to_json)
 
 from .assets import BUNDLE_JS, BUNDLE_CSS, BUNDLE_IE_CSS
 
@@ -121,6 +123,12 @@ def configure_templating(app):
     func_loader = jinja2.FunctionLoader(frameservice.load_template)
     app.jinja_env.loader = jinja2.ChoiceLoader([func_loader, original_loader])
     app.context_processor(inject_user)
+    app.context_processor(inject_countries)
+    app.add_template_filter(filter_eu)
+    app.add_template_filter(filter_eea)
+    app.add_template_filter(filter_eionet)
+    app.add_template_filter(filter_eun22)
+    app.add_template_filter(to_json)
 
 
 def configure_sentry(app):
