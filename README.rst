@@ -1,5 +1,7 @@
 Install::
 
+    sudo apt-get install libcurl4-gnutls-dev libcurl4-nss-dev
+    sudo apt-get install libcurl4-openssl-dev librtmp-dev
     virtualenv sandbox
     python setup.py install
 
@@ -9,6 +11,10 @@ Run::
     manage runserver
     manage shell
     etc..
+
+Sync country memberships to different organisations::
+
+    manage country_request
 
 
 Deploy::

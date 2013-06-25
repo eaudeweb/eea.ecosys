@@ -91,6 +91,7 @@ class LiteratureForm(_LiteratureForm):
     origin = wtf.SelectMultipleField('Origin of the document',
                                      choices=ORIGIN,
                                      validators=[wtf.validators.Required()])
+
     origin_other = wtf.TextField(widget=TextInputWithAttributes(attr={
         'data-placeholder': 'or type here different ones'}))
 
@@ -103,21 +104,25 @@ class LiteratureForm(_LiteratureForm):
 
     url = wtf.TextField()
 
-    ecosystems = CustomBoolean('Are ecosystems studied?', choices=YES_NO,
-        default='1')
+    ecosystems = CustomBoolean('Are there any <u>specific</u> ecosystems addressed in the document?',
+                               choices=YES_NO, default='1')
 
     ecosystem_types_issues = wtf.FormField(EcosystemType,
-        widget=EcosystemTableWidget(data=ECOSYSTEM_ISSUES, categ='Issues'))
+        widget=EcosystemTableWidget(data=ECOSYSTEM_ISSUES, categ='Issues',
+                        label=('Please indicate which issue(s) and method(s)'
+                               ' are addressed per ecosystem type(s)')))
 
     ecosystem_types_methods = wtf.FormField(EcosystemType,
         widget=EcosystemTableWidget(data=ECOSYSTEM_METHODS, categ='Methods',
                                     header=False))
 
-    ecosystem_services = CustomBoolean('Are ecosystem services addressed?',
+    ecosystem_services = CustomBoolean('Are there any <u>specific</u> ecosystem services addressed in the document?',
         choices=YES_NO, default='1')
 
     ecosystem_services_types = wtf.FormField(EcosystemServiceType,
-        widget=EcosystemServiceTableWidget(data=ECOSYSTEM_TYPES))
+        widget=EcosystemServiceTableWidget(data=ECOSYSTEM_TYPES,
+            label=('Please indicate which type(s) of ecosystem services is'
+                   ' (are) addressed, per type(s) of ecosystems')))
 
     content = wtf.SelectMultipleField('Main content or purpose',
                                       choices=CONTENT,

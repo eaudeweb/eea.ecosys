@@ -1,7 +1,7 @@
 {% macro render_field(field) %}
 
   <label for="{{ field.id }}">
-    {{ field.label.text }}
+    {{ field.label.text|safe }}
     {% if field.flags.required %}
       <span class="required">*</span>
     {% endif %}

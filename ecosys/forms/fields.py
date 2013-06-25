@@ -5,7 +5,11 @@ from libs import markup
 from libs.markup import oneliner as e
 
 
-class EcosystemBaseWidget():
+class EcosystemBaseWidget(object):
+
+    def __init__(self, *args, **kwargs):
+        self.label = kwargs.pop('label', '')
+        self.title = kwargs.pop('title', '')
 
     def update_data(self, form_field, data):
         for value in form_field.data.values():
@@ -25,6 +29,7 @@ class EcosystemBaseWidget():
 class EcosystemTableWidget(EcosystemBaseWidget):
 
     def __init__(self, data, categ, **kwargs):
+        super(EcosystemTableWidget, self).__init__(self, data, categ, **kwargs)
         self.data, self.categ = data, categ
         self.header = kwargs.pop('header', True)
 
@@ -35,6 +40,7 @@ class EcosystemTableWidget(EcosystemBaseWidget):
         self.data = self.update_data(form_field, self.data)
 
         page = markup.page()
+        page.label(self.label)
         page.table(id='ecosystem-types-%s' % self.categ.lower(),
                    class_='ecosystem-types ecosystem')
 
@@ -68,6 +74,7 @@ class EcosystemTableWidget(EcosystemBaseWidget):
 class EcosystemServiceTableWidget(EcosystemBaseWidget):
 
     def __init__(self, data, *args, **kwargs):
+        super(EcosystemServiceTableWidget, self).__init__(self, *args, **kwargs)
         self.data = data
 
     def __call__(self, form_field, **kwargs):
@@ -77,6 +84,7 @@ class EcosystemServiceTableWidget(EcosystemBaseWidget):
         self.data = self.update_data(form_field, self.data)
 
         page = markup.page()
+        page.label(self.label)
         page.table(id='ecosystem-service-types', class_='ecosystem-service-types ecosystem')
 
         page.thead()
@@ -115,7 +123,6 @@ class MultiCheckboxField(wtf.SelectMultipleField):
     widget = wtf.widgets.ListWidget(prefix_label=False)
 
     option_widget = wtf.widgets.CheckboxInput()
-
 
 
 class MultipleFileField(wtf.FileField):
