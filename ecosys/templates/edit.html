@@ -112,7 +112,6 @@
       {{ render_field(review_form.countries) }}
       <span style="position: relative; left: 250px;">
         <strong>Select:</strong>
-        <a id="countries-all" href="">All</a>
         <a class="countries-select" href=""
            data-countries='{{ countries_eu|to_json }}'>EU</a>
         <a class="countries-select" href=""
@@ -121,7 +120,9 @@
            data-countries='{{ countries_eionet|to_json }}'>EIONET</a>
         <a class="countries-select" href=""
            data-countries='{{ countries_eun22|to_json }}'>EUN22</a>
-        <a id="countries-clear" href="">Clear</a>
+        <a id="countries-all" href="">All countries</a>
+        &bullet;
+        <a id="countries-clear" href="">Clear selection</a>
     </div>
 
     <div class="row lastOfType">
