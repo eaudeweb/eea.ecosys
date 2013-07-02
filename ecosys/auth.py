@@ -49,6 +49,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         username, password = request.form['username'], request.form['password']
+        username = username.lower().strip()
         if plugldap.login_user(username, password):
             user, created = get_user(username)
             flask_login.login_user(user)
