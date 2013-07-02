@@ -62,7 +62,7 @@
     <tr>
       <td class="label">Resource contributed by</td>
       <td>
-        <a href="http://www.eionet.europa.eu/users/{{ resource_user.id }}">
+        <a target="_blank" href="http://www.eionet.europa.eu/users/{{ resource_user.id }}">
           {{ resource_user.name }}</a></td>
     </tr>
 
@@ -76,7 +76,7 @@
 
 <table cellspaging="1" cellpadding="0" class="resources resource-review">
   <caption>
-    Review by <a href="http://www.eionet.europa.eu/users/{{ review.user.id }}">{{ review.user.name }}</a> on {{ review.datetime.strftime('%Y-%m-%d %H:%M') }}
+    Review by <a target="_blank" href="http://www.eionet.europa.eu/users/{{ review.user.id }}">{{ review.user.name }}</a> on {{ review.datetime.strftime('%Y-%m-%d %H:%M') }}
   </caption>
   <tbody>
 

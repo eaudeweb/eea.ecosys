@@ -26,7 +26,7 @@
 
 {% macro render_label(field) %}
 
-  {{ field.label.text }}
+  {{ field.label.text|safe }}
 
 {% endmacro %}
 
