@@ -56,9 +56,11 @@ body {
     margin: 0;
 }
 
-.ecosystem th {
+.ecosystem th,
+.ecosystem ul {
     padding: 5px 8px;
-    width: 120px;
+    /*width: 120px;*/
+    font-size: 0.95em;
 }
 
 .ecosystem .category {
@@ -114,7 +116,7 @@ body {
 	margin-bottom: 15px;
 	-moz-border-radius: 12px;
 	border-radius: 12px;
-	width: 96%;
+	width: 98%; /*96%; */
 }
 
 .ecoAsVir .second {
@@ -178,7 +180,7 @@ body {
 
 /*  TABLES */
 .ecoAsVir .ecosystem {
-    margin-left: 255px;
+    /* margin-left: 255px; */
 }
 
 .ecoAsVir .ecosystem .category-left {
@@ -188,18 +190,20 @@ body {
 .ecoAsVir .ecosystem .category-left div {
     width: 246px;
     border-bottom: 1px solid #FFF;
-    padding: 4px 3px 6px 10px;
+    padding: 5px 3px 6px 10px;
     color: #444;
 }
 
 .ecoAsVir .even ul,
 .ecoAsVir th.even {
 	background: #D4F1F1;
+  max-width: 4.6em; /*  only to avoid horizontal scrolling for this table */
 }
 
 .ecoAsVir .odd ul,
 .ecoAsVir th.odd {
 	background: #B4DBDB;
+  max-width: 4.6em; /*  only to avoid horizontal scrolling for this table */
 }
 
 /* red table with issues */
@@ -238,14 +242,22 @@ body {
 }
 
 .ecoAsVir .row.special {
-	overflow-x: scroll;
-  width: 865px; /* only for Firefox */
+	/*overflow-x: scroll;*/
+  /*width: 865px; only for Firefox */
+}
+
+.ecoAsVir .row.special .other {
+    margin-left: 15px;
 }
 
 .ecoAsVir .category-left:empty,
 .ecoAsVir #ecosystem-service-types .category-left:empty {
 	border: 0px;
 	background: #fff;
+}
+
+#ecosystem_types_issues-cropland {
+    padding-right: 8px;
 }
 
 
@@ -366,4 +378,8 @@ ul#navigation li a:active{
 .feedback textarea {
     height: 80px;
     width: 100%;
+}
+
+body #menunav {
+    width: 96%; /* avoids  horizontal scrolling on all pages*/
 }
