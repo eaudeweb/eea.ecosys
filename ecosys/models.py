@@ -179,13 +179,15 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
     key_elements = db.ListField(db.StringField(choices=KEY_ELEMENTS),
         required=True, verbose_name='Which key elements of ecosystem assessment are documented? ')
 
-    ecosystems = db.BooleanField(default=False)
+    ecosystems = db.StringField(choices=YES_NO_DONT_KNOW, required=True,
+        verbose_name='Are there any <u>specific</u> ecosystems addressed in the document?')
 
     ecosystem_types_issues = db.DictField(default=None)
 
     ecosystem_types_methods = db.DictField(default=None)
 
-    ecosystem_services = db.BooleanField(default=False)
+    ecosystem_services = db.StringField(choices=YES_NO_DONT_KNOW, required=True, 
+        verbose_name='Are there any <u>specific</u> ecosystem services addressed in the document?')
 
     ecosystem_services_types = db.DictField(default=None)
 

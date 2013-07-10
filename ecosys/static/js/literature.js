@@ -28,7 +28,7 @@ $(function () {
   }).change();
 
   $('#ecosystems').on('change', function () {
-    if($(this).val() == '1') {
+    if($(this).val() == 'Yes') {
       $('#ecosystem-types-issues').parents('.row').show();
     } else {
       $('#ecosystem-types-issues').parents('.row').hide();
@@ -36,7 +36,7 @@ $(function () {
   }).change();
 
   $('#ecosystem_services').on('change', function () {
-    if($(this).val() == '1') {
+    if($(this).val() == 'Yes') {
       $('#ecosystem-service-types').parents('.row').show();
     } else {
       $('#ecosystem-service-types').parents('.row').hide();

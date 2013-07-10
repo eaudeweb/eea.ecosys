@@ -69,6 +69,13 @@ YES_NO = (
     ('1', 'Yes'),
 )
 
+YES_NO_DONT_KNOW = (
+    ('', '--'),
+    ('No', 'No'),
+    ('Yes', 'Yes'),
+    ('I don\'t know', 'I don\'t know'),
+)
+
 SPATIAL_SCALE = (
     ('International', 'International'),
     ('National', 'National'),

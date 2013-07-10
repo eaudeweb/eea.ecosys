@@ -181,10 +181,10 @@
 
     <tr>
       <td class="label">{{ render_label(review_form.ecosystems) }}</td>
-      <td>{{ render_bool(review.ecosystems) }}</td>
+      <td>{{ review.ecosystems }}</td>
     </tr>
 
-    {% if review.ecosystems %}
+    {% if review.ecosystems == 'Yes' %}
     <tr>
       <td class="label">{{ render_label(review_form.ecosystem_types_issues) }}</td>
       <td>
@@ -237,11 +237,11 @@
     <tr>
       <td class="label">{{ render_label(review_form.ecosystem_services) }}</td>
       <td>
-        {{ render_bool(review.ecosystem_services) }}
+        {{ review.ecosystem_services }}
       </td>
     </tr>
 
-    {% if review.ecosystem_services %}
+    {% if review.ecosystem_services == 'Yes' %}
     <tr>
       <td class="label">{{ render_label(review_form.ecosystem_services_types) }}</td>
       <td>

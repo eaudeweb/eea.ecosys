@@ -104,9 +104,6 @@ class LiteratureForm(_LiteratureForm):
 
     url = wtf.TextField()
 
-    ecosystems = CustomBoolean('Are there any <u>specific</u> ecosystems addressed in the document?',
-                               choices=YES_NO, default='1')
-
     ecosystem_types_issues = wtf.FormField(EcosystemType,
         widget=EcosystemTableWidget(data=ECOSYSTEM_ISSUES, categ='Issues',
                         label=('Please indicate which issue(s) and method(s)'
@@ -115,9 +112,6 @@ class LiteratureForm(_LiteratureForm):
     ecosystem_types_methods = wtf.FormField(EcosystemType,
         widget=EcosystemTableWidget(data=ECOSYSTEM_METHODS, categ='Methods',
                                     header=False))
-
-    ecosystem_services = CustomBoolean('Are there any <u>specific</u> ecosystem services addressed in the document?',
-        choices=YES_NO, default='1')
 
     ecosystem_services_types = wtf.FormField(EcosystemServiceType,
         widget=EcosystemServiceTableWidget(data=ECOSYSTEM_TYPES,
@@ -143,6 +137,25 @@ class LiteratureForm(_LiteratureForm):
 
     def __init__(self, *args, **kwargs):
         super(LiteratureForm, self).__init__(*args, **kwargs)
+
+    def validate_ecosystems(self, field):
+        if self.data['ecosystems'] =='Yes':
+            values = [v for v in self.data['ecosystem_types_issues'].values()]
+            values.extend([v for v in self.data['ecosystem_types_methods'].values()])
+            if not any(values):
+                raise wtf.validators.ValidationError(
+                    'You stated specific ecosystems are addressed. '
+                    'It is mandatory you indicate (tick) the addressed issues or '
+                    'methods')
+
+    def validate_ecosystem_services(self, field):
+        if self.data['ecosystem_services'] == 'Yes':
+            values = [v for v in self.data['ecosystem_services_types'].values()]
+            if not any(values):
+                raise wtf.validators.ValidationError(
+                    'You stated specific ecosystems services are addressed. '
+                    'It is mandatory you indicate (tick) the addressed types of '
+                    'ecosystems')
 
     def save(self, resource, user):
         review = models.LiteratureReview()
@@ -189,15 +202,13 @@ class LiteratureForm(_LiteratureForm):
         if isinstance(admin_feedback_files_list, list):
             review.admin_feedback_files = [files.save(f) for f in admin_feedback_files_list]
 
-        ecosystems = True if self.data['ecosystems'] == '1' else False
-        review.ecosystems = ecosystems
-        if ecosystems:
+        review.ecosystems = self.data['ecosystems']
+        if review.ecosystems == 'Yes':
             review.ecosystem_types_issues = self.data['ecosystem_types_issues']
             review.ecosystem_types_methods = self.data['ecosystem_types_methods']
 
-        ecosystem_services = True if self.data['ecosystem_services'] == '1' else False
-        review.ecosystem_services = ecosystem_services
-        if ecosystem_services:
+        review.ecosystem_services = self.data['ecosystem_services']
+        if review.ecosystem_services == 'Yes':
             review.ecosystem_services_types = self.data['ecosystem_services_types']
 
         review.user = models.User.objects().get(id=user.id)
