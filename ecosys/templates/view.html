@@ -272,23 +272,21 @@
       <td>{{ review.feedback }}</td>
     </tr>
 
-    {% if not g.user.is_anonymous() and g.user.is_admin() %}
     <tr>
-      <td class="label">{{ render_label(review_form.admin_feedback) }}</td>
-      <td>{{ review.admin_feedback }}</td>
+      <td class="label">{{ render_label(review_form.resource_feedback) }}</td>
+      <td>{{ review.resource_feedback }}</td>
     </tr>
 
     <tr>
-      <td class="label">{{ render_label(review_form.admin_feedback_files) }}</td>
+      <td class="label">{{ render_label(review_form.resource_feedback_files) }}</td>
       <td>
-        {% if review.admin_feedback_files %}
-          {% for filename in review.admin_feedback_files %}
+        {% if review.resource_feedback_files %}
+          {% for filename in review.resource_feedback_files %}
             <a href="{{ config.HOSTNAME }}/static/files/{{ filename }}" title="Download file">{{ filename }}</a><br />
           {% endfor %}
         {% endif %}
       </td>
     </tr>
-    {% endif %}
 
   </tbody>
 

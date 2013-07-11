@@ -193,9 +193,9 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
 
     feedback = db.StringField(default=None)
 
-    admin_feedback = db.StringField(default=None)
+    resource_feedback = db.StringField(default=None)
 
-    admin_feedback_files = db.ListField(db.StringField(max_length=128), default=None)
+    resource_feedback_files = db.ListField(db.StringField(max_length=128), default=None)
 
     @cached_property
     def languages_verbose(self):
@@ -235,6 +235,18 @@ class EcosystemCategory(db.EmbeddedDocument):
     regulating = db.ListField(db.StringField())
 
     cultural = db.ListField(db.StringField())
+
+
+class Feedback(db.Document):
+
+    user = db.ReferenceField(User)
+
+    description = db.StringField(default=None)
+
+    files = db.ListField(db.StringField(max_length=128), default=None)
+
+    def __unicode__(self):
+        return '%s' % self.user
 
 
 class TaskQueue(db.Document):

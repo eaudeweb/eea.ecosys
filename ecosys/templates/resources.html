@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
+
 {% if filter_by == "me" %}
   {% set active_page = "my-resources" -%}
 {% else %}
   {% set active_page = "resources" -%}
 {% endif %}
+
 {% block content %}
 
 <h3>Resources</h3>

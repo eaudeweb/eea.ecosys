@@ -32,6 +32,10 @@ class UserAdmin(AdminLogin, superadmin.model.ModelAdmin):
     readonly_fields = ('id',)
 
 
+class FeedbackAdmin(AdminLogin, superadmin.model.ModelAdmin):
+    pass
+
+
 admin = superadmin.Admin(index_view=AdminIndex())
 
 admin.register(models.Author, AuthorAdmin)
@@ -42,4 +46,4 @@ admin.register(models.Organizer, OrganizerAdmin)
 
 admin.register(models.User, UserAdmin)
 
-
+admin.register(models.Feedback, FeedbackAdmin)

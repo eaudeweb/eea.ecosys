@@ -3,6 +3,8 @@ from datetime import datetime
 from flask.ext.mongoengine.wtf import model_form
 from flask.ext.uploads import UploadSet, AllExcept, SCRIPTS, EXECUTABLES
 from flask.ext import wtf
+from flask.ext import login as flask_login
+
 
 from ecosys import models
 from ecosys.forms.fields import *
@@ -15,6 +17,7 @@ files = UploadSet('files', AllExcept(SCRIPTS + EXECUTABLES))
 _LiteratureForm = model_form(models.LiteratureReview)
 _LiteratureResourceForm = model_form(models.Resource,
                                      exclude=['organizers', 'reviews'])
+_FeedbackForm = model_form(models.Feedback)
 
 
 class EcosystemType(wtf.Form):
@@ -130,9 +133,9 @@ class LiteratureForm(_LiteratureForm):
     feedback_other = wtf.TextField(widget=TextInputWithAttributes(attr={
         'data-placeholder': 'or type here different ones'}))
 
-    admin_feedback = wtf.TextAreaField('Please provide feedback for this page')
+    resource_feedback = wtf.TextAreaField('Optionally, provide your opinion or feedback regarding this resource')
 
-    admin_feedback_files = MultipleFileField('You can also attach screenshots or other files related to your feedback',
+    resource_feedback_files = MultipleFileField('Attach any files you need to complement your feedback on this resource',
         validators=[MultipleFileAllowed(files, 'Document is not valid')])
 
     def __init__(self, *args, **kwargs):
@@ -197,10 +200,10 @@ class LiteratureForm(_LiteratureForm):
             feedback = feedback_other
         review.feedback = feedback
 
-        review.admin_feedback = self.data['admin_feedback']
-        admin_feedback_files_list = self.data['admin_feedback_files']
-        if isinstance(admin_feedback_files_list, list):
-            review.admin_feedback_files = [files.save(f) for f in admin_feedback_files_list]
+        review.resource_feedback = self.data['resource_feedback']
+        resource_feedback_files_list = self.data['resource_feedback_files']
+        if isinstance(resource_feedback_files_list, list):
+            review.resource_feedback_files = [files.save(f) for f in resource_feedback_files_list]
 
         review.ecosystems = self.data['ecosystems']
         if review.ecosystems == 'Yes':
@@ -215,6 +218,26 @@ class LiteratureForm(_LiteratureForm):
         review.datetime = datetime.now()
         resource.reviews.append(review)
         resource.save()
+
+
+class FeedbackForm(_FeedbackForm):
+
+    description = wtf.TextAreaField('Please provide your feedback')
+
+    files = MultipleFileField(
+        'You can also attach screenshots or other files related to your feedback',
+        validators=[MultipleFileAllowed(files, 'Document is not valid')])
+
+    def save(self):
+        if self.data['description']:
+            user = models.User.objects().get(id=flask_login.current_user.id)
+            feedback = models.Feedback(user=user)
+            feedback.description = self.data['description']
+            file_list = self.data['files']
+            if isinstance(file_list, list):
+                feedback.files = [files.save(f) for f in file_list]
+            feedback.save()
+            return feedback
 
 
 FORMS= {

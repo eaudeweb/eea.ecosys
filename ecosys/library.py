@@ -64,7 +64,7 @@ class Edit(views.MethodView):
             resource = resource_form.save()
             review_form.save(resource, user)
             flash('Resource added successfully', 'success')
-            return redirect(url_for('.resources'))
+            return redirect(url_for('.feedback'))
         else:
             message = ('You have required fields unfilled. '
                         'Please correct the errors and resubmit.')
@@ -90,6 +90,25 @@ def resources(filter_by=None):
         resources = resources.filter(reviews__match={'user.$id': user.id})
     return render_template('resources.html', resources=resources,
                            filter_by=filter_by)
+
+
+class Feedback(views.MethodView):
+
+    decorators = (flask_login.login_required,)
+
+    def get(self):
+        form = forms.FeedbackForm()
+        return render_template('feedback.html', form=form)
+
+    def post(self):
+        form = forms.FeedbackForm()
+        if form.validate():
+            form.save()
+            flash('Thanks for the feedback', 'success')
+            return redirect(url_for('.resources'))
+        return render_template('feedback.html', form=form)
+
+library.add_url_rule('/feedback', view_func=Feedback.as_view('feedback'))
 
 
 @library.route('/resource/<string:resource_id>')

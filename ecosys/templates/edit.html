@@ -182,14 +182,12 @@
   </fieldset>
 
   <fieldset class="feedback">
-    <legend>Feedback for this online tool</legend>
+    <legend>Personal feedback for the resource</legend>
     <div class="row">
-      <p>Please enter here <strong>feedback for this webpage of the Virtual Library for Ecosystem Assessments.</strong>
-      Do not enter here feedback for the resource you have described.</p>
-      {{ render_field(review_form.admin_feedback) }}
+      {{ render_field(review_form.resource_feedback) }}
     </div>
     <div class="row lastOfType file-container">
-       {{ render_field(review_form.admin_feedback_files) }}
+       {{ render_field(review_form.resource_feedback_files) }}
       <div style="margin-left: 250px;">
         <a href="" class="add-another-file" data-name="admin_feedback_files">
           Add another</a>
@@ -210,6 +208,5 @@
 </form>
 
 <div id="modal"></div>
-
 
 {% endblock %}
