@@ -23,3 +23,15 @@ body {
   margin-top: 5px;
 }
 
+.ecoAsVir .ecosystem-types { /* red and green tables*/
+    width: 880px;
+}
+
+body .ecoAsVir .ecosystem li {
+  padding-top: 5px;
+}
+
+body .ecoAsVir .field {
+  margin-left: 0px;
+}
+

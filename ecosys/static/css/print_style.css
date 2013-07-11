@@ -56,14 +56,9 @@ body {
     margin: 0;
 }
 
-.ecosystem th,
-.ecosystem ul {
+.ecosystem th {
     padding: 5px 8px;
-    font-size: 0.95em;
-}
-
-.ecosystem-service-types th {
-    padding: 5px 20px; /*yellow table's th*/
+    width: 120px;
 }
 
 .ecosystem .category {
@@ -80,24 +75,6 @@ body {
     width: 120px;
 }
 
-.ecosystem .check-column.odd {
-    /*background: #B4DBDB;*/
-    max-width: 60px;
-}
-
-.ecosystem .check-column.even {
-    /*background: #D4F1F1;*/
-    max-width: 60px;
-}
-
-.ecosystem .check-column.odd li {
-    background: #B4DBDB;
-}
-
-.ecosystem .check-column.even li {
-    background: #D4F1F1;
-}
-
 #lean_overlay {
     position: fixed;
     z-index:100;
@@ -111,7 +88,7 @@ body {
 
 .resources {
     background: #eee;
-    width: 100%;
+    width: 600px;
 }
 
 .resources caption {
@@ -137,7 +114,7 @@ body {
 	margin-bottom: 15px;
 	-moz-border-radius: 12px;
 	border-radius: 12px;
-	width: 98%;
+	width: 96%;
 }
 
 .ecoAsVir .second {
@@ -158,7 +135,8 @@ body {
 }
 
 .ecoAsVir .field {
-	margin-left: 250px;
+	display: inline-block;
+	margin: 0;
 }
 
 .ecoAsVir .row {
@@ -198,18 +176,10 @@ body {
 	display: inline-block;
 }
 
-.indent {
-    margin-left: 250px;
-}
-
 
 /*  TABLES */
-.ecoAsVir .ecosystem-types { /* red and green tables*/
-    width: 890px;
-}
-
-.ecoAsVir .ecosystem-service-types { /* yellow table */
-    clear: both;
+.ecoAsVir .ecosystem {
+    margin-left: 255px;
 }
 
 .ecoAsVir .ecosystem .category-left {
@@ -219,33 +189,33 @@ body {
 .ecoAsVir .ecosystem .category-left div {
     width: 246px;
     border-bottom: 1px solid #FFF;
-    padding: 5px 3px 6px 10px;
+    padding: 4px 3px 6px 10px;
     color: #444;
 }
 
+.ecoAsVir .even ul,
 .ecoAsVir th.even {
 	background: #D4F1F1;
-  max-width: 4.6em; /*  only to avoid horizontal scrolling for this table */
 }
 
+.ecoAsVir .odd ul,
 .ecoAsVir th.odd {
 	background: #B4DBDB;
-  max-width: 4.6em; /*  only to avoid horizontal scrolling for this table */
 }
 
-/* red table  */
+/* red table with issues */
 .ecoAsVir #ecosystem-types-issues .category,
 .ecoAsVir #ecosystem-types-issues .category-left div {
     background: #FD9288;
 }
 
-/* green table  */
+/* green table with methods */
 .ecoAsVir #ecosystem-types-methods .category,
 .ecoAsVir #ecosystem-types-methods .category-left div {
     background: #76D176;
 }
 
-/*  yellow table */
+/*  yellow table with services */
 .ecoAsVir #ecosystem-service-types .category,
 .ecoAsVir #ecosystem-service-types .category-left div {
     background: #EBF38E;
@@ -253,8 +223,9 @@ body {
 
 .ecoAsVir .ecosystem li {
 	border-bottom: 1px solid #fff;
-  padding: 4px 0px; /*4px 3px 4px 3px;*/
+  padding: 4px 3px 4px 3px;
   margin: 0;
+  width: 79px;
 }
 
 .ecoAsVir #ecosystem-service-types li {
@@ -265,21 +236,17 @@ body {
 	list-style-type: none;
 	padding: 0px;
   margin: 0px;
-  width: 100%;
 }
 
-.ecoAsVir .row.special .other {
-    margin-left: 15px;
+.ecoAsVir .row.special {
+	overflow-x: scroll;
+  width: 865px; /* only for Firefox */
 }
 
 .ecoAsVir .category-left:empty,
 .ecoAsVir #ecosystem-service-types .category-left:empty {
 	border: 0px;
 	background: #fff;
-}
-
-#ecosystem_types_issues-cropland {
-    padding-right: 8px;
 }
 
 
@@ -355,18 +322,15 @@ body .ui-dialog .ui-dialog-titlebar-close span {
     color: #700;
 }
 
-div#vl-menu {
-    padding-bottom: 7px;
-    margin-bottom: 14px;
-    border-bottom: 1px solid #998640;
+div#vl-menu{
+    padding-bottom: 10px;
 }
-
-ul#navigation {
+ul#navigation
+{
 list-style-type:none;
 margin:0;
 padding:0;
 }
-
 ul#navigation li {
 display:inline;
 }
@@ -395,13 +359,4 @@ ul#navigation li a:visited{
 ul#navigation li a:active{
     color: white;
     text-decoration: none;
-}
-
-.feedback textarea {
-    height: 80px;
-    width: 100%;
-}
-
-body #menunav {
-    width: 96%; /* avoids  horizontal scrolling on all pages*/
 }
