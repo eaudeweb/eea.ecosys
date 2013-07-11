@@ -19,7 +19,8 @@ from ecosys.template import inject_user, inject_countries
 from ecosys.template import (filter_eu, filter_eea, filter_eionet,
                              filter_eun22, to_json)
 
-from .assets import BUNDLE_JS, BUNDLE_CSS, BUNDLE_IE_CSS
+from .assets import (BUNDLE_JS, BUNDLE_CSS, BUNDLE_IE_CSS7, BUNDLE_IE_CSS8,
+                     BUNDLE_IE_CSS9)
 
 
 DEFAULT_CONFIG = {
@@ -87,11 +88,15 @@ def configure_assets(app):
     css_rewrite = get_filter('cssrewrite', replace={'/static/':'../'})
     css = Bundle(*BUNDLE_CSS, filters=(css_rewrite, 'cssmin'),
                  output='output/packed.css')
-    ie_css = Bundle(*BUNDLE_IE_CSS, filters='cssmin', output='output/ie7.css')
+    ie_css7 = Bundle(*BUNDLE_IE_CSS7, filters='cssmin', output='output/ie7.css')
+    ie_css8 = Bundle(*BUNDLE_IE_CSS8, filters='cssmin', output='output/ie8.css')
+    ie_css9 = Bundle(*BUNDLE_IE_CSS9, filters='cssmin', output='output/ie9.css')
 
     assets.register('packed_js', js)
     assets.register('packed_css', css)
-    assets.register('packed_ie_css', ie_css)
+    assets.register('packed_ie_css7', ie_css7)
+    assets.register('packed_ie_css8', ie_css8)
+    assets.register('packed_ie_css9', ie_css9)
 
 def configure_static(app):
     if app.config['DEBUG']:

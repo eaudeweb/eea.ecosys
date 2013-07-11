@@ -110,8 +110,7 @@ class LiteratureForm(_LiteratureForm):
                                ' are addressed per ecosystem type(s)')))
 
     ecosystem_types_methods = wtf.FormField(EcosystemType,
-        widget=EcosystemTableWidget(data=ECOSYSTEM_METHODS, categ='Methods',
-                                    header=False))
+        widget=EcosystemTableWidget(data=ECOSYSTEM_METHODS, categ='Methods'))
 
     ecosystem_services_types = wtf.FormField(EcosystemServiceType,
         widget=EcosystemServiceTableWidget(data=ECOSYSTEM_TYPES,

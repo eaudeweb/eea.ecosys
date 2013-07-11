@@ -86,7 +86,7 @@
 
     <div class="row lastOfType file-container">
       {{ render_field(review_form.filename) }}
-      <div style="margin-left: 250px;">
+      <div class="indent">
         <a href="" class="add-another-file" data-name="filename">
           Add another</a>
       </div>
@@ -110,7 +110,7 @@
 
     <div class="row">
       {{ render_field(review_form.countries) }}
-      <span style="position: relative; left: 250px;">
+      <div class="indent">
         <strong>Select:</strong>
         <a class="countries-select" href=""
            data-countries='{{ countries_eu|to_json }}'>EU</a>
@@ -123,6 +123,7 @@
         <a id="countries-all" href="">All countries</a>
         &bullet;
         <a id="countries-clear" href="">Clear selection</a>
+      </div>
     </div>
 
     <div class="row lastOfType">
@@ -163,7 +164,7 @@
       {{ render_field(review_form.ecosystem_services) }}
     </div>
 
-     <div class="row lastOfType">
+     <div class="row special lastOfType">
       {{ review_form.ecosystem_services_types }}
       <div class="other">
         <a href="" class="ecosystem-service-type-other"
@@ -190,7 +191,7 @@
     </div>
     <div class="row lastOfType file-container">
        {{ render_field(review_form.admin_feedback_files) }}
-      <div style="margin-left: 250px;">
+      <div class="indent">
         <a href="" class="add-another-file" data-name="admin_feedback_files">
           Add another</a>
       </div>
