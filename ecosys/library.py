@@ -104,7 +104,8 @@ class Feedback(views.MethodView):
         form = forms.FeedbackForm()
         if form.validate():
             form.save()
-            flash('Thanks for the feedback', 'success')
+            if form.data['description']:
+                flash('Thanks for the feedback', 'success')
             return redirect(url_for('.resources'))
         return render_template('feedback.html', form=form)
 
