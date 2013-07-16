@@ -33,7 +33,7 @@ setup(
                       'cssmin==0.1.4',
                       'raven==2.0.3',
                       'blinker==1.2',
-                      'Flask-SuperAdmin==1.6.1',
+                      'Flask-SuperAdmin==1.7',
                       'sparql-client==1.3',
                     ],
     entry_points={'console_scripts': ['manage = ecosys.manage:main']},
