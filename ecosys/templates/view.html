@@ -130,10 +130,10 @@
 
     <tr>
       <td class="label">{{ render_label(review_form.spatial) }}</td>
-      <td>{{ render_bool(review.spatial) }}</td>
+      <td>{{ review.spatial }}</td>
     </tr>
 
-    {% if review.spatial %}
+    {% if review.spatial == 'Yes' %}
     <tr>
       <td class="label">{{ render_label(review_form.spatial_scale) }}</td>
       <td>

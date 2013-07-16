@@ -77,11 +77,11 @@ YES_NO_DONT_KNOW = (
 )
 
 SPATIAL_SCALE = (
-    ('International', 'International'),
+    ('Spatial scale', 'Spatial scale'),
+    ('Global', 'Global'),
+    ('Regional', 'Regional (e.g. European or pan-european)'),
     ('National', 'National'),
-    ('Regional', 'Regional'),
     ('Local', 'Local'),
-    ('Required', 'Required'),
 )
 
 COUNTRIES = (

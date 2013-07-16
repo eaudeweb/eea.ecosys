@@ -17,7 +17,7 @@ $(function () {
 
   $('#spatial').on('change', function () {
 
-    if($(this).val() == '1') {
+    if($(this).val() == 'Yes') {
       $('#spatial_scale').parents('.row').show();
       $('#countries').parents('.row').show();
     } else {

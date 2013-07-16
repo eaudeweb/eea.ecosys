@@ -101,9 +101,12 @@ class LiteratureForm(_LiteratureForm):
     filename = MultipleFileField('File upload representing the document, if freely available',
         validators=[MultipleFileAllowed(files, 'Document is not valid')])
 
-    spatial = CustomBoolean('Spatial specificity', choices=YES_NO, default='1',
-        validators=[RequiredIfChecked(fields=['spatial_scale', 'countries'],
-                                      message='Spatial scale and Countries are required')])
+    spatial = wtf.SelectField('Spatial specificity', choices=YES_NO_DONT_KNOW,
+        validators=[
+            wtf.validators.Required(),
+            RequiredIfChecked(fields=['spatial_scale', 'countries'],
+                              message='Spatial scale and Countries are required')
+        ])
 
     url = wtf.TextField()
 
@@ -139,6 +142,8 @@ class LiteratureForm(_LiteratureForm):
 
     def __init__(self, *args, **kwargs):
         super(LiteratureForm, self).__init__(*args, **kwargs)
+        self.spatial_scale.flags.required = True
+        self.countries.flags.required = True
 
     def validate_ecosystems(self, field):
         if self.data['ecosystems'] =='Yes':
@@ -177,10 +182,8 @@ class LiteratureForm(_LiteratureForm):
         if isinstance(filename_list, list) and filename_list:
             review.filename = [files.save(f) for f in filename_list]
 
-        spatial = True if self.data['spatial'] == '1' else False
-        review.spatial = spatial
-
-        if int(review.spatial):
+        review.spatial = self.data['spatial']
+        if review.spatial == 'Yes':
             review.spatial_scale = self.data['spatial_scale']
             review.countries = self.data['countries']
 

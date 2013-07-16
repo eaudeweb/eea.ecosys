@@ -165,7 +165,7 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
 
     filename = db.ListField(db.StringField(max_length=128), default=None)
 
-    spatial = db.BooleanField(default=True)
+    spatial = db.StringField(choices=YES_NO_DONT_KNOW, required=True,)
 
     spatial_scale = db.ListField(
         db.StringField(max_length=128, choices=SPATIAL_SCALE), default=None,
@@ -186,7 +186,7 @@ class LiteratureReview(db.EmbeddedDocument, ReviewMixin):
 
     ecosystem_types_methods = db.DictField(default=None)
 
-    ecosystem_services = db.StringField(choices=YES_NO_DONT_KNOW, required=True, 
+    ecosystem_services = db.StringField(choices=YES_NO_DONT_KNOW, required=True,
         verbose_name='Are there any <u>specific</u> ecosystem services addressed in the document?')
 
     ecosystem_services_types = db.DictField(default=None)

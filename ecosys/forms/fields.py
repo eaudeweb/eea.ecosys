@@ -180,7 +180,7 @@ class RequiredIfChecked(object):
         self.message = message or '%s are required' % (', '.join(fields))
 
     def __call__(self, form, field):
-        if field.data == '0':
+        if not field.data == 'Yes':
             return True
         for f in self.fields:
             required_field = getattr(form, f, None)
