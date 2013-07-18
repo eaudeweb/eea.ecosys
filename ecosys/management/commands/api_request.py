@@ -22,7 +22,7 @@ class ApiRequest(Command):
                               _external=True)
                 origin = ','.join(resource.reviews[0].origin)
                 status = 'true' if resource.reviews[0].status == 'Final' else 'false'
-                status = 'true' # api bug
+                availability = resource.reviews[0].availability
                 data = {
                     'ecosystem_assessment': {
                         'document_type': resource.resource_type,
@@ -32,7 +32,7 @@ class ApiRequest(Command):
                         'published_year': resource.year_of_publication,
                         'origin': origin,
                         'is_final': status,
-                        'license': '',
+                        'availability': availability,
                         'url': url,
                     }
                 }

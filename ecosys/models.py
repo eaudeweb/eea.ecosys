@@ -279,5 +279,5 @@ class TaskQueue(db.Document):
                 date=datetime.now())
 
 
-# signals.post_save.connect(TaskQueue.post_save, sender=Resource)
-# signals.post_delete.connect(TaskQueue.post_delete, sender=Resource)
+signals.post_save.connect(TaskQueue.post_save, sender=Resource)
+signals.post_delete.connect(TaskQueue.post_delete, sender=Resource)
