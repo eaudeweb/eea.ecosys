@@ -3,7 +3,11 @@
 <form id="author-form" action="{{ url_for('resource.edit_author') }}" method="POST">
 
   <div class="row-simple">
-    {{ render_field(form.name) }}
+    {{ render_field(form.first_name) }}
+  </div>
+
+  <div class="row-simple">
+    {{ render_field(form.last_name) }}
   </div>
 
   <div class="row">

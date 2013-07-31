@@ -109,7 +109,7 @@ $(function () {
       $('#modal').attr('title', title);
       $('#modal').html(data.html);
       $('#modal').dialog({
-        height: 150,
+        height: 190,
         width: 350,
         modal: true
       });

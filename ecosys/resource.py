@@ -19,7 +19,10 @@ def edit_author():
         if form.validate():
             author = form.save()
             response['status'] = 'success'
-            response['author'] = {'id': str(author.id), 'name': author.name}
+            response['author'] = {
+                'id': str(author.id),
+                'name': unicode(author),
+            }
         else:
             response['html'] = render_template('author.html', form=form)
     else:

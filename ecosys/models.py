@@ -80,12 +80,14 @@ class Author(db.Document):
 
     first_name = db.StringField(max_length=128)
 
-    last_name = db.StringField(max_length=128)
+    last_name = db.StringField(max_length=128, required=True)
 
     name = db.StringField(max_length=128, default=None)
 
     def __unicode__(self):
-        return self.name
+        if self.last_name and self.first_name:
+            return '%s, %s' % (self.last_name, self.first_name)
+        return self.last_name
 
 
 class Organisation(db.Document):
