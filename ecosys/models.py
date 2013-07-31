@@ -78,7 +78,11 @@ class ReviewMixin():
 
 class Author(db.Document):
 
-    name = db.StringField(max_length=128, required=True)
+    first_name = db.StringField(max_length=128)
+
+    last_name = db.StringField(max_length=128)
+
+    name = db.StringField(max_length=128, default=None)
 
     def __unicode__(self):
         return self.name
