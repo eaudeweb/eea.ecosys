@@ -235,6 +235,7 @@ class FeedbackForm(_FeedbackForm):
             user = models.User.objects().get(id=flask_login.current_user.id)
             feedback = models.Feedback(user=user)
             feedback.description = self.data['description']
+            feedback.date = datetime.utcnow()
             file_list = self.data['files']
             if isinstance(file_list, list):
                 feedback.files = [files.save(f) for f in file_list]

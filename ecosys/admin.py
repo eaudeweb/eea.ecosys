@@ -33,7 +33,7 @@ class UserAdmin(AdminLogin, superadmin.model.ModelAdmin):
 
 
 class FeedbackAdmin(AdminLogin, superadmin.model.ModelAdmin):
-    list_display = ('user', 'description', 'files')
+    list_display = ('user', 'description', 'files', 'date')
 
 
 admin = superadmin.Admin(index_view=AdminIndex())

@@ -251,6 +251,8 @@ class Feedback(db.Document):
 
     files = db.ListField(db.StringField(max_length=128), default=[])
 
+    date = db.DateTimeField()
+
     def __unicode__(self):
         return u'%s' % self.user
 
