@@ -249,7 +249,7 @@ class Feedback(db.Document):
 
     description = db.StringField(default=None)
 
-    files = db.ListField(db.StringField(max_length=128), default=None)
+    files = db.ListField(db.StringField(max_length=128), default=[])
 
     def __unicode__(self):
         return u'%s' % self.user
