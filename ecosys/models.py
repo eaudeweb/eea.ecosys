@@ -58,7 +58,7 @@ class User(db.Document, UserMixin):
 
     @property
     def name(self):
-        return '%s %s' % (self.first_name, self.last_name)
+        return u'%s %s' % (self.first_name, self.last_name)
 
     def has_delete_role(self, resource):
         if 'administrator' in self.roles or resource.user == self:
@@ -252,7 +252,7 @@ class Feedback(db.Document):
     files = db.ListField(db.StringField(max_length=128), default=None)
 
     def __unicode__(self):
-        return '%s' % self.user
+        return u'%s' % self.user
 
 
 class TaskQueue(db.Document):
@@ -266,7 +266,7 @@ class TaskQueue(db.Document):
     completed = db.BooleanField(default=False)
 
     def __unicode__(self):
-        return '%s - %s' % (self.resource.id, self.action)
+        return u'%s - %s' % (self.resource.id, self.action)
 
     @classmethod
     def post_save(cls, sender, document, **kwargs):
