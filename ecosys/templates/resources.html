@@ -27,6 +27,7 @@
       <th>Title</th>
       <th>English title</th>
       <th>Language</th>
+      <th>Contributor</th>
       <!--<th>Type</th>-->
       <th class='date-added'>Date added</th>
     </tr>
@@ -47,6 +48,7 @@
       </td>
       <td>{{ resource.english_title }}</td>
       <td>{{ resource.language_verbose }}</td>
+      <td>{{ resource.user }}</td>
       <!--<td>{{ resource.resource_type_verbose }}</td>-->
       <td>{{ resource.reviews[0].datetime.strftime('%Y-%m-%d') }}</td>
     </tr>
