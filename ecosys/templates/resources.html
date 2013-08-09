@@ -6,11 +6,20 @@
   {% set active_page = "resources" -%}
 {% endif %}
 
+{% block scripts %}
+  {{ super() }}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#resources").dataTable();
+    }); 
+  </script>
+{% endblock %}
+
 {% block content %}
 
 <h3>Resources</h3>
 
-<table cellspacing="1" cellpadding="0" class="resources">
+<table cellspacing="1" cellpadding="0" class="resources" id="resources">
 
   <thead>
 
@@ -18,7 +27,8 @@
       <th>Title</th>
       <th>English title</th>
       <th>Language</th>
-      <th>Type</th>
+      <!--<th>Type</th>-->
+      <th>Date added</th>
     </tr>
 
   </thead>
@@ -37,7 +47,8 @@
       </td>
       <td>{{ resource.english_title }}</td>
       <td>{{ resource.language_verbose }}</td>
-      <td>{{ resource.resource_type_verbose }}</td>
+      <!--<td>{{ resource.resource_type_verbose }}</td>-->
+      <td>{{ resource.reviews[0].datetime.strftime('%Y-%m-%d') }}</td>
     </tr>
     {% endfor %}
 

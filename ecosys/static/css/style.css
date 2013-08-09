@@ -405,3 +405,11 @@ ul#navigation li a:active{
 body #menunav {
     width: 96%; /* avoids  horizontal scrolling on all pages*/
 }
+
+#middle_content table.dataTable tr.odd td.sorting_1{
+    background-color: #fdfdfd;
+}
+
+#middle_content table.dataTable tr.even td.sorting_1{
+    background-color: #f0f0f0;
+}

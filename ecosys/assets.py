@@ -1,7 +1,8 @@
 
 BUNDLE_JS = (
     'js/select2/select2.js',
-    'js/literature.js'
+    'js/datatables/jquery.dataTables.min.js',
+    'js/literature.js',
 )
 
 
@@ -9,6 +10,7 @@ BUNDLE_CSS = (
     'css/style.css',
     'css/flick/jquery-ui-1.10.2.custom.css',
     'js/select2/select2.css',
+    'js/datatables/jquery.dataTables.css',
 )
 
 BUNDLE_IE_CSS7 = (
