@@ -413,3 +413,7 @@ body #menunav {
 #middle_content table.dataTable tr.even td.sorting_1{
     background-color: #f0f0f0;
 }
+
+th.date-added{
+    width: 70px;
+}
