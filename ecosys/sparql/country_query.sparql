@@ -11,7 +11,7 @@ WHERE {
             eea:code ?code;
             eea:publishingCode ?publishingCode;
             rdfs:label ?countryname
- OPTIONAL { <http://rdfdata.eionet.europa.eu/eea/countries/EU27> skos:member ?ucountry, ?eumember }
+ OPTIONAL { <http://rdfdata.eionet.europa.eu/eea/countries/EU> skos:member ?ucountry, ?eumember }
  OPTIONAL { <http://rdfdata.eionet.europa.eu/eea/countries/EUN22> skos:member ?ucountry, ?eun22member }
  OPTIONAL { <http://rdfdata.eionet.europa.eu/eea/countries/EEA> skos:member ?ucountry, ?eeamember }
  OPTIONAL { <http://rdfdata.eionet.europa.eu/eea/countries/EIONET> skos:member ?ucountry, ?eionetmember }
