@@ -16,7 +16,7 @@ class AdminIndex(AdminLogin, superadmin.AdminIndexView):
 
 
 class AuthorAdmin(AdminLogin, superadmin.model.ModelAdmin):
-    pass
+    list_display = ('first_name', 'last_name')
 
 
 class OrganisationAdmin(AdminLogin, superadmin.model.ModelAdmin):
