@@ -13,7 +13,7 @@ from path import path
 
 from ecosys.models import db
 from ecosys.auth import login_manager
-from ecosys import library, resource, auth, frameservice
+from ecosys import library, resource, auth, frameservice, report
 from ecosys.admin import admin
 from ecosys.template import inject_user, inject_countries
 from ecosys.template import (filter_eu, filter_eea, filter_eionet,
@@ -49,6 +49,7 @@ BLUEPRINTS = (
     library,
     resource,
     auth,
+    report
 )
 
 
