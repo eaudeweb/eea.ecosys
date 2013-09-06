@@ -7,12 +7,42 @@
 {% endif %}
 
 {% block scripts %}
+
   {{ super() }}
+
   <script type="text/javascript">
+
     $(document).ready(function(){
-      $("#resources").dataTable();
-    }); 
+
+      var table = $("#resources").dataTable({
+
+        oLanguage: {
+          sSearch: 'Filter by text: '
+        },
+
+        aoColumnDefs: [{
+          // remove links from search
+          mData: function (source, type, val) {
+            if (type === 'set') {
+              source.title = val;
+              source.title_filter  = $(val).text();
+              return;
+            } else if (type === 'display') {
+              return source.title;
+            } else if (type === 'filter') {
+              return source.title_filter;
+            }
+            return source.title;
+          },
+          aTargets: [0]
+        }]
+
+      });
+
+    });
+
   </script>
+
 {% endblock %}
 
 {% block content %}
