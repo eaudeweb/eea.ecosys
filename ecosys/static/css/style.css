@@ -417,3 +417,22 @@ body #menunav {
 th.date-added{
     width: 70px;
 }
+
+.table thead .sorting, table.table thead .sorting_asc, table.table thead .sorting_desc, table.table thead .sorting_asc_disabled, table.table thead .sorting_desc_disabled {
+    cursor: pointer;
+}
+.table thead .sorting {
+    background: url("/static/js/datatables/images/sort_both.png") no-repeat scroll right center transparent;
+}
+.table thead .sorting_asc {
+    background: url("/static/js/datatables/images/sort_asc.png") no-repeat scroll right center transparent;
+}
+.table thead .sorting_desc {
+    background: url("/static/js/datatables/images/sort_desc.png") no-repeat scroll right center transparent;
+}
+.table thead .sorting_asc_disabled {
+    background: url("/static/js/datatables/images/sort_asc_disabled.png") no-repeat scroll right center transparent;
+}
+.table thead .sorting_desc_disabled {
+    background: url("/static/js/datatables/images/sort_desc_disabled.png") no-repeat scroll right center transparent;
+}
