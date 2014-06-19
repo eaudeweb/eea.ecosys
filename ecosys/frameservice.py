@@ -2,13 +2,11 @@ import re
 import time
 import requests
 
-from flask.ext import login as flask_login
-
 
 frame = None
 last_hit = None
-TIMEOUT = 3600 #seconds
-FRAME_URL = 'http://biodiversity.europa.eu/ecosystem-assessments/frame'
+TIMEOUT = 3600  # seconds
+FRAME_URL = 'http://old.biodiversity.europa.eu/ecosystem-assessments/frame'
 MARKER = '<!--SITE_HEADERFOOTER_MARKER-->'
 
 
@@ -26,7 +24,6 @@ def get_frame_contents():
 def prepare_frame(frame_contents):
     """ Make it extendable by layout template in our app """
     assert MARKER in frame_contents
-    baseurl = FRAME_URL.rsplit('/', 1)[0]
     login_re = r"<a href=\"[^>]+>login</a>"
 
     frame_contents = frame_contents.replace(MARKER, '{% block frame_content %}{% endblock %}')\
