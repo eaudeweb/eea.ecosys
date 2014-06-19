@@ -23,7 +23,7 @@ setup(
                       'Flask-Login==0.1.3',
                       'webassets==0.8',
                       'pymongo==2.4.2',
-                      'mongoengine==0.7.9',
+                      'mongoengine==0.7.10',
                       'flask-mongoengine',
                       'WTForms==1.0.3',
                       'path.py==3.0.1',
